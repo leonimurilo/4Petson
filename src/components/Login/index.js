@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router';
 import './styles.sass';
 
 class Login extends Component {
@@ -16,6 +17,8 @@ class Login extends Component {
         <div className="btnWrapper">
           <button className="loginBtn fbBtn">Login</button>
         </div>
+        <Link to="/signup" >SignUp</Link>
+
       </form>
     );
   }

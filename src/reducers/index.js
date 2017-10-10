@@ -1,3 +1,8 @@
-// Set up your root reducer here...
  import { combineReducers } from 'redux';
- export default combineReducers;
+import IsLoggedIn from './IsLoggedIn'
+
+const rootReducer = combineReducers({
+  isLoggedIn: IsLoggedIn
+});
+
+ export default rootReducer;
