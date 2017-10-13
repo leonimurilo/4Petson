@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute } from 'react-router';
+import { Route, IndexRoute} from 'react-router';
 
 import App from './components/App/index';
 import Main from './components/Main/index';
@@ -10,12 +10,13 @@ import Trades from './components/Trades/index';
 import ItemPage from './components/ItemPage/index';
 import MyItems from './components/MyItems/index';
 import ErrorPage from './components/ErrorPage/index';
+import requireAuth from "./utils/requireAuth";
 
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Main} />
     <Route path="item/:id" component={ItemPage} />
-    <Route path="profile" component={Profile} />
+    <Route path="profile" component={requireAuth(Profile)} />
     <Route path="signup" component={Signup} />
     <Route path="login" component={Login} />
     <Route path="trades" component={Trades} />

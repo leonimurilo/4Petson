@@ -7,5 +7,7 @@ export default function (state = false, action) {
       return true;
     case USER_LOGGED_OUT:
       return false;
+    default:
+      return state;
   }
 }

@@ -96,11 +96,7 @@
     "webpack-hot-middleware": "2.13.2",
     "webpack-md5-hash": "0.0.5"
   },
-  "keywords": ["react", "redux", "ecommerce", "Arshad Khan", "react-slingshot", "express", "node"],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/arshdkhn1/react-redux-template-for-ecommerce-site.git"
-  },
+  "keywords": ["react", "redux", "ecommerce", "react-slingshot", "express", "node"],
   "jest": {
     "moduleNameMapper": {
       "\\.(css|scss)$": "identity-obj-proxy",
