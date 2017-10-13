@@ -1,5 +1,7 @@
 import React from "react";
+import {withRouter, Link} from "react-router";
 import {connect} from "react-redux";
+// import Login from "../components/Login/index";
 
 export default function (ComposedComponent) {
   console.log("Auth");
@@ -13,6 +15,11 @@ export default function (ComposedComponent) {
     }
 
     render() {
+      if(!this.props.isLoggedIn){
+        return (<div><Link to="/login" activeClassName="activeNavLink" className="navLink">Sign in</Link></div>);
+        // return (<Login/>);
+        // return null;
+      }
       return (
         <ComposedComponent {...this.props}/>
       );
@@ -31,5 +38,5 @@ export default function (ComposedComponent) {
     return {isLoggedIn};
   }
 
-  return connect(mapStateToProps)(Authenticate);
+  return withRouter(connect(mapStateToProps)(Authenticate));
 }
