@@ -19,8 +19,8 @@ export default (
     <Route path="profile" component={requireAuth(Profile)} />
     <Route path="signup" component={Signup} />
     <Route path="login" component={Login} />
-    <Route path="trades" component={Trades} />
-    <Route path="myItems" component={MyItems} />
+    <Route path="trades" component={requireAuth(Trades)} />
+    <Route path="myItems" component={requireAuth(MyItems)} />
     <Route path="*" component={ErrorPage} />
   </Route>
 );
