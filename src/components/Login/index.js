@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
-import './styles.sass';
+import {Link, withRouter} from 'react-router';
+import {Field, reduxForm} from "redux-form";
 import {login} from '../../actions/index';
+
+import './styles.sass';
 
 class Login extends Component {
   componentDidMount() {
@@ -12,13 +14,16 @@ class Login extends Component {
 
   onSubmit(values){
     this.props.login("test@test.com","secret", () => {
-        this.props.history.push("/");
+        this.props.router.push("/");
     });
 }
 
   render() {
+    // function that is added in the component props by reduxForm()
+    const {handleSubmit} = this.props;
+
     return (
-      <form className="loginWrapper">
+      <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="loginWrapper">
         <h3 className="loginHeading text-center">Login with your account or SignUp</h3>
         <input className="textInput" placeholder="E-mail" type="text"/>
         <input className="textInput" placeholder="Password" type="password"/>
@@ -32,5 +37,14 @@ class Login extends Component {
   }
 }
 
+function validate(values){
+    const errors = {};
+    return errors;
+}
 
-export default connect(null, null)(Login);
+export default reduxForm({
+    validate,
+    form: "LoginForm" // unique name
+})(
+    connect(null, {login})(withRouter(Login))
+);

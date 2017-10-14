@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 // import Login from "../components/Login/index";
 
 export default function (ComposedComponent) {
-  console.log("Auth");
   class Authenticate extends React.Component {
 
     componentWillMount(){

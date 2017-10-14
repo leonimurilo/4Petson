@@ -25,41 +25,6 @@ class Header extends Component {
       </button>
     );
 
-    this.loggedInMenu = (
-      <div className="menu">
-        <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
-          Home
-        </Link>
-        <Link onlyActiveOnIndex={true} key={2} to="/profile" activeClassName="activeNavLink" className="navLink">
-          Profile
-        </Link>
-        <Link onlyActiveOnIndex={true} key={3} to="/trades" activeClassName="activeNavLink" className="navLink">
-          Trades
-        </Link>
-        <Link onlyActiveOnIndex={true} key={4} to="/login" activeClassName="activeNavLink" className="navLink">
-          Login
-        </Link>
-        <Link onlyActiveOnIndex={true} key={5} to="/signup" activeClassName="activeNavLink" className="navLink">
-          SignUp
-        </Link>
-      </div>
-    );
-
-    this.loggedOutMenu = (
-      <div className="menu loginMenu">
-      <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
-        Home
-      </Link>
-      <Link onlyActiveOnIndex={true} key={4} to="/login" activeClassName="activeNavLink" className="navLink">
-        Login
-      </Link>
-      <Link onlyActiveOnIndex={true} key={5} to="/signup" activeClassName="activeNavLink" className="navLink">
-        SignUp
-      </Link>
-      </div>
-    );
-
-    this.setNav();
     this.setMenuState(window.innerWidth);
     this.previousWidth = window.innerWidth;
 
@@ -87,6 +52,7 @@ class Header extends Component {
   }
 
   setNav() {
+    console.log("checked:", this.props.isLoggedIn);
     if (this.props.isLoggedIn) {
       this.setState({ nav: this.loggedInMenu });
     } else {
@@ -95,17 +61,55 @@ class Header extends Component {
   }
 
   render() {
-    return (
-      <header className="header">
-        <h1>
-          <Link onlyActiveOnIndex={true} to="/" className="logo">
-            4Pet
+    if(this.props.isLoggedIn){
+      return (
+        <header className="header">
+          <h1>
+            <Link onlyActiveOnIndex={true} to="/" className="logo">
+              4Pet
+            </Link>
+          </h1>
+          {this.state.menuActive ? this.menuButton: ""}
+          <div className="menu">
+            <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
+              Home
+            </Link>
+            <Link onlyActiveOnIndex={true} key={2} to="/profile" activeClassName="activeNavLink" className="navLink">
+              Profile
+            </Link>
+            <Link onlyActiveOnIndex={true} key={3} to="/trades" activeClassName="activeNavLink" className="navLink">
+              Trades
+            </Link>
+            <Link onlyActiveOnIndex={true} key={4} to="/logout" activeClassName="activeNavLink" className="navLink">
+              Logout
+            </Link>
+          </div>
+        </header>
+      );
+    }else{
+      return (
+        <header className="header">
+          <h1>
+            <Link onlyActiveOnIndex={true} to="/" className="logo">
+              4Pet
+            </Link>
+          </h1>
+          {this.state.menuActive ? this.menuButton: ""}
+          <div className="menu loginMenu">
+          <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
+            Home
           </Link>
-        </h1>
-        {this.state.menuActive ? this.menuButton: ""}
-        {this.state.nav}
-      </header>
-    );
+          <Link onlyActiveOnIndex={true} key={4} to="/login" activeClassName="activeNavLink" className="navLink">
+            Login
+          </Link>
+          <Link onlyActiveOnIndex={true} key={5} to="/signup" activeClassName="activeNavLink" className="navLink">
+            SignUp
+          </Link>
+          </div>
+        </header>
+      );
+    }
+
   }
 }
 
@@ -115,4 +119,4 @@ function mapStateToProps({isLoggedIn}){
   });
 }
 
-export default connect(mapStateToProps, null)(Header);
+export default connect(mapStateToProps, null, null, {pure: false})(Header);

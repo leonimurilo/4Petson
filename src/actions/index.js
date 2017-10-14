@@ -5,6 +5,7 @@ import {
 } from "./types";
 
 export function login(email, password, callback) {
+  console.log("login")
   callback();
   return {
     type: USER_LOGGED_IN,
