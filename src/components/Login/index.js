@@ -31,13 +31,13 @@ class Login extends Component {
         <Field
           label="E-mail"
           name="email"
-          type="text"
+          type="email"
           component={renderField}
         />
         <Field
           label="Password"
           name="password"
-          type="text"
+          type="password"
           component={renderField}
         />
         <div className="btnWrapper">

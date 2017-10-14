@@ -5,6 +5,11 @@ export function validateEmail(email) {
     return re.test(email);
 }
 
+export function validateCPF(cpf) {
+    var re = /([0-9]{2}[\.]?[0-9]{3}[\.]?[0-9]{3}[\/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[\.]?[0-9]{3}[\.]?[0-9]{3}[-]?[0-9]{2})/;
+    return re.test(cpf);
+}
+
 export function renderField(field){
     //gets field.meta, field.meta.touched and field.meta.error
     const {meta: {touched, error}} = field;
