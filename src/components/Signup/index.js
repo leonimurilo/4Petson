@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import {Link, withRouter} from 'react-router';
+import {Field, reduxForm} from "redux-form";
+import {signUp} from '../../actions/index';
+import {validateEmail, renderField} from '../../utils/formUtils';
+
 import './styles.sass';
 
-class Login extends Component {
+class SignUp extends Component {
   componentDidMount() {
     document.body.scrollTop = 0;
     document.querySelector('.menu').classList.remove('open');
   }
 
+  onSubmit(values){
+    this.props.signUp(values, () => {
+        this.props.router.push("/");
+    });
+  }
+
   render() {
     return (
-      <form className="loginWrapper">
-        <h3 className="loginHeading text-center">SignUp</h3>
+      <form className="signUpWrapper">
+        <h3 className="signUpHeading text-center">SignUp</h3>
         <div className="inputWrapper">
           <input className="textInput" placeholder="Name" type="text"/>
           <input className="textInput" placeholder="Surname" type="text"/>
@@ -26,11 +38,11 @@ class Login extends Component {
           <input className="textInput" placeholder="Confirm password" type="password"/>
         </div>
         <div className="btnWrapper">
-          <button className="loginBtn fbBtn">Sign up</button>
+          <button className="signUpBtn fbBtn">Sign up</button>
         </div>
       </form>
     );
   }
 }
 
-export default Login;
+export default SignUp;

@@ -3,8 +3,7 @@ import {connect} from 'react-redux';
 import {Link, withRouter} from 'react-router';
 import {Field, reduxForm} from "redux-form";
 import {login} from '../../actions/index';
-
-import {validateEmail} from '../../utils/validateEmail';
+import {validateEmail, renderField} from '../../utils/formUtils';
 
 import './styles.sass';
 
@@ -15,25 +14,12 @@ class Login extends Component {
     document.querySelector('.menu').classList.remove('open');
   }
 
-  renderField(field){
-      //gets field.meta, field.meta.touched and field.meta.error
-      const {meta: {touched, error}} = field;
-      const className = `${touched && error ? "has-danger" : ""}`;
-      return (
-        <input
-            placeholder={field.label}
-            className={`textInput ${className}`}
-            type={field.type}
-            {...field.input}
-        />
-      );
-  }
-
-  onSubmit(){
-    this.props.login("test@test.com","secret", () => {
+  // values contains all the input values of the form
+  onSubmit(values){
+    this.props.login(values.email, values.password, () => {
         this.props.router.push("/");
     });
-}
+  }
 
   render() {
     // function that is added in the component props by reduxForm()
@@ -46,13 +32,13 @@ class Login extends Component {
           label="E-mail"
           name="email"
           type="text"
-          component={this.renderField}
+          component={renderField}
         />
         <Field
           label="Password"
           name="password"
           type="text"
-          component={this.renderField}
+          component={renderField}
         />
         <div className="btnWrapper">
           <button type="submit" className="loginBtn fbBtn">Login</button>
@@ -67,11 +53,11 @@ class Login extends Component {
 function validate(values){
     const errors = {};
     if(!validateEmail(values.email)){
-      errors.email = "Invalid E-mail"
+      errors.email = "Invalid E-mail";
     }
 
     if(!values.password || values.password.length < 8){
-      errors.password = "Enter a password that is at least 8 characters long!"
+      errors.password = "Enter a password that is at least 8 characters long!";
     }
 
     return errors;
