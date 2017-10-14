@@ -10,6 +10,12 @@ class Login extends Component {
     document.querySelector('.menu').classList.remove('open');
   }
 
+  onSubmit(values){
+    this.props.login("test@test.com","secret", () => {
+        this.props.history.push("/");
+    });
+}
+
   render() {
     return (
       <form className="loginWrapper">

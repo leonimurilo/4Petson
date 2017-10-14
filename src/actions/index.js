@@ -4,14 +4,16 @@ import {
   USER_LOGGED_IN
 } from "./types";
 
-export function login(email, password) {
+export function login(email, password, callback) {
+  callback();
   return {
     type: USER_LOGGED_IN,
     payload: true
   };
 }
 
-export function logout() {
+export function logout(callback) {
+  callback();
   return {
     type: USER_LOGGED_OUT,
     payload: false
