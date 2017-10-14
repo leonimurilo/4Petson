@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import './styles.sass';
+import {login} from '../../actions/index';
 
 class Login extends Component {
   componentDidMount() {
@@ -24,4 +26,5 @@ class Login extends Component {
   }
 }
 
-export default Login;
+
+export default connect(null, null)(Login);

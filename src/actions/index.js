@@ -1,0 +1,19 @@
+// import axios from "axios";
+import {
+  USER_LOGGED_OUT,
+  USER_LOGGED_IN
+} from "./types";
+
+export function login(email, password) {
+  return {
+    type: USER_LOGGED_IN,
+    payload: true
+  };
+}
+
+export function logout() {
+  return {
+    type: USER_LOGGED_OUT,
+    payload: false
+  };
+}
