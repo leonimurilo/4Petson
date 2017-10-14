@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import { Link } from 'react-router';
 
 import './styles.sass';
@@ -46,9 +47,15 @@ class Header extends Component {
 
     this.loggedOutMenu = (
       <div className="menu loginMenu">
-        <Link onlyActiveOnIndex={true} key={5} activeClassName="activeNavLink" className="navLink">
-          LogIn / Sign Up
-        </Link>
+      <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
+        Home
+      </Link>
+      <Link onlyActiveOnIndex={true} key={4} to="/login" activeClassName="activeNavLink" className="navLink">
+        Login
+      </Link>
+      <Link onlyActiveOnIndex={true} key={5} to="/signup" activeClassName="activeNavLink" className="navLink">
+        SignUp
+      </Link>
       </div>
     );
 
@@ -80,9 +87,7 @@ class Header extends Component {
   }
 
   setNav() {
-    // check for auth here
-    const True = true;
-    if (True) {
+    if (this.props.isLoggedIn) {
       this.setState({ nav: this.loggedInMenu });
     } else {
       this.setState({ nav: this.loggedOutMenu });
@@ -104,4 +109,10 @@ class Header extends Component {
   }
 }
 
-export default Header;
+function mapStateToProps({isLoggedIn}){
+  return ({
+    isLoggedIn
+  });
+}
+
+export default connect(mapStateToProps, null)(Header);
