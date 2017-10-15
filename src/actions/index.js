@@ -1,4 +1,6 @@
-// import axios from "axios";
+import Axios from "axios";
+import config from "../utils/config";
+
 import {
   USER_SIGNED_UP,
   USER_LOGGED_OUT,
@@ -15,10 +17,28 @@ export function signUp(data, callback) {
 }
 
 export function login(email, password, callback) {
-  callback();
-  return {
-    type: USER_LOGGED_IN,
-    payload: true
+
+  const requestPromise = Axios.post(config.url.auth,
+        {
+            email,
+            password
+        });
+
+  return (dispatch) => {
+    requestPromise.then(({data}) => {
+      callback();
+      console.log("data", data);
+      dispatch(
+        {
+          type: USER_LOGGED_IN,
+          payload: true
+        }
+      );
+
+    }).catch(err => {
+        console.log(err);
+    });
+
   };
 }
 
