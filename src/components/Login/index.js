@@ -16,12 +16,9 @@ class Login extends Component {
 
   // values contains all the input values of the form
   onSubmit(values){
-    let x = this.props.login(values.email, values.password, () => {
+    return this.props.login(values.email, values.password, () => {
         this.props.router.push("/");
     });
-
-    console.log("treco", x);
-    return x;
   }
 
   render() {

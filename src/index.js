@@ -5,12 +5,15 @@ import { Router, browserHistory } from 'react-router';
 
 import routes from './routes';
 
+import {checkLogin} from "./actions/index";
+
 import './styles/global.sass';
 import './favicon.ico';
 
 import configureStore from './store/configureStore';
 
 const store = configureStore();
+store.dispatch(checkLogin());
 
 render(
   <Provider store={store}>
