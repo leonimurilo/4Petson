@@ -16,14 +16,17 @@ class Login extends Component {
 
   // values contains all the input values of the form
   onSubmit(values){
-    this.props.login(values.email, values.password, () => {
+    let x = this.props.login(values.email, values.password, () => {
         this.props.router.push("/");
     });
+
+    console.log("treco", x);
+    return x;
   }
 
   render() {
     // function that is added in the component props by reduxForm()
-    const {handleSubmit} = this.props;
+    const {handleSubmit, error} = this.props;
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="loginWrapper">
@@ -40,6 +43,7 @@ class Login extends Component {
           type="password"
           component={renderField}
         />
+        <label className="errorMessage">{error}</label>
         <div className="btnWrapper">
           <button type="submit" className="loginBtn fbBtn">Login</button>
         </div>

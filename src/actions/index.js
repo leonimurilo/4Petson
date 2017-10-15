@@ -1,5 +1,6 @@
 import Axios from "axios";
 import config from "../utils/config";
+import { SubmissionError } from 'redux-form'
 
 import {
   USER_SIGNED_UP,
@@ -25,7 +26,7 @@ export function login(email, password, callback) {
         });
 
   return (dispatch) => {
-    requestPromise.then(({data}) => {
+    return requestPromise.then(({data}) => {
       callback();
       console.log("data", data);
       dispatch(
@@ -36,7 +37,8 @@ export function login(email, password, callback) {
       );
 
     }).catch(err => {
-        console.log(err);
+        console.log("Error response from server:", err.response);
+        throw new SubmissionError({_error: err.response.data.message || "Could not perform the login."})
     });
 
   };
