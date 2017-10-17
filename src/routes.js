@@ -20,7 +20,7 @@ export default (
     <Route path="profile" component={requireAuth(Profile)} />
     <Route path="signup" component={Signup} />
     <Route path="login" component={Login} />
-    <Route path="logout" component={Logout} />
+    <Route path="logout" component={requireAuth(Logout)} />
     <Route path="trades" component={requireAuth(Trades)} />
     <Route path="myItems" component={requireAuth(MyItems)} />
     <Route path="*" component={ErrorPage} />

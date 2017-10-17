@@ -9,9 +9,29 @@ import {
   SET_AUTH_TOKEN
 } from "./types";
 
-// the backend send which fields are wrong. 
-export function signUp(data, callback) {
+// the backend send which fields are wrong.
+export function signUp(values, callback) {
   callback();
+  const requestPromise = Axios.post(config.url.signUp, values);
+
+  return (dispatch) => {
+    return requestPromise.then(({data}) => {
+      console.log("data", data);
+      localStorage.setItem('auth_token', data.token);
+      callback();
+      dispatch(
+        {
+          type: USER_SIGNED_UP,
+          payload: true
+        }
+      );
+
+    }).catch(err => {
+        console.log("Error response from server:", err.response);
+        throw new SubmissionError({_error: err.response.data.message || "Could not perform the sign up."});
+    });
+
+  };
   //should return user info that will be used to display different pages (seller/buyer) as well as the profile info
   return {
     type: USER_SIGNED_UP,
@@ -20,7 +40,7 @@ export function signUp(data, callback) {
 }
 
 export function login(email, password, callback) {
-  const requestPromise = Axios.post(config.url.auth,
+  const requestPromise = Axios.post(config.url.signIn,
         {
             email,
             password

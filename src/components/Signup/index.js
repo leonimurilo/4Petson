@@ -19,6 +19,10 @@ class SignUp extends Component {
     });
   }
 
+  // <Field label="CPF" name="cpf" type="text" component={renderField}/>
+  // <Field label="Credit card number" name="creditCardNumber" type="text" component={renderField}/>
+  // <Field label="Country" name="country" type="text" component={renderField}/>
+
   render() {
     // function that is added in the component props by reduxForm()
     const {handleSubmit} = this.props;
@@ -27,17 +31,15 @@ class SignUp extends Component {
         <h3 className="signUpHeading text-center">SignUp</h3>
         <div className="inputWrapper">
           <Field label="Name" name="name" type="text" component={renderField}/>
-          <Field label="Surname" name="surname" type="text" component={renderField}/>
+          <Field label="Last name" name="last_name" type="text" component={renderField}/>
+          <Field label="Birthday" name="birthday" type="text" component={renderField}/>
           <Field label="E-mail" name="email" type="email" component={renderField}/>
-          <Field label="CPF" name="cpf" type="text" component={renderField}/>
-          <Field label="Credit card number" name="creditCardNumber" type="text" component={renderField}/>
-          <Field label="Address" name="adress" type="text" component={renderField}/>
+          <Field label="Address" name="address" type="text" component={renderField}/>
           <Field label="City" name="city" type="text" component={renderField}/>
           <Field label="State/Province" name="state" type="text" component={renderField}/>
-          <Field label="ZIP/Postal code" name="zip" type="text" component={renderField}/>
-          <Field label="Country" name="country" type="text" component={renderField}/>
+          <Field label="ZIP/Postal code" name="zip_code" type="text" component={renderField}/>
           <Field label="Password" name="password" type="password" component={renderField}/>
-          <Field label="Confirm password" name="confirmPassword" type="password" component={renderField}/>
+          <Field label="Confirm password" name="password_confirmation" type="password" component={renderField}/>
         </div>
         <div className="btnWrapper">
           <button className="signUpBtn fbBtn">Sign up</button>
@@ -52,18 +54,21 @@ function validate(values){
     if(!values.name || values.name.length < 3){
       errors.name = "Invalid name";
     }
-    if(!values.surname || values.surname.length < 2){
-      errors.surname = "Invalid surname";
+    if(!values.last_name || values.last_name.length < 2){
+      errors.last_name = "Invalid last name";
+    }
+    if(!values.birthday || values.birthday.length < 2){
+      errors.birthday = "Invalid birthday";
     }
     if(!validateEmail(values.email)){
       errors.email = "Invalid E-mail";
     }
-    if(!validateCPF(values.cpf)){
-      errors.cpf = "Invalid CPF";
-    }
-    if(!values.creditCardNumber || values.creditCardNumber.length < 12){
-      errors.creditCardNumber = "Invalid credit card number";
-    }
+    // if(!validateCPF(values.cpf)){
+    //   errors.cpf = "Invalid CPF";
+    // }
+    // if(!values.creditCardNumber || values.creditCardNumber.length < 12){
+    //   errors.creditCardNumber = "Invalid credit card number";
+    // }
     if(!values.adress || values.adress.length < 10){
       errors.adress = "Invalid adress";
     }
@@ -73,21 +78,21 @@ function validate(values){
     if(!values.state || values.state.length < 2){
       errors.state = "Invalid state/province";
     }
-    if(!values.zip || values.zip.length < 5){
-      errors.zip = "Invalid ZIP/Postal code";
+    if(!values.zip_code || values.zip_code.length < 5){
+      errors.zip_code = "Invalid ZIP/Postal code";
     }
-    if(!values.country || values.country.length < 3){
-      errors.country = "Invalid country";
-    }
+    // if(!values.country || values.country.length < 3){
+    //   errors.country = "Invalid country";
+    // }
     if(!values.password || values.password.length < 8){
       errors.password = "Invalid password";
     }
-    if(!values.confirmPassword || values.confirmPassword.length < 8){
-      errors.confirmPassword = "Password confirmation too short";
+    if(!values.password_confirmation || values.password_confirmation.length < 8){
+      errors.password_confirmation = "Password confirmation too short";
     }
-    if(values.confirmPassword && values.password){
-      if(values.confirmPassword !== values.password && values.password.length >= 8){
-        errors.confirmPassword = "Password confirmation doesn't match";
+    if(values.password_confirmation && values.password){
+      if(values.password_confirmation !== values.password && values.password.length >= 8){
+        errors.password_confirmation = "Password confirmation doesn't match";
       }
     }
 

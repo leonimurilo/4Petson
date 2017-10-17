@@ -2,6 +2,7 @@
 
 module.exports = {
   'url': {
-    'auth': 'http://four-pet.herokuapp.com/api/auth/signin'
+    'signIn': 'http://four-pet.herokuapp.com/api/auth/signin',
+    'signUp': 'http://four-pet.herokuapp.com/api/auth/signup'
   }
 };
