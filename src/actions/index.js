@@ -9,6 +9,7 @@ import {
   SET_AUTH_TOKEN
 } from "./types";
 
+// the backend send which fields are wrong. 
 export function signUp(data, callback) {
   callback();
   //should return user info that will be used to display different pages (seller/buyer) as well as the profile info
