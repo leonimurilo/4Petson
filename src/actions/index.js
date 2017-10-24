@@ -6,7 +6,8 @@ import {
   USER_SIGNED_UP,
   USER_LOGGED_OUT,
   USER_LOGGED_IN,
-  SET_AUTH_TOKEN
+  SET_AUTH_TOKEN,
+  FETCH_RACES
 } from "./types";
 
 // the backend send which fields are wrong.
@@ -114,4 +115,25 @@ export function logout(callback) {
 
 
   };
+}
+
+export function fetchRaces(){
+  const fake_data = [
+    { id: 1, name: "Cachorro", species: [{ id: 1, name: "Yorskshine" }, { id: 2, name: "Bullgod" }, { id: 1, name: "Fila ou pilha?" }]},
+    { id: 1, name: "Gato", species: [{ id: 1, name: "Siamês" }]},
+  ];
+  console.log("fetch races");
+  return (dispatch) => {
+    dispatch(
+      {
+        type: FETCH_RACES,
+        payload: fake_data
+      }
+    );
+  }
+  // Axios.get(config.url.fetchRaces).then(function(response){
+  //
+  // }).catch(function(error){
+  //
+  // });
 }
