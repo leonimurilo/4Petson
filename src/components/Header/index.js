@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router';
+import Modal from 'boron/OutLineModal';
 
 import './styles.sass';
 
@@ -60,6 +61,21 @@ class Header extends Component {
     }
   }
 
+  showSearchModal(){
+    console.log("hello");
+        this.refs.modal.show();
+    }
+
+    hideModal(){
+      console.log("hello hide");
+        this.refs.modal.hide();
+    }
+
+    callback(event){
+        console.log(event);
+    }
+
+
   render() {
     if(this.props.isLoggedIn){
       return (
@@ -69,8 +85,12 @@ class Header extends Component {
               4Pet
             </Link>
           </h1>
+          <Modal ref={ 'modal' } modalStyle={{width: '80%'}}>
+            <h1>hello</h1>
+          </Modal>
           {this.state.menuActive ? this.menuButton: ""}
           <div className="menu">
+            <button className="search" onClick={this.showSearchModal.bind(this)}>Search</button>
             <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
               Home
             </Link>
