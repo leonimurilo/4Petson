@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import { Link } from 'react-router';
 import Modal from 'boron/OutLineModal';
 
+import Search from '../Search/index'
+
 import './styles.sass';
 
 class Header extends Component {
@@ -86,7 +88,7 @@ class Header extends Component {
             </Link>
           </h1>
           <Modal ref={ 'modal' } modalStyle={{width: '80%'}}>
-            <h1>hello</h1>
+            <Search></Search>
           </Modal>
           {this.state.menuActive ? this.menuButton: ""}
           <div className="menu">

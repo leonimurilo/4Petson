@@ -120,7 +120,7 @@ export function logout(callback) {
 export function fetchRaces(){
   const fake_data = [
     { id: 1, name: "Cachorro", species: [{ id: 1, name: "Yorskshine" }, { id: 2, name: "Bullgod" }, { id: 1, name: "Fila ou pilha?" }]},
-    { id: 1, name: "Gato", species: [{ id: 1, name: "Siamês" }]},
+    { id: 2, name: "Gato", species: [{ id: 1, name: "Siamês" }]},
   ];
   console.log("fetch races");
   return (dispatch) => {
