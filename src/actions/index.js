@@ -7,7 +7,7 @@ import {
   USER_LOGGED_OUT,
   USER_LOGGED_IN,
   SET_AUTH_TOKEN,
-  FETCH_RACES
+  FETCH_SPECIES
 } from "./types";
 
 // the backend send which fields are wrong.
@@ -117,17 +117,17 @@ export function logout(callback) {
   };
 }
 
-export function fetchRaces(){
-  const fake_data = [
-    { id: 1, name: "Cachorro", species: [{ id: 1, name: "Yorskshine" }, { id: 2, name: "Bullgod" }, { id: 1, name: "Fila ou pilha?" }]},
-    { id: 2, name: "Gato", species: [{ id: 1, name: "Siamês" }]},
+export function fetchSpecies(){
+  const species = [
+    { id: 1, name: "Cachorro", breeds: [{ id: 1, name: "Yorskshine" }, { id: 2, name: "Bullgod" }, { id: 1, name: "Fila ou pilha?" }]},
+    { id: 2, name: "Gato", breeds: [{ id: 1, name: "Siamês" }]},
   ];
-  console.log("fetch races");
+  console.log("fetch species");
   return (dispatch) => {
     dispatch(
       {
-        type: FETCH_RACES,
-        payload: fake_data
+        type: FETCH_SPECIES,
+        payload: species
       }
     );
   }

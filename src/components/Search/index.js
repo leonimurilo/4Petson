@@ -9,25 +9,28 @@ class Search extends Component {
   constructor(props){
     super(props);
     this.state = {
-      options: [
-        { value: 'one', label: 'One' },
-        { value: 'two', label: 'Two' },
-        { value: 'three', label: 'Three' }
+      breedsTest: [
+        { value: '1', label: 'super dog', specie: "dog"},
+        { value: '2', label: 'golden', specie: "dog" },
+        { value: '3', label: 'cat uhu', specie: "cat" }
       ]
     }
+    this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
-  logChange(val) {
-  console.log("Selected: " + JSON.stringify(val));
-}
+  handleSelectChange(value) {
+      console.log('You have selected: ', value);
+      this.setState({ value });
+    }
 
-  renderRaces(races){
-      return _.map(races, race => {
-        console.log(race.name);
+
+  renderSpecies(species){
+      return _.map(species, specie => {
+        console.log(specie.name);
         return (
-          <div key={race.id} className="raceOption">
-            <input type="checkbox" name={race.id} value={race.id} checked={true}/>
-            <label htmlFor={race.id}>{race.name}</label>
+          <div key={specie.id} className="specieOption">
+            <input type="checkbox" name={specie.id} value={specie.id} checked={true}/>
+            <label htmlFor={specie.id}>{specie.name}</label>
           </div>
         );
       });
@@ -38,14 +41,16 @@ class Search extends Component {
       <div>
         <h1>Search pets</h1>
         <div className="checkBoxesContainer">
-          <h3>Races:</h3>
-          {this.renderRaces(this.props.races)}
+          <h3>Species:</h3>
+          {this.renderSpecies(this.props.species)}
         </div>
         <Select
         name="form-field-name"
-        multi={true}
-        options={this.state.options}
-        onChange={this.logChange}
+        placeholder="Select your favourite(s)"
+        value={this.state.value}
+        multi
+        options={this.state.breedsTest}
+        onChange={this.handleSelectChange}
         />
       </div>
     );
@@ -54,7 +59,7 @@ class Search extends Component {
 }
 
 function mapStateToProps(state){
-  return {races: state.races}
+  return {species: state.species}
 }
 
 export default connect(mapStateToProps, null)(Search);

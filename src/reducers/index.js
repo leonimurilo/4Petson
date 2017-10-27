@@ -3,7 +3,7 @@
  } from 'redux';
  import IsLoggedIn from './IsLoggedIn';
  import AuthToken from './AuthToken';
- import Races from './Races'
+ import Species from './Species'
 
  import {reducer as formReducer} from "redux-form";
 
@@ -11,7 +11,7 @@
    form: formReducer,
    isLoggedIn: IsLoggedIn,
    authToken: AuthToken,
-   races:Races
+   species:Species
  });
 
  export default rootReducer;

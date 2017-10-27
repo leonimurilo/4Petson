@@ -3,4 +3,4 @@ export const USER_LOGGED_IN = "USER_LOGGED_IN";
 export const USER_LOGGED_OUT = "USER_LOGGED_OUT";
 export const SET_AUTH_TOKEN = "SET_AUTH_TOKEN";
 export const CHECK_AUTH_TOKEN = "CHECK_AUTH_TOKEN";
-export const FETCH_RACES = "FETCH_RACES";
+export const FETCH_SPECIES = "FETCH_SPECIES";
