@@ -19,19 +19,16 @@ input[type='checkbox']:checked
   transition: color .3s
   color: $appPrimaryColor
   background: transparent
-  display: flex
   padding: 20px 40px 40px 40px
   flex-direction: column
   align-items: center
-  justify-content: center
+  height: calc(100% - 60px)
   font-size: 1rem
-  line-height: 2.5
-  max-height: 80%
   overflow: auto
 
   h1
     margin-bottom: 10px
-
+    text-align: center
 
   .checkBoxesContainer
     margin: 10px
@@ -53,13 +50,11 @@ input[type='checkbox']:checked
       &:hover
         opacity: .7
   .addtionalOptions
-    display: flex
     border-top: 1px solid #CBCBCB
     margin-top: 25px
     padding-top: 15px
     width: 100%
     flex-direction: column
-    overflow: auto
     align-items: center
     .addtionalOptionsMenu
       width: 100%

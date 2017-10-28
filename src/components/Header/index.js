@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router';
-import Modal from 'boron/OutLineModal';
+import Modal from 'boron/DropModal';
 
 import Search from '../Search/index'
 
@@ -79,6 +79,23 @@ class Header extends Component {
 
 
   render() {
+    const modalStyle = {
+      width: '80%',
+      maxHeight: "70%",
+      transition: "width 1s ease-in-out"
+    };
+
+    const backdropStyle = {
+    height: "100%",
+transition: "width 1s ease-in-out"
+    };
+
+    const contentStyle = {
+    height: "100%",
+    overflow: "auto",
+    transition: "width 1s ease-in-out"
+    };
+
     if(this.props.isLoggedIn){
       return (
         <header className="header">
@@ -88,7 +105,9 @@ class Header extends Component {
             </Link>
           </h1>
           <Modal  ref={ 'modal' }
-                  modalStyle = {{width: '80%', maxHeight: "80%", overflow: "auto"}}
+                  modalStyle = {modalStyle}
+                  backdropStyle={backdropStyle}
+                  contentStyle={contentStyle}
           >
             <Search></Search>
           </Modal>

@@ -74,7 +74,7 @@ class Search extends Component {
           <h3>Breeds:</h3>
             <button onClick={this.onSelectAllBreedsClick.bind(this)}>Select all breeds</button>
           </div>
-          <div>
+          <div style={{width: "100%"}}>
             <Select
             name="form-field-name"
             placeholder="Choose specific breeds"
