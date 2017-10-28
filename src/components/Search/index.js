@@ -11,6 +11,7 @@ class Search extends Component {
     super(props);
     this.state = {
       breeds: [],
+      selectedBreeds: [],
       selectedSpecies: _.map(this.props.species, function(specie){
         return specie.id;
       })
@@ -20,17 +21,33 @@ class Search extends Component {
 
   handleSelectChange(value) {
       console.log('You have selected: ', value);
-      this.setState({ value });
+      this.setState({ selectedBreeds: value });
+  }
+
+  clearSelectedBreeds(uncheckedSpecie){
+    let filteredselectedBreeds = _.filter(this.state.selectedBreeds, (breed) => {
+      return breed.specie !== uncheckedSpecie
+    });
+
+    this.setState(
+      {
+        selectedBreeds: filteredselectedBreeds
+      }
+    )
   }
 
   onSpecieCheckboxChange(event){
+
+    let eventSpecie = Number(event.target.value);
+
     if(event.target.checked){
-      this.setState({selectedSpecies: _.union(this.state.selectedSpecies, [Number(event.target.value)])})
+      this.setState({selectedSpecies: _.union(this.state.selectedSpecies, [eventSpecie])})
     }else{
       this.setState({selectedSpecies: _.filter(this.state.selectedSpecies, function(id){
-          return id !== Number(event.target.value);
+          return id !== eventSpecie;
         })
       });
+      this.clearSelectedBreeds(eventSpecie);
     }
   }
 
@@ -66,9 +83,7 @@ class Search extends Component {
       return _.concat(previousElem, elem.breeds);
     }, []);
 
-
       console.log("filteredBreeds", filteredBreeds);
-
 
     return (
       <div>
@@ -82,7 +97,7 @@ class Search extends Component {
         <Select
         name="form-field-name"
         placeholder="Filter by breeds"
-        value={this.state.value}
+        value={this.state.selectedBreeds}
         multi
         options={filteredBreeds}
         onChange={this.handleSelectChange}
