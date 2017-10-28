@@ -119,8 +119,8 @@ export function logout(callback) {
 
 export function fetchSpecies(){
   const species = [
-    { id: 1, name: "Cachorro", breeds: [{ id: 1, name: "Yorskshine" }, { id: 2, name: "Bullgod" }, { id: 1, name: "Fila ou pilha?" }]},
-    { id: 2, name: "Gato", breeds: [{ id: 1, name: "Siamês" }]},
+    { id: 1, name: "Cachorro", breeds: [{ id: 1, name: "Yorskshine" }, { id: 2, name: "Bullgod" }, { id: 3, name: "Fila ou pilha?" }]},
+    { id: 2, name: "Gato", breeds: [{ id: 4, name: "Siamês" }]},
   ];
   console.log("fetch species");
   return (dispatch) => {

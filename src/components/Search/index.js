@@ -10,11 +10,8 @@ class Search extends Component {
   constructor(props){
     super(props);
     this.state = {
-      breedsTest: [
-        { value: '1', label: 'super dog', specie: "dog"},
-        { value: '2', label: 'golden', specie: "dog" },
-        { value: '3', label: 'cat uhu', specie: "cat" }
-      ]
+      breeds: [],
+      selectedSpecies: []
     }
     this.handleSelectChange = this.handleSelectChange.bind(this);
   }
@@ -22,20 +19,49 @@ class Search extends Component {
   handleSelectChange(value) {
       console.log('You have selected: ', value);
       this.setState({ value });
+  }
+
+  onSpecieCheckboxChange(event){
+    if(event.target.checked){
+      this.setState({selectedSpecies: _.union(this.state.selectedSpecies, [Number(event.target.value)])})
+    }else{
+      this.setState({selectedSpecies: _.filter(this.state.selectedSpecies, function(id){
+          return id !== Number(event.target.value);
+        })
+      });
     }
+  }
 
 
   renderSpecies(species){
+      console.log("state",this.state.selectedSpecies);
       return _.map(species, specie => {
-        console.log(specie.name);
         return (
           <div key={specie.id} className="specieOption">
-            <input type="checkbox" name={specie.id} value={specie.id} checked={true}/>
+            <input type="checkbox"
+              onChange={this.onSpecieCheckboxChange.bind(this)}
+              name={specie.id} value={specie.id}
+              checked={this.state.selectedSpecies.includes(specie.id)}/>
             <label htmlFor={specie.id}>{specie.name}</label>
           </div>
         );
       });
     }
+
+  componentWillMount(){
+    let x = _.map(_.reduce(this.props.species, function(previousElem, elem){
+      return _.concat(previousElem, elem.breeds);
+    }, []), function(item){
+      item.label = item.name;
+      item.value = item.id;
+      return item;
+    });
+
+    console.log("list", x);
+    this.setState({
+      breeds: x
+    });
+  }
 
   render() {
     return (
@@ -43,14 +69,16 @@ class Search extends Component {
         <h1>Search pets</h1>
         <div className="checkBoxesContainer">
           <h3>Species:</h3>
-          {this.renderSpecies(this.props.species)}
+          <div>
+            {this.renderSpecies(this.props.species)}
+          </div>
         </div>
         <Select
         name="form-field-name"
-        placeholder="Select your favourite(s)"
+        placeholder="Filter by breeds"
         value={this.state.value}
         multi
-        options={this.state.breedsTest}
+        options={this.state.breeds}
         onChange={this.handleSelectChange}
         />
       </div>
