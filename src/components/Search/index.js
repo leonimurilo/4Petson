@@ -11,7 +11,9 @@ class Search extends Component {
     super(props);
     this.state = {
       breeds: [],
-      selectedSpecies: []
+      selectedSpecies: _.map(this.props.species, function(specie){
+        return specie.id;
+      })
     }
     this.handleSelectChange = this.handleSelectChange.bind(this);
   }
@@ -34,8 +36,9 @@ class Search extends Component {
 
 
   renderSpecies(species){
-      console.log("state",this.state.selectedSpecies);
       return _.map(species, specie => {
+          console.log("selectedSpecies",this.state.selectedSpecies);
+          console.log(specie.id);
         return (
           <div key={specie.id} className="specieOption">
             <input type="checkbox"
@@ -48,22 +51,25 @@ class Search extends Component {
       });
     }
 
-  componentWillMount(){
-    let x = _.map(_.reduce(this.props.species, function(previousElem, elem){
-      return _.concat(previousElem, elem.breeds);
-    }, []), function(item){
-      item.label = item.name;
-      item.value = item.id;
-      return item;
-    });
-
-    console.log("list", x);
-    this.setState({
-      breeds: x
-    });
-  }
-
   render() {
+
+    let filteredBreeds = _.reduce(this.props.species, (previousElem, elem) => {
+      if(!this.state.selectedSpecies.includes(elem.id)){
+        return previousElem;
+      }
+      elem.breeds = _.map(elem.breeds, (breed) => {
+        breed.specie = elem.id;
+        breed.label = breed.name;
+        breed.value = breed.id;
+        return breed
+      });
+      return _.concat(previousElem, elem.breeds);
+    }, []);
+
+
+      console.log("filteredBreeds", filteredBreeds);
+
+
     return (
       <div>
         <h1>Search pets</h1>
@@ -78,7 +84,7 @@ class Search extends Component {
         placeholder="Filter by breeds"
         value={this.state.value}
         multi
-        options={this.state.breeds}
+        options={filteredBreeds}
         onChange={this.handleSelectChange}
         />
       </div>
