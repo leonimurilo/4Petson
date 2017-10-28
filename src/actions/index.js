@@ -120,7 +120,35 @@ export function logout(callback) {
 export function fetchSpecies(){
   const species = [
     { id: 1, name: "Cachorro", breeds: [{ id: 1, name: "Yorskshine" }, { id: 2, name: "Bullgod" }, { id: 3, name: "Fila ou pilha?" }]},
-    { id: 2, name: "Gato", breeds: [{ id: 4, name: "Siamês" }]},
+    { id: 2, name: "Gato", breeds: [{ id: 4, name: "Siamês" },
+                                    { id: 5, name: "Siamês" },
+                                    { id: 6, name: "Siamês" },
+                                    { id: 7, name: "Siamês" },
+                                    { id: 8, name: "Siamês" },
+                                    { id: 9, name: "Siamês" },
+                                    { id: 10, name: "Siamês" },
+                                    { id: 11, name: "Siamês" },
+                                    { id: 12, name: "Siamês" },
+                                    { id: 13, name: "Siamês" },
+                                    { id: 14, name: "Siamês" },
+                                    { id: 15, name: "Siamês" },
+                                    { id: 15, name: "Siamês" },
+                                    { id: 16, name: "Siamês" },
+                                    { id: 17, name: "Siamês" },
+                                    { id: 18, name: "Siamês" },
+                                    { id: 19, name: "Siamês" },
+                                    { id: 20, name: "Siamês" },
+                                    { id: 21, name: "Siamês" },
+                                    { id: 22, name: "Siamês" },
+                                    { id: 23, name: "Siamês" },
+                                    { id: 24, name: "Siamês" },
+                                    { id: 25, name: "Siamês" },
+                                    { id: 26, name: "Siamês" },
+                                    { id: 27, name: "Siamês" },
+                                    { id: 28, name: "Siamês" },
+                                    { id: 29, name: "Siamês" }
+
+    ]},
   ];
   console.log("fetch species");
   return (dispatch) => {
@@ -137,3 +165,6 @@ export function fetchSpecies(){
   //
   // });
 }
+
+
+//search items: parameters: specie_ids: [1, 2] and breed_ids: [1, 2 ,3]

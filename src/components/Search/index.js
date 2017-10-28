@@ -10,12 +10,12 @@ class Search extends Component {
   constructor(props){
     super(props);
     this.state = {
+      showAddtionalOptions: false,
       breeds: [],
-      selectedBreeds: [],
       selectedSpecies: _.map(this.props.species, function(specie){
         return specie.id;
       })
-    }
+    };
     this.handleSelectChange = this.handleSelectChange.bind(this);
   }
 
@@ -26,14 +26,14 @@ class Search extends Component {
 
   clearSelectedBreeds(uncheckedSpecie){
     let filteredselectedBreeds = _.filter(this.state.selectedBreeds, (breed) => {
-      return breed.specie !== uncheckedSpecie
+      return breed.specie !== uncheckedSpecie;
     });
 
     this.setState(
       {
         selectedBreeds: filteredselectedBreeds
       }
-    )
+    );
   }
 
   onSpecieCheckboxChange(event){
@@ -41,7 +41,7 @@ class Search extends Component {
     let eventSpecie = Number(event.target.value);
 
     if(event.target.checked){
-      this.setState({selectedSpecies: _.union(this.state.selectedSpecies, [eventSpecie])})
+      this.setState({selectedSpecies: _.union(this.state.selectedSpecies, [eventSpecie])});
     }else{
       this.setState({selectedSpecies: _.filter(this.state.selectedSpecies, function(id){
           return id !== eventSpecie;
@@ -51,11 +51,8 @@ class Search extends Component {
     }
   }
 
-
   renderSpecies(species){
       return _.map(species, specie => {
-          console.log("selectedSpecies",this.state.selectedSpecies);
-          console.log(specie.id);
         return (
           <div key={specie.id} className="specieOption">
             <input type="checkbox"
@@ -68,9 +65,34 @@ class Search extends Component {
       });
     }
 
-  render() {
+  renderAddtionalSearchOptions(){
+    if(this.state.showAddtionalOptions){
+      console.log("showing");
+      return (
+        <div className="addtionalOptions">
+          <div className="addtionalOptionsMenu">
+          <h3>Breeds:</h3>
+            <button onClick={this.onSelectAllBreedsClick.bind(this)}>Select all breeds</button>
+          </div>
+          <div>
+            <Select
+            name="form-field-name"
+            placeholder="Choose specific breeds"
+            value={this.state.selectedBreeds}
+            multi
+            options={this.filterBreeds()}
+            onChange={this.handleSelectChange}
+            />
+          </div>
+        </div>
+      )
+    }else{
+      return null
+    }
+  }
 
-    let filteredBreeds = _.reduce(this.props.species, (previousElem, elem) => {
+  filterBreeds(){
+    return _.reduce([...this.props.species], (previousElem, elem) => {
       if(!this.state.selectedSpecies.includes(elem.id)){
         return previousElem;
       }
@@ -78,30 +100,51 @@ class Search extends Component {
         breed.specie = elem.id;
         breed.label = breed.name;
         breed.value = breed.id;
-        return breed
+        return breed;
       });
       return _.concat(previousElem, elem.breeds);
     }, []);
+  }
 
-      console.log("filteredBreeds", filteredBreeds);
+  onSelectAllBreedsClick(event){
+    event.preventDefault();
+    this.setState(
+      {
+        selectedBreeds: this.filterBreeds()
+      }
+    );
+  }
 
+  componentWillMount(){
+    this.setState(
+      {
+        selectedBreeds: this.filterBreeds()
+      }
+    );
+  }
+
+  // na hr de triggar a action, verificar dse ha showAddtionalOptions. se houver, entao
+  // fazer search por breeds, se nao, fazer por especies (checkboxes)
+
+  render() {
     return (
-      <div>
+      <div className="search">
         <h1>Search pets</h1>
         <div className="checkBoxesContainer">
           <h3>Species:</h3>
-          <div>
+          <div className="checkBoxes">
             {this.renderSpecies(this.props.species)}
           </div>
         </div>
-        <Select
-        name="form-field-name"
-        placeholder="Filter by breeds"
-        value={this.state.selectedBreeds}
-        multi
-        options={filteredBreeds}
-        onChange={this.handleSelectChange}
-        />
+        <button onClick={() => {
+          this.setState({
+            showAddtionalOptions: !this.state.showAddtionalOptions,
+            selectedBreeds: []
+          }
+        )}}>
+          {this.state.showAddtionalOptions ? "Hide specific breeds" : "Show specific breeds"}
+        </button>
+        {this.renderAddtionalSearchOptions()}
       </div>
     );
   }
@@ -109,7 +152,7 @@ class Search extends Component {
 }
 
 function mapStateToProps(state){
-  return {species: state.species}
+  return {species: state.species};
 }
 
 export default connect(mapStateToProps, null)(Search);

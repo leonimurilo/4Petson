@@ -9,15 +9,12 @@
   flex: 1
   a
     text-decoration: none
-    color: #DC7331
+    color: $appPrimaryColor
     letter-spacing: 4px
     transition: color .3s
     font-size: 1.8rem
     &:active, &:hover
       color: #444
-
-.searchModal
-  border-radius: 10px
 
 .menuBtn
   margin: 0
@@ -73,20 +70,14 @@ header
     cursor: pointer
     color: $black
 
-.search
-  transition: color .3s
-  color: #02B5FF
-  background: transparent
-  display: flex
-  align-items: center
-  justify-content: center
-  font-size: 1rem
-  line-height: 2.5
-  text-transform: uppercase
-  &:hover
-    cursor: pointer
-    color: $black
-
 .activeNavLink
-  color: #DC7331
+  color: $appPrimaryColor
   text-decoration: none
+
+.searchButton
+  background: transparent
+  &:focus, &:active
+    outline: none
+  &::-moz-focus-inner
+    border: 0
+  cursor: pointer
