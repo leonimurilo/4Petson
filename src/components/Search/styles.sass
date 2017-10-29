@@ -14,6 +14,14 @@ input[type='checkbox']:checked
     background: $appPrimaryColor
     border: 2px solid gray
 
+.Select-control
+  border-color: rgba(6, 9, 16, 0.9) rgba(6, 9, 16, 0.9) rgba(6, 9, 16, 0.9)
+  border-radius: 0px
+  border: 2px solid rgba(6, 9, 16, 0.9)
+.Select-placeholder
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+
+
 .search
   transition: width 1s ease-in-out
   transition: color .3s
@@ -29,6 +37,7 @@ input[type='checkbox']:checked
   h1
     margin-bottom: 10px
     text-align: center
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
 
   .checkBoxesContainer
     margin: 10px
@@ -51,10 +60,16 @@ input[type='checkbox']:checked
         opacity: .7
   .searchButton
     width: 100%
-    border: solid 2px #007eff
-    background: #007eff
+    border: solid 2px $appPrimaryColor
+    background: $appPrimaryColor
     margin-top: 30px
     color: white
+    transition: .25s linear
+    &:hover
+      background: white
+      color: black
+
+
 
   .addtionalOptions
     border-top: 1px solid #CBCBCB
