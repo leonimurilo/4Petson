@@ -81,19 +81,19 @@ class Header extends Component {
   render() {
     const modalStyle = {
       width: '80%',
+      overflow: "auto",
       maxHeight: "70%",
-      transition: "width 1s ease-in-out"
     };
 
     const backdropStyle = {
     height: "100%",
-transition: "width 1s ease-in-out"
+    overflow: "auto",
+    maxHeight: "100%",
     };
 
     const contentStyle = {
     height: "100%",
     overflow: "auto",
-    transition: "width 1s ease-in-out"
     };
 
     if(this.props.isLoggedIn){

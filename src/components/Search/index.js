@@ -145,6 +145,10 @@ class Search extends Component {
           {this.state.showAddtionalOptions ? "Hide specific breeds" : "Show specific breeds"}
         </button>
         {this.renderAddtionalSearchOptions()}
+        <button className= "searchButton" onClick={() => {
+          console.log("clicked");
+          }
+        }>Search</button>
       </div>
     );
   }
