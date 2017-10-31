@@ -81,6 +81,7 @@ class Header extends Component {
   render() {
     const modalStyle = {
       width: '80%',
+      maxWidth: 800,
       overflow: "auto",
       maxHeight: "70%",
     };

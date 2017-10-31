@@ -1,6 +1,9 @@
 @import '../../styles/variables.sass'
 
 .basicInfo
+  display: flex
+  flex-direction: column
+  align-items: center
   flex: 1
   margin-bottom: 40px
 
@@ -15,3 +18,16 @@
   h3
     text-align: center
     font-size: 1.3rem
+
+.upgradeButton
+  transition: all .2s ease
+  margin: 20px 5px 5px 5px
+  padding: 5px
+  background: none
+  border: solid 2px
+  font-size: 0.9rem
+  cursor: pointer
+
+  &:hover
+    border: solid 2px #919191
+    color: #919191

@@ -17,6 +17,7 @@ class BasicInfo extends Component {
         <div className="nameWrapper">
           <h3 className="normal">{this.state.name}</h3>
         </div>
+        <button className="upgradeButton normalBtn">Upgrade to seller</button>
       </div>
     );
   }
