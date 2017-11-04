@@ -75,23 +75,36 @@ export function login(email, password, callback) {
 }
 
 export function checkLogin() {
-  return (dispatch) => {
-    let token = localStorage.getItem('auth_token');
-      if(token){
-      dispatch(
-        {
-          type: SET_AUTH_TOKEN,
-          payload: token
-        }
-      );
-        console.log("here2");
+  let token = localStorage.getItem('auth_token');
 
-      dispatch(
-        {
-          type: USER_LOGGED_IN,
-          payload: true
+  return (dispatch) => {
+    if(token){
+      Axios.get(config.url.checkUser, {params: { token: "ronaldoo" }}).then(function({data}){
+        console.log(data);
+        if(!data.active_seller){
+        } else {
         }
-      );
+
+        dispatch(
+          {
+            type: SET_AUTH_TOKEN,
+            payload: token
+          }
+        );
+          console.log("here2");
+
+        dispatch(
+          {
+            type: USER_LOGGED_IN,
+            payload: true
+          }
+        );
+
+      }).catch(function(err){
+        console.log("The stored token was denied by the server. Try signing in again.");
+        localStorage.removeItem('auth_token');
+      });
+
     }
   };
 

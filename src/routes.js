@@ -21,6 +21,7 @@ export default (
     <Route path="item/:id" component={ItemPage} />
     <Route path="profile" component={requireAuth(Profile)} />
     <Route path="signup" component={Signup} />
+    <Route path="seller/signup" component={requireLoggedOut(Trades)} />
     <Route path="login" component={requireLoggedOut(Login)} />
     <Route path="logout" component={requireAuth(Logout)} />
     <Route path="trades" component={requireAuth(Trades)} />
