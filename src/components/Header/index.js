@@ -55,8 +55,7 @@ class Header extends Component {
   }
 
   setNav() {
-    console.log("checked:", this.props.isLoggedIn);
-    if (this.props.isLoggedIn) {
+    if (this.props.auth.token) {
       this.setState({ nav: this.loggedInMenu });
     } else {
       this.setState({ nav: this.loggedOutMenu });
@@ -97,7 +96,7 @@ class Header extends Component {
     overflow: "auto",
     };
 
-    if(this.props.isLoggedIn){
+    if(this.props.auth.token){
       return (
         <header className="header">
           <h1>
@@ -161,9 +160,9 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps({isLoggedIn}){
+function mapStateToProps({auth}){
   return ({
-    isLoggedIn
+    auth
   });
 }
 

@@ -54,15 +54,8 @@ export function login(email, password, callback) {
       callback();
       dispatch(
         {
-          type: SET_AUTH_TOKEN,
-          payload: data.token
-        }
-      );
-
-      dispatch(
-        {
           type: USER_LOGGED_IN,
-          payload: true
+          payload: data
         }
       );
 
@@ -79,30 +72,29 @@ export function checkLogin() {
 
   return (dispatch) => {
     if(token){
-      Axios.get(config.url.checkUser, {params: { token: "ronaldoo" }}).then(function({data}){
+      Axios.get(config.url.checkUser, {params: { token }}).then(function({data}){
         console.log(data);
         if(!data.active_seller){
         } else {
         }
-
-        dispatch(
-          {
-            type: SET_AUTH_TOKEN,
-            payload: token
-          }
-        );
-          console.log("here2");
-
         dispatch(
           {
             type: USER_LOGGED_IN,
-            payload: true
+            payload: {
+              token,
+              user: data
+            }
           }
         );
 
       }).catch(function(err){
         console.log("The stored token was denied by the server. Try signing in again.");
-        localStorage.removeItem('auth_token');
+        dispatch(
+          {
+            type: USER_LOGGED_OUT,
+            payload: false
+          }
+        );
       });
 
     }
@@ -112,21 +104,12 @@ export function checkLogin() {
 
 // manual logout on console: localStorage.clear();
 export function logout(callback) {
-  localStorage.removeItem('auth_token');
   callback();
   return (dispatch) => {
-
-    dispatch({
-      type: SET_AUTH_TOKEN,
-      payload: ""
-    });
-
     dispatch({
       type: USER_LOGGED_OUT,
       payload: false
     });
-
-
   };
 }
 

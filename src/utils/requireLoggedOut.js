@@ -7,14 +7,14 @@ export default function (ComposedComponent) {
   class RequireLoggedOut extends React.Component {
 
     componentWillMount(){
-      if(this.props.isLoggedIn){
+      if(this.props.auth.token){
         console.log("User is logged in and cannot do it again without logging out.");
         this.context.router.push("/");
       }
     }
 
     render() {
-      if(this.props.isLoggedIn){
+      if(this.props.auth.token){
         return null;
         // return (<div><Link to="/" activeClassName="activeNavLink" className="navLink">Go home</Link></div>);
       }
@@ -25,15 +25,17 @@ export default function (ComposedComponent) {
   }
 
   RequireLoggedOut.propTypes = {
-    isLoggedIn: React.PropTypes.bool.isRequired
+    auth: React.PropTypes.shape({
+      token: React.PropTypes.string
+    })
   };
 
   RequireLoggedOut.contextTypes = {
     router: React.PropTypes.object.isRequired
   };
 
-  function mapStateToProps({isLoggedIn}) {
-    return {isLoggedIn};
+  function mapStateToProps({auth}) {
+    return {auth};
   }
 
   return withRouter(connect(mapStateToProps)(RequireLoggedOut));
