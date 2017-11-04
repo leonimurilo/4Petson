@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 const _ = require("lodash");
 const { compose, withProps, lifecycle } = require("recompose");
 const {
@@ -6,6 +6,7 @@ const {
   withGoogleMap,
   GoogleMap,
   Marker,
+  Circle
 } = require("react-google-maps");
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 const API_KEY = "AIzaSyDNQUXZkRY5hvPA3CkUlYHh9x9-xJJ2kZA"
@@ -30,6 +31,7 @@ const MapWithASearchBox = compose(
           lat: 41.9, lng: -87.624
         },
         markers: [],
+        circles: [],
         onMapMounted: ref => {
           refs.map = ref;
         },
@@ -56,6 +58,14 @@ const MapWithASearchBox = compose(
           const nextMarkers = places.map(place => ({
             position: place.geometry.location,
           }));
+          const nextCircles = places.map(place => ({
+            position: place.geometry.location,
+            radius: 50000,
+            visible: true
+          }));
+
+          console.log("circles", nextCircles);
+          console.log("markers", nextMarkers);
           const nextCenter = _.get(nextMarkers, '0.position', this.state.center);
           console.log("lat:", nextCenter.lat());
           console.log("lng:", nextCenter.lng());
@@ -67,6 +77,7 @@ const MapWithASearchBox = compose(
           this.setState({
             center: nextCenter,
             markers: nextMarkers,
+            circles: nextCircles
           });
           // refs.map.fitBounds(bounds);
         },
@@ -106,6 +117,12 @@ const MapWithASearchBox = compose(
         }}
       />
     </SearchBox>
+    {props.circles.map((circle, index) =>
+      <Circle key={index}
+      center={circle.position}
+      visible={circle.visible}
+      radius={circle.radius} />
+    )}
     {props.markers.map((marker, index) =>
       <Marker key={index} position={marker.position} />
     )}
