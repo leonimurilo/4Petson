@@ -67,7 +67,6 @@ class Search extends Component {
 
   renderAddtionalSearchOptions(){
     if(this.state.showAddtionalOptions){
-      console.log("showing");
       return (
         <div className="addtionalOptions">
           <div className="addtionalOptionsMenu">

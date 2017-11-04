@@ -13,16 +13,18 @@ const initialState = {
 export default function (state = initialState, action) {
   // console.log("New action:", action.type);
   switch (action.type){
-    // case SET_AUTH_TOKEN: {
-    //   var newState = _.clone(state, true);
-    //   newState.token = action.payload;
-    //   return action.payload;
-    // }
+    case SET_AUTH_TOKEN: {
+      var newState = _.clone(state, true);
+      newState.token = action.payload;
+      return newState;
+    }
     case USER_SIGNED_UP:
     case USER_LOGGED_IN: {
+      console.log(USER_LOGGED_IN);
       return action.payload;
     }
     case USER_LOGGED_OUT: {
+      console.log(USER_LOGGED_OUT);
       localStorage.removeItem('auth_token');
       return {
         token: "",

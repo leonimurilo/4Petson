@@ -7,6 +7,8 @@ export default function (ComposedComponent) {
   class Authenticate extends React.Component {
 
     componentWillMount(){
+      console.log(this.props.auth);
+      console.log(this.props.auth.token);
       if(!this.props.auth.token){
         console.log("User is not logged in");
         this.context.router.push("/login");

@@ -5,10 +5,16 @@ import { SubmissionError } from 'redux-form';
 import {
   USER_SIGNED_UP,
   USER_LOGGED_OUT,
-  USER_LOGGED_IN,
   SET_AUTH_TOKEN,
+  USER_LOGGED_IN,
   FETCH_SPECIES
 } from "./types";
+
+
+
+export function signUpSeller(values, callback) {
+  console.log("fake action triggered");
+}
 
 // the backend send which fields are wrong.
 export function signUp(values, callback) {
@@ -33,11 +39,7 @@ export function signUp(values, callback) {
     });
 
   };
-  //should return user info that will be used to display different pages (seller/buyer) as well as the profile info
-  return {
-    type: USER_SIGNED_UP,
-    payload: {data, response: {}}
-  };
+
 }
 
 export function login(email, password, callback) {
@@ -71,6 +73,13 @@ export function checkLogin() {
   let token = localStorage.getItem('auth_token');
 
   return (dispatch) => {
+    dispatch(
+      {
+        type: SET_AUTH_TOKEN,
+        payload: token
+      }
+    );
+    
     if(token){
       Axios.get(config.url.checkUser, {params: { token }}).then(function({data}){
         console.log(data);
@@ -146,7 +155,6 @@ export function fetchSpecies(){
 
     ]},
   ];
-  console.log("fetch species");
   return (dispatch) => {
     dispatch(
       {
@@ -154,7 +162,7 @@ export function fetchSpecies(){
         payload: species
       }
     );
-  }
+  };
   // Axios.get(config.url.fetchRaces).then(function(response){
   //
   // }).catch(function(error){
