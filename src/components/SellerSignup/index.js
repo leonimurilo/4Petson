@@ -15,7 +15,7 @@ class SellerSignUp extends Component {
 
   onSubmit(values){
     this.props.signUpSeller(values, () => {
-        this.props.router.push("/");
+        this.props.router.push("/profile");
     });
   }
 

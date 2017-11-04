@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import {Link} from 'react-router';
 import './styles.sass';
 
 class BasicInfo extends Component {
@@ -17,7 +17,7 @@ class BasicInfo extends Component {
         <div className="nameWrapper">
           <h3 className="normal">{this.state.name}</h3>
         </div>
-        <button className="upgradeButton normalBtn">Upgrade to seller</button>
+        <Link to="/seller/signup" className="upgradeButton normalBtn">Upgrade to seller</Link>
       </div>
     );
   }

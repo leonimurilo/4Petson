@@ -7,8 +7,8 @@ export default function (ComposedComponent, buyerOnly) {
   class Authenticate extends React.Component {
 
     componentWillMount(){
-      console.log(buyerOnly);
-      console.log(this.props.auth.user.active_seller);
+      // console.log(buyerOnly);
+      // console.log(this.props.auth.user.active_seller);
       if(!this.props.auth.token || (buyerOnly && this.props.auth.user.active_seller)){
         console.log("User is not logged in");
         this.context.router.push("/login");

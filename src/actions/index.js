@@ -14,6 +14,11 @@ import {
 
 export function signUpSeller(values, callback) {
   console.log("fake action triggered");
+  callback();
+  return {
+    type: "fake",
+    payload: null
+  }
 }
 
 // the backend send which fields are wrong.
@@ -79,7 +84,7 @@ export function checkLogin() {
         payload: token
       }
     );
-    
+
     if(token){
       Axios.get(config.url.checkUser, {params: { token }}).then(function({data}){
         console.log(data);

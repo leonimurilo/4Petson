@@ -6,6 +6,7 @@ import Main from './components/Main/index';
 import Profile from './components/Profile/index';
 import Login from './components/Login/index';
 import Signup from './components/Signup/index';
+import SellerSignup from './components/SellerSignup/index';
 import Trades from './components/Trades/index';
 import ItemPage from './components/ItemPage/index';
 import MyItems from './components/MyItems/index';
@@ -22,7 +23,7 @@ export default (
     <Route path="profile" component={requireAuth(Profile)} />
     <Route path="signup" component={Signup} />
     <Route path="seller" >
-      <Route path="signup" component={requireAuth(Trades, true)} />
+      <Route path="signup" component={requireAuth(SellerSignup, true)} />
     </Route>
     <Route path="login" component={requireLoggedOut(Login)} />
     <Route path="logout" component={requireAuth(Logout)} />
