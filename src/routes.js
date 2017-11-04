@@ -11,6 +11,7 @@ import Trades from './components/Trades/index';
 import ItemPage from './components/ItemPage/index';
 import MyItems from './components/MyItems/index';
 import Logout from './components/Logout/index';
+import LocationPicker from './components/LocationPicker/index';
 import ErrorPage from './components/ErrorPage/index';
 
 import requireAuth from "./utils/requireAuth";
@@ -23,7 +24,7 @@ export default (
     <Route path="profile" component={requireAuth(Profile)} />
     <Route path="signup" component={Signup} />
     <Route path="seller" >
-      <Route path="signup" component={requireAuth(SellerSignup, true)} />
+      <Route path="signup" component={requireAuth(LocationPicker, true)} />
     </Route>
     <Route path="login" component={requireLoggedOut(Login)} />
     <Route path="logout" component={requireAuth(Logout)} />
