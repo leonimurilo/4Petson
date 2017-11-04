@@ -1,21 +1,29 @@
 import React from 'react';
 const _ = require("lodash");
-const { compose, withProps, lifecycle } = require("recompose");
+const { compose, withProps, lifecycle, withStateHandlers } = require("recompose");
 const {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
   Marker,
-  Circle
+  Circle,
+  InfoWindow
 } = require("react-google-maps");
 const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
 const API_KEY = "AIzaSyDNQUXZkRY5hvPA3CkUlYHh9x9-xJJ2kZA"
 const MapWithASearchBox = compose(
+  withStateHandlers(() => ({
+    isOpen: true,
+  }), {
+    onToggleOpen: ({ isOpen }) => () => ({
+      isOpen: !isOpen,
+    })
+  }),
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=" + API_KEY + "&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{
-      height: `400px`,
+      height: `450px`,
       maxWidth: `80%`,
       borderRadius: `3px`,
       width: `800%`}} />,
@@ -27,6 +35,7 @@ const MapWithASearchBox = compose(
 
       this.setState({
         bounds: null,
+        radius: 130,
         center: {
           lat: -23.53, lng: -46.62
         },
@@ -60,7 +69,7 @@ const MapWithASearchBox = compose(
           }));
           const nextCircles = places.map(place => ({
             position: place.geometry.location,
-            radius: 5000,
+            radius: this.state.radius * 1000,
             visible: true
           }));
 
@@ -85,7 +94,7 @@ const MapWithASearchBox = compose(
 )(props =>
   <GoogleMap
     ref={props.onMapMounted}
-    defaultZoom={6}
+    defaultZoom={7}
     center={props.center}
     onBoundsChanged={props.onBoundsChanged}
   >
@@ -101,12 +110,12 @@ const MapWithASearchBox = compose(
         style={{
           boxSizing: `border-box`,
           border: `1px solid transparent`,
-          width: `calc(100% - 200px)`,
+          width: `calc(100% - 140px)`,
           height: `32px`,
           marginTop: `10px`,
           padding: `0 12px`,
           borderRadius: `3px`,
-          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.4)`,
           fontSize: `14px`,
           outline: `none`,
           textOverflow: `ellipses`,
@@ -127,7 +136,11 @@ const MapWithASearchBox = compose(
       radius={circle.radius} />
     )}
     {props.markers.map((marker, index) =>
-      <Marker key={index} position={marker.position} />
+      <Marker key={index} position={marker.position} onClick={props.onToggleOpen}>
+      {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>
+        <button>Hello</button>
+      </InfoWindow>}
+      </Marker>
     )}
   </GoogleMap>
 );
