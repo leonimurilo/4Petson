@@ -3,13 +3,13 @@ import {withRouter, Link} from "react-router";
 import {connect} from "react-redux";
 // import Login from "../components/Login/index";
 
-export default function (ComposedComponent) {
+export default function (ComposedComponent, buyerOnly) {
   class Authenticate extends React.Component {
 
     componentWillMount(){
-      console.log(this.props.auth);
-      console.log(this.props.auth.token);
-      if(!this.props.auth.token){
+      console.log(buyerOnly);
+      console.log(this.props.auth.user.active_seller);
+      if(!this.props.auth.token || (buyerOnly && this.props.auth.user.active_seller)){
         console.log("User is not logged in");
         this.context.router.push("/login");
       }
@@ -29,7 +29,10 @@ export default function (ComposedComponent) {
 
   Authenticate.propTypes = {
     auth: React.PropTypes.shape({
-      token: React.PropTypes.string
+      token: React.PropTypes.string,
+      user: React.PropTypes.shape({
+        active_seller: React.PropTypes.object
+      })
     })
   };
 
