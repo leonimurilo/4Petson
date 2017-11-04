@@ -28,7 +28,7 @@ const MapWithASearchBox = compose(
       this.setState({
         bounds: null,
         center: {
-          lat: 41.9, lng: -87.624
+          lat: -23.53, lng: -46.62
         },
         markers: [],
         circles: [],
@@ -60,15 +60,11 @@ const MapWithASearchBox = compose(
           }));
           const nextCircles = places.map(place => ({
             position: place.geometry.location,
-            radius: 50000,
+            radius: 5000,
             visible: true
           }));
 
-          console.log("circles", nextCircles);
-          console.log("markers", nextMarkers);
           const nextCenter = _.get(nextMarkers, '0.position', this.state.center);
-          console.log("lat:", nextCenter.lat());
-          console.log("lng:", nextCenter.lng());
           try {
             this.props.onLocationSelect(nextCenter.lat(), nextCenter.lng());
           }catch(err){
@@ -89,7 +85,7 @@ const MapWithASearchBox = compose(
 )(props =>
   <GoogleMap
     ref={props.onMapMounted}
-    defaultZoom={15}
+    defaultZoom={6}
     center={props.center}
     onBoundsChanged={props.onBoundsChanged}
   >
@@ -121,6 +117,13 @@ const MapWithASearchBox = compose(
       <Circle key={index}
       center={circle.position}
       visible={circle.visible}
+      options={
+        {
+          fillColor:"#DC7331",
+          strokeColor:"#DC7331",
+          strokeWeight: "1"
+        }
+      }
       radius={circle.radius} />
     )}
     {props.markers.map((marker, index) =>
