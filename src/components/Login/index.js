@@ -4,7 +4,6 @@ import {Link, withRouter} from 'react-router';
 import {Field, reduxForm} from "redux-form";
 import {login} from '../../actions/index';
 import {validateEmail, renderField} from '../../utils/formUtils';
-
 import './styles.sass';
 
 class Login extends Component {

@@ -5,6 +5,7 @@ import {Field, reduxForm} from "redux-form";
 import {signUpSeller} from '../../actions/index';
 import {renderField} from '../../utils/formUtils';
 
+import LocationPicker from '../LocationPicker/index'
 import './styles.sass';
 
 class SellerSignUp extends Component {
@@ -28,6 +29,7 @@ class SellerSignUp extends Component {
         <div className="inputWrapper">
           <Field label="CNPJ" name="cnpj" type="text" component={renderField}/>
           <Field label="Radius" name="radius" type="text" component={renderField}/>
+          <LocationPicker onLocationSelect={() => {console.log("hello wilson");}}/>
           <Field label="Lat" name="lat" type="text" component={renderField}/>
           <Field label="Lng" name="lng" type="text" component={renderField}/>
         </div>

@@ -24,7 +24,7 @@ export default (
     <Route path="profile" component={requireAuth(Profile)} />
     <Route path="signup" component={Signup} />
     <Route path="seller" >
-      <Route path="signup" component={requireAuth(LocationPicker, true)} />
+      <Route path="signup" component={requireAuth(SellerSignup, true)} />
     </Route>
     <Route path="login" component={requireLoggedOut(Login)} />
     <Route path="logout" component={requireAuth(Logout)} />

@@ -13,8 +13,12 @@ const MapWithASearchBox = compose(
   withProps({
     googleMapURL: "https://maps.googleapis.com/maps/api/js?key=" + API_KEY + "&v=3.exp&libraries=geometry,drawing,places",
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
-    mapElement: <div style={{ height: `100%` }} />,
+    containerElement: <div style={{
+      height: `400px`,
+      maxWidth: `80%`,
+      borderRadius: `3px`,
+      width: `800%`}} />,
+    mapElement: <div style={{ borderRadius: `3px`,height: `100%` }} />,
   }),
   lifecycle({
     componentWillMount() {
@@ -86,11 +90,11 @@ const MapWithASearchBox = compose(
     >
       <input
         type="text"
-        placeholder="Customized your placeholder"
+        placeholder="Select your location"
         style={{
           boxSizing: `border-box`,
           border: `1px solid transparent`,
-          width: `calc(100% - 200px)`,
+          width: `calc(50% - 200px)`,
           height: `32px`,
           marginTop: `10px`,
           padding: `0 12px`,
@@ -102,6 +106,23 @@ const MapWithASearchBox = compose(
         }}
       />
     </SearchBox>
+    <input
+      type="text"
+      placeholder="Select your location"
+      style={{
+        boxSizing: `border-box`,
+        border: `1px solid transparent`,
+        width: `calc(50% - 200px)`,
+        height: `32px`,
+        marginTop: `10px`,
+        padding: `0 12px`,
+        borderRadius: `3px`,
+        boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+        fontSize: `14px`,
+        outline: `none`,
+        textOverflow: `ellipses`,
+      }}
+    />
     {props.markers.map((marker, index) =>
       <Marker key={index} position={marker.position} />
     )}
