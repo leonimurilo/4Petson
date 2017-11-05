@@ -128,51 +128,20 @@ export function logout(callback) {
 }
 
 export function fetchSpecies(){
-  const species = [
-    { id: 1, name: "Cachorro", breeds: [{ id: 1, name: "Yorskshine" }, { id: 2, name: "Bullgod" }, { id: 3, name: "Fila ou pilha?" }]},
-    { id: 2, name: "Gato", breeds: [{ id: 4, name: "Siamês" },
-                                    { id: 5, name: "Siamês" },
-                                    { id: 6, name: "Siamês" },
-                                    { id: 7, name: "Siamês" },
-                                    { id: 8, name: "Siamês" },
-                                    { id: 9, name: "Siamês" },
-                                    { id: 10, name: "Siamês" },
-                                    { id: 11, name: "Siamês" },
-                                    { id: 12, name: "Siamês" },
-                                    { id: 13, name: "Siamês" },
-                                    { id: 14, name: "Siamês" },
-                                    { id: 15, name: "Siamês" },
-                                    { id: 15, name: "Siamês" },
-                                    { id: 16, name: "Siamês" },
-                                    { id: 17, name: "Siamês" },
-                                    { id: 18, name: "Siamês" },
-                                    { id: 19, name: "Siamês" },
-                                    { id: 20, name: "Siamês" },
-                                    { id: 21, name: "Siamês" },
-                                    { id: 22, name: "Siamês" },
-                                    { id: 23, name: "Siamês" },
-                                    { id: 24, name: "Siamês" },
-                                    { id: 25, name: "Siamês" },
-                                    { id: 26, name: "Siamês" },
-                                    { id: 27, name: "Siamês" },
-                                    { id: 28, name: "Siamês" },
-                                    { id: 29, name: "Siamês" }
-
-    ]},
-  ];
   return (dispatch) => {
-    dispatch(
-      {
-        type: FETCH_SPECIES,
-        payload: species
-      }
-    );
+    Axios.get(config.url.fetchRaces).then(function(response){
+      console.log(response);
+      dispatch(
+        {
+          type: FETCH_SPECIES,
+          payload: response.data
+        }
+      );
+    }).catch(function(error){
+
+    });
   };
-  // Axios.get(config.url.fetchRaces).then(function(response){
-  //
-  // }).catch(function(error){
-  //
-  // });
+
 }
 
 

@@ -38,7 +38,7 @@ class Search extends Component {
 
   onSpecieCheckboxChange(event){
 
-    let eventSpecie = Number(event.target.value);
+    let eventSpecie = event.target.value
 
     if(event.target.checked){
       this.setState({selectedSpecies: _.union(this.state.selectedSpecies, [eventSpecie])});
