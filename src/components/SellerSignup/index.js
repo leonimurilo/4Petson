@@ -29,10 +29,16 @@ class SellerSignUp extends Component {
         <div className="sellerInputWrapper inputWrapper">
           <label className=" text-center">Now we just need some more information...</label>
           <input
-              placeholder="Type your CNPJ here"
-              className={`textInput`}
-              type="text"
+            placeholder="Type your CNPJ here"
+            className={`textInput`}
+            type="text"
           />
+          <input
+            id="imgUpload"
+            style={{display: "none"}}
+            type="file"
+          />
+          <label htmlFor="imgUpload">Choose store picture</label>
         </div>
         <div className="btnWrapper sellerBtnWrapper">
           <button className="signUpBtn fbBtn">Request upgrade</button>
