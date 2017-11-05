@@ -19,8 +19,8 @@ const MapWithASearchBox = compose(
     onToggleOpen: ({ isOpen }) => () => ({
       isOpen: !isOpen,
     }),
-    onRadiusChange: (currentState, action, x) => (event) => {
-      console.log(event.target.value);
+    onRadiusChange: (currentState, callbacks) => (event) => {
+      callbacks.onRadiusChange(event.target.value*1000);
       return ({
         radius: event.target.value
       });
@@ -81,7 +81,7 @@ const MapWithASearchBox = compose(
 
           const nextCenter = _.get(nextMarkers, '0.position', this.state.center);
           try {
-            this.props.onLocationSelect(nextCenter.lat(), nextCenter.lng(), this.props.radius*1000);
+            this.props.onLocationSelect(nextCenter.lat(), nextCenter.lng());
           }catch(err){
             console.log("The onLocationSelect callback was not passed to LocationPicker component.");
           }

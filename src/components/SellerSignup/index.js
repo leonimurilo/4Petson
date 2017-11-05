@@ -29,7 +29,10 @@ class SellerSignUp extends Component {
         <div className="inputWrapper">
           <Field label="CNPJ" name="cnpj" type="text" component={renderField}/>
           <Field label="Radius" name="radius" type="text" component={renderField}/>
-          <LocationPicker onLocationSelect={(a, b, c) => {console.log(a,b,c);}}/>
+          <LocationPicker
+          onLocationSelect={(a, b) => {console.log("lat:",a,"lng:",b);}}
+          onRadiusChange={(r) => {console.log("radius:",r);}}
+          />
           <Field label="Lat" name="lat" type="text" component={renderField}/>
           <Field label="Lng" name="lng" type="text" component={renderField}/>
         </div>
