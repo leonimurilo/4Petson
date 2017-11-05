@@ -91,7 +91,8 @@ class Search extends Component {
   }
 
   filterBreeds(){
-    return _.reduce([...this.props.species], (previousElem, elem) => {
+    let clone = _.clone(...this.props.species, true);
+    return _.reduce(clone, (previousElem, elem) => {
       if(!this.state.selectedSpecies.includes(elem.id)){
         return previousElem;
       }
