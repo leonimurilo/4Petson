@@ -25,7 +25,7 @@ class Search extends Component {
   }
 
   clearSelectedBreeds(uncheckedSpecie){
-    let filteredselectedBreeds = _.filter(this.state.selectedBreeds, (breed) => {
+    let filteredselectedBreeds = _.filter([...this.state.selectedBreeds], (breed) => {
       return breed.specie !== uncheckedSpecie;
     });
 
@@ -41,9 +41,9 @@ class Search extends Component {
     let eventSpecie = event.target.value
 
     if(event.target.checked){
-      this.setState({selectedSpecies: _.union(this.state.selectedSpecies, [eventSpecie])});
+      this.setState({selectedSpecies: _.union([...this.state.selectedSpecies], [eventSpecie])});
     }else{
-      this.setState({selectedSpecies: _.filter(this.state.selectedSpecies, function(id){
+      this.setState({selectedSpecies: _.filter([...this.state.selectedSpecies], function(id){
           return id !== eventSpecie;
         })
       });
@@ -91,7 +91,7 @@ class Search extends Component {
   }
 
   filterBreeds(){
-    let clone = _.clone(...this.props.species, true);
+    let clone = _.cloneDeep(this.props.species);
     return _.reduce(clone, (previousElem, elem) => {
       if(!this.state.selectedSpecies.includes(elem.id)){
         return previousElem;

@@ -14,7 +14,7 @@ export default function (state = initialState, action) {
   // console.log("New action:", action.type);
   switch (action.type){
     case SET_AUTH_TOKEN: {
-      var newState = _.clone(state, true);
+      var newState = _.cloneDeep(state);
       newState.token = action.payload;
       return newState;
     }
