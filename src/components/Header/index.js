@@ -76,7 +76,6 @@ class Header extends Component {
         console.log(event);
     }
 
-
   render() {
     const modalStyle = {
       width: '80%',
@@ -97,19 +96,47 @@ class Header extends Component {
     overflow: "auto",
     };
 
-    // const unloggedMenu = (
-    //
-    // );
-    //
-    // const buyerMenu = (
-    //
-    // );
-    //
+    const unloggedMenu = (
+      <div className="menu loginMenu">
+        <button title="Search" className="searchButton" onClick={this.showSearchModal.bind(this)}>
+          <img style={{width: "18px"}} src={require('../../assets/images/search.svg')} />
+        </button>
+        <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
+          Home
+        </Link>
+        <Link onlyActiveOnIndex={true} key={2} to="/login" activeClassName="activeNavLink" className="navLink">
+          Login
+        </Link>
+        <Link onlyActiveOnIndex={true} key={3} to="/signup" activeClassName="activeNavLink" className="navLink">
+          SignUp
+        </Link>
+      </div>
+    );
+
+    const buyerMenu = (
+      <div className="menu loginMenu">
+        <button title="Search" className="searchButton" onClick={this.showSearchModal.bind(this)}>
+          <img style={{width: "18px"}} src={require('../../assets/images/search.svg')} />
+        </button>
+        <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
+          Home
+        </Link>
+        <Link onlyActiveOnIndex={true} key={2} to="/profile" activeClassName="activeNavLink" className="navLink">
+          Profile
+        </Link>
+        <Link onlyActiveOnIndex={true} key={3} to="/trades" activeClassName="activeNavLink" className="navLink">
+          Trades
+        </Link>
+        <Link onlyActiveOnIndex={true} key={4} to="/logout" activeClassName="activeNavLink" className="navLink">
+          Logout
+        </Link>
+      </div>
+    );
+
     // const sellerMenu = (
     //
     // );
 
-    if(this.props.auth.token){
       return (
         <header className="header">
           <h1>
@@ -120,53 +147,13 @@ class Header extends Component {
           <Modal  ref={ 'modal' }
                   modalStyle = {modalStyle}
                   backdropStyle={backdropStyle}
-                  contentStyle={contentStyle}
-          >
+                  contentStyle={contentStyle}>
             <Search></Search>
           </Modal>
           {this.state.menuActive ? this.menuButton: ""}
-          <div className="menu loginMenu">
-            <button title="Search" className="searchButton" onClick={this.showSearchModal.bind(this)}>
-              <img style={{width: "18px"}} src={require('../../assets/images/search.svg')} />
-            </button>
-            <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
-              Home
-            </Link>
-            <Link onlyActiveOnIndex={true} key={2} to="/profile" activeClassName="activeNavLink" className="navLink">
-              Profile
-            </Link>
-            <Link onlyActiveOnIndex={true} key={3} to="/trades" activeClassName="activeNavLink" className="navLink">
-              Trades
-            </Link>
-            <Link onlyActiveOnIndex={true} key={4} to="/logout" activeClassName="activeNavLink" className="navLink">
-              Logout
-            </Link>
-          </div>
+          {this.props.auth.token ? buyerMenu : unloggedMenu}
         </header>
       );
-    }else{
-      return (
-        <header className="header">
-          <h1>
-            <Link onlyActiveOnIndex={true} to="/" className="logo">
-              4Pet
-            </Link>
-          </h1>
-          {this.state.menuActive ? this.menuButton: ""}
-          <div className="menu loginMenu">
-            <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
-              Home
-            </Link>
-            <Link onlyActiveOnIndex={true} key={4} to="/login" activeClassName="activeNavLink" className="navLink">
-              Login
-            </Link>
-            <Link onlyActiveOnIndex={true} key={5} to="/signup" activeClassName="activeNavLink" className="navLink">
-              SignUp
-            </Link>
-          </div>
-        </header>
-      );
-    }
 
   }
 }
