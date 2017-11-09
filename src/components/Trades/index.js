@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from "react-redux";
 import { Link } from 'react-router';
 
 import TradeRequest from '../TradeRequest/index';
@@ -76,16 +77,28 @@ class Trades extends Component {
               {this.getAllTradeRequests()}
             </div>
           </div>
-          <div className="tradeProposedWrapper">
-            <h3 className="unCap">Trades Proposed</h3>
-            <div className="allProposedTradesWrapper">
-              {this.getAllProposedTrades()}
+          {this.props.auth.user.active_seller ?
+            <div className="tradeProposedWrapper">
+              <h3 className="unCap">Trades Proposed</h3>
+              <div className="allProposedTradesWrapper">
+                {this.getAllProposedTrades()}
+              </div>
             </div>
-          </div>
+            :
+            ""
+          }
         </div>
       </div>
     );
   }
 }
 
-export default Trades;
+function mapStateToProps(state){
+  return (
+    {
+      auth: state.auth
+    }
+  );
+}
+
+export default connect(mapStateToProps, null)(Trades);
