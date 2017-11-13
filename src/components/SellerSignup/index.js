@@ -54,33 +54,41 @@ class SellerSignUp extends Component {
       <div>
         <form onSubmit={this.onSubmit.bind(this)} className="sellerSignUpWrapper">
           <h3 className="signUpHeading text-center">Upgrade to seller</h3>
+          <div className="sellerInputWrapper inputWrapper">
+            <div className="uploadImageWrapper">
+              <input
+                id="imgUpload"
+                style={{display: "none"}}
+                onChange={this.onImageSelect.bind(this)}
+                type="file"
+                accept="image/x-png,image/jpeg"
+              />
+              <label className="uploadButton" htmlFor="imgUpload">Choose store picture</label>
+              <div className="imgPreview">
+                {$imagePreview}
+              </div>
+            </div>
+            <label className=" text-center">Type the following information about your store</label>
+            <div className="sellerInputDiv">
+              <input
+                style={{marginRight: 10, flex: 3}}
+                placeholder="Store name"
+                className={`textInput`}
+                type="text"
+              />
+              <input
+                style={{flex: 2}}
+                placeholder="CNPJ"
+                className={`textInput`}
+                type="text"
+              />
+            </div>
+          </div>
           <label className=" text-center">We need you to select, using the map below, your store location and the distance in kilometers that you intend to deliver</label>
           <LocationPicker
             onLocationSelect={(a, b) => {console.log("lat:",a,"lng:",b);}}
             onRadiusChange={(r) => {console.log("radius:",r);}}
           />
-          <div className="sellerInputWrapper inputWrapper">
-          <div className="uploadImageWrapper">
-            <input
-              id="imgUpload"
-              style={{display: "none"}}
-              onChange={this.onImageSelect.bind(this)}
-              type="file"
-              accept="image/x-png,image/jpeg"
-            />
-            <label className="uploadButton" htmlFor="imgUpload">Choose store picture</label>
-            <div className="imgPreview">
-              {$imagePreview}
-            </div>
-          </div>
-            <label className=" text-center">Now we just need some more information...</label>
-            <input
-              placeholder="Type your CNPJ here"
-              className={`textInput`}
-              type="text"
-            />
-
-          </div>
           <div className="btnWrapper sellerBtnWrapper">
             <button className="signUpBtn fbBtn">Request upgrade</button>
           </div>
