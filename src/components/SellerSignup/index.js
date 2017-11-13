@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
+import { Link } from 'react-router';
 import {signUpSeller} from '../../actions/index';
 
 import LocationPicker from '../LocationPicker/index'
@@ -53,6 +54,14 @@ class SellerSignUp extends Component {
     return (
       <div>
         <form onSubmit={this.onSubmit.bind(this)} className="sellerSignUpWrapper">
+          <Link className="backLink" to="/profile">
+            <span className="small">
+              <svg fill="#000000" height="13" viewBox="0 0 18 15" width="13" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 10l5 5 5-5z"/>
+                <path d="M0 0h24v24H0z" fill="none"/>
+              </svg>
+            </span>Back
+          </Link>
           <h3 className="signUpHeading text-center">Upgrade to seller</h3>
           <div className="sellerInputWrapper inputWrapper">
             <div className="uploadImageWrapper">
