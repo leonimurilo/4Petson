@@ -139,11 +139,11 @@ class Header extends Component {
 
       return (
         <header className="header">
-          <h1>
+          
             <Link onlyActiveOnIndex={true} to="/" className="logo">
-              <img style={{width: "100"}} src={require('../../assets/images/logo.png')}/>
+              <img style={{width: 100}} src={require('../../assets/images/logo.png')}/>
             </Link>
-          </h1>
+
           <Modal  ref={ 'modal' }
                   modalStyle = {modalStyle}
                   backdropStyle={backdropStyle}

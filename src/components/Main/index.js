@@ -9,9 +9,14 @@ class Homepage extends Component {
   }
   render() {
     return (
-      <main className="main">
-        {"1234567890".split("").map((e, i) => <Item key={i} />)}
-      </main>
+      <div>
+        <h4>Highlights</h4>
+        <main className="main">
+
+          {"1234567890".split("").map((e, i) => <Item key={i} />)}
+        </main>
+      </div>
+
     );
   }
 }
