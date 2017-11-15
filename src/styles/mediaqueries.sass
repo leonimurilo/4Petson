@@ -1,5 +1,9 @@
 @import './variables.sass'
 
+@media screen and (max-width: 768px)
+  .item
+    flex: 0 1 49%
+
 @media screen and (max-width: 400px)
   .lIWrapper, .cIWrapper
     & > *
@@ -7,6 +11,8 @@
       flex: 0 1 calc(50% -2rem)
   h3.error
     font-size: 2rem
+  .item
+    flex: 0 1 100%
   .priceWrapper
     flex-direction: column
     .inputWrapper
@@ -47,15 +53,15 @@
       border: none
       padding: 0
   .item
-    padding-bottom: 3.5%
-    flex: 0 1 31%
+    // padding-bottom: 3.5%
+    flex: 0 1 250px
     // to override the default css properties
-    &:nth-child(2n)
-      padding-right: 0
-      padding-left: 0
-    &:nth-child(3n - 1)
-      padding-right: 3.5%
-      padding-left: 3.5%
+    // &:nth-child(2n)
+    //   padding-right: 0
+    //   padding-left: 0
+    // &:nth-child(3n - 1)
+    //   padding-right: 3.5%
+    //   padding-left: 3.5%
 
   .otherInfo
     margin: 0 2rem

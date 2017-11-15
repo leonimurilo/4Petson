@@ -139,7 +139,7 @@ class Header extends Component {
 
       return (
         <header className="header">
-          
+
             <Link onlyActiveOnIndex={true} to="/" className="logo">
               <img style={{width: 100}} src={require('../../assets/images/logo.png')}/>
             </Link>
