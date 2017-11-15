@@ -7,7 +7,8 @@ import {
   USER_LOGGED_OUT,
   SET_AUTH_TOKEN,
   USER_LOGGED_IN,
-  FETCH_SPECIES
+  FETCH_SPECIES,
+  FETCH_OFFERS
 } from "./types";
 
 
@@ -144,5 +145,16 @@ export function fetchSpecies(){
 
 }
 
-
-//search items: parameters: specie_ids: [1, 2] and breed_ids: [1, 2 ,3]
+export function fetchOffers() {
+  return (dispatch) => {
+    let mock = {
+      
+    }
+    dispatch(
+      {
+        type: FETCH_SPECIES,
+        payload: mock
+      }
+    );
+  }
+}
