@@ -42,14 +42,32 @@
     justify-content: center
     width: 100%
   .uploadButton
+    &:hover
+      background: #7E7E7E
+    margin-top: 0
     padding: 14px
     cursor: pointer
-    border: solid 2px black
+    background: #585858
+    /* border: solid 2px black */
+    border-radius: 35px
+    color: white
+    .labelContent
+      align-items: center
+      padding: 2px
+      display: flex
+      > img
+        margin-left: 10px
   .uploadImageWrapper
+    padding: 20px
+    width: 100%
+    border-bottom: 1px solid #E6E6E6
+    border-top: 1px solid #E6E6E6
     display: flex
-    flex-direction: column
+    flex-direction: row
     align-items: center
     flex-wrap: wrap
+    margin-bottom: 20px
+    margin-top: 20px
 .sellerBtnWrapper
   width: 70%
   margin-top: 35px
@@ -57,9 +75,14 @@
   border-top: 1px solid #E6E6E6
 .imgPreview
   text-align: center
-  margin: 10px 5px 5px 5px
+  flex: 0 1 50%
+  margin: 15px
   img
     width: auto
+    border-radius: 10px
+    // border: 2px solid black
+    padding: 3px
     height: auto
-    box-shadow: 0px 9px 78px -9px rgba(0,0,0,0.28)
-    max-width: 50%
+    box-shadow: 0px 9px 78px -9px #dcdcdc
+    max-width: 300px
+    max-height: 300px

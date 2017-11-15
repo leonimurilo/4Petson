@@ -65,6 +65,9 @@ class SellerSignUp extends Component {
           <h3 className="signUpHeading text-center">Upgrade to seller</h3>
           <div className="sellerInputWrapper inputWrapper">
             <div className="uploadImageWrapper">
+              <div className="imgPreview">
+                {$imagePreview}
+              </div>
               <input
                 id="imgUpload"
                 style={{display: "none"}}
@@ -72,12 +75,13 @@ class SellerSignUp extends Component {
                 type="file"
                 accept="image/x-png,image/jpeg"
               />
-              <label className="uploadButton" htmlFor="imgUpload">Choose store picture</label>
-              <div className="imgPreview">
-                {$imagePreview}
-              </div>
+              <label className="uploadButton" htmlFor="imgUpload">
+                <div className="labelContent">
+                  Choose store picture
+                  <img style={{width: "30px"}} src={require('../../assets/images/photo-camera.svg')} />
+                </div>
+              </label>
             </div>
-            <label className=" text-center">Type the following information about your store</label>
             <div className="sellerInputDiv">
               <input
                 style={{marginRight: 10, flex: 3}}
