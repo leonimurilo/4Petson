@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from "react-redux";
 import './styles.sass';
 import Item from '../Item/index';
 
@@ -10,7 +11,7 @@ class Homepage extends Component {
   render() {
     return (
       <div>
-        <h4>Highlights</h4>
+        <h4>{this.props.appContent.itemListTitle}</h4>
         <main className="main">
 
           {"1234567890".split("").map((e, i) => <Item key={i} />)}
@@ -21,4 +22,8 @@ class Homepage extends Component {
   }
 }
 
-export default Homepage;
+function mapStateToProps({appContent}){
+  return {appContent}
+}
+
+export default connect(mapStateToProps, null)(Homepage);
