@@ -35,7 +35,7 @@ export function signUp(values, callback) {
       dispatch(
         {
           type: USER_SIGNED_UP,
-          payload: true
+          payload: data
         }
       );
 
@@ -148,7 +148,7 @@ export function fetchSpecies(){
 export function fetchOffers() {
   return (dispatch) => {
     let mock = {
-      
+
     }
     dispatch(
       {

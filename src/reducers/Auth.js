@@ -20,7 +20,7 @@ export default function (state = initialState, action) {
     }
     case USER_SIGNED_UP:
     case USER_LOGGED_IN: {
-      console.log(USER_LOGGED_IN);
+      console.log(action.type, action.payload);
       return action.payload;
     }
     case USER_LOGGED_OUT: {
