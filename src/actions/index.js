@@ -24,7 +24,6 @@ export function signUpSeller(values, callback) {
 
 // the backend send which fields are wrong.
 export function signUp(values, callback) {
-  callback();
   const requestPromise = Axios.post(config.url.signUp, values);
 
   return (dispatch) => {

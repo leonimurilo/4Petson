@@ -14,8 +14,8 @@ class SignUp extends Component {
   }
 
   onSubmit(values){
-    this.props.signUp(values, () => {
-        this.props.router.push("/");
+    return this.props.signUp(values, () => {
+      this.props.router.push("/");
     });
   }
 
@@ -25,7 +25,7 @@ class SignUp extends Component {
 
   render() {
     // function that is added in the component props by reduxForm()
-    const {handleSubmit} = this.props;
+    const {handleSubmit, error} = this.props;
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="signUpWrapper">
         <h3 className="signUpHeading text-center">SignUp</h3>
@@ -41,6 +41,7 @@ class SignUp extends Component {
           <Field label="Password" name="password" type="password" component={renderField}/>
           <Field label="Confirm password" name="password_confirmation" type="password" component={renderField}/>
         </div>
+        <label className="errorMessage">{error}</label>
         <div className="btnWrapper">
           <button className="signUpBtn fbBtn">Sign up</button>
         </div>
