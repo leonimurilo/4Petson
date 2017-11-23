@@ -56,8 +56,7 @@ class SellerSignUp extends Component {
   }
 
   onRadiusChange(radius){
-      console.log("radius:", radius);
-    this.setState({radius})
+    this.setState({radius: radius})
   }
 
   onImageSelect(e){
@@ -143,7 +142,7 @@ class SellerSignUp extends Component {
           <label className=" text-center">We need you to select, using the map below, your store location and the distance in kilometers that you intend to deliver</label>
           <LocationPicker
             onLocationSelect={this.onLocationSelect.bind(this)}
-            onRadiusSelect={(r) => {console.log("radius:",r);}}
+            onRadiusChange={this.onRadiusChange.bind(this)}
           />
           <div className="btnWrapper sellerBtnWrapper">
             <button type="submit" className="signUpBtn fbBtn">Request upgrade</button>
