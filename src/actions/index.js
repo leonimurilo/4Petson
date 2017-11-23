@@ -14,8 +14,34 @@ import {
 
 
 export function signUpSeller(values, callback) {
-  console.log("fake action triggered");
-  callback();
+  let token = localStorage.getItem('auth_token');
+  values.token = token;
+  const requestPromise = Axios.post(config.url.sellerSignUp, values);
+
+  let data = new FormData();
+  data.append('profile_picture', values.profile_picture, values.profile_picture.name);
+  data.append('name', values.name);
+  data.append('cnpj', values.cnpj);
+  data.append('lat', values.lat);
+  data.append('lng', values.lng);
+  data.append('radius', values.radius);
+
+  return (dispatch) => {
+    return requestPromise.then(({data}) => {
+      console.log("data", data);
+      callback();
+      dispatch(
+        {
+          type: SELLER_SIGN_UP,
+          payload: data
+        }
+      );
+
+    }).catch(err => {
+        console.log("Error response from server:", err.response);
+        throw new SubmissionError({_error: err.response.data.message || "Could not perform the seller sign up."});
+    });
+  }
   return {
     type: "fake",
     payload: null

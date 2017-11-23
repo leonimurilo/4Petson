@@ -5,3 +5,4 @@ export const SET_AUTH_TOKEN = "SET_AUTH_TOKEN";
 export const FETCH_SPECIES = "FETCH_SPECIES";
 export const SET_ITEM_LIST_TITLE = "SET_ITEM_LIST_TITLE";
 export const FETCH_OFFERS = "FETCH_OFFERS";
+export const SELLER_SIGN_UP = "SELLER_SIGN_UP";

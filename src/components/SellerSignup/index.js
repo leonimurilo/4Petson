@@ -11,17 +11,52 @@ class SellerSignUp extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {file: '',imagePreviewUrl: ''};
+    this.state = {
+      file: '',
+      imagePreviewUrl: '',
+      storeName: "",
+      cnpj: "",
+      lat: 0,
+      lng: 0,
+      radius: 0
+    };
   }
 
   componentDidMount() {
     document.body.scrollTop = 0;
   }
 
-  onSubmit(values){
+  onSubmit(e){
+    e.preventDefault();
+    console.log(this.state);
+    let values = {
+      profile_picture: this.state.file,
+      name: this.state.storeName,
+      cnpj: this.state.cnpj,
+      lat: this.state.lat,
+      lng: this.state.lng,
+      radius: this.state.radius
+    };
+
     this.props.signUpSeller(values, () => {
-        this.props.router.push("/profile");
+        // this.props.router.push("/profile");
     });
+  }
+
+  onStoreNameChange(e){
+    this.setState({storeName: e.target.value})
+  }
+
+  onCNPJChange(e){
+    this.setState({cnpj: e.target.value})
+  }
+
+  onLocationSelect(lat, lng){
+    this.setState({lat, lng})
+  }
+
+  onRadiusChange(radius){
+    this.setState({radius})
   }
 
   onImageSelect(e){
@@ -29,6 +64,9 @@ class SellerSignUp extends Component {
     e.preventDefault();
     let reader = new FileReader();
     let file = e.target.files[0];
+
+    console.log("reader", reader);
+    console.log("file", file);
 
     reader.onloadend = () => {
       this.setState({
@@ -86,12 +124,16 @@ class SellerSignUp extends Component {
               <input
                 style={{marginRight: 10, flex: 3}}
                 placeholder="Store name"
+                onChange={this.onStoreNameChange.bind(this)}
+                value={this.state.storeName}
                 className={`textInput`}
                 type="text"
               />
               <input
                 style={{flex: 2}}
                 placeholder="CNPJ"
+                onChange={this.onCNPJChange.bind(this)}
+                value={this.state.cnpj}
                 className={`textInput`}
                 type="text"
               />
@@ -99,11 +141,11 @@ class SellerSignUp extends Component {
           </div>
           <label className=" text-center">We need you to select, using the map below, your store location and the distance in kilometers that you intend to deliver</label>
           <LocationPicker
-            onLocationSelect={(a, b) => {console.log("lat:",a,"lng:",b);}}
-            onRadiusChange={(r) => {console.log("radius:",r);}}
+            onLocationSelect={this.onLocationSelect.bind(this)}
+            onRadiusChange={this.onRadiusChange.bind(this)}
           />
           <div className="btnWrapper sellerBtnWrapper">
-            <button className="signUpBtn fbBtn">Request upgrade</button>
+            <button type="submit" className="signUpBtn fbBtn">Request upgrade</button>
           </div>
         </form>
       </div>
