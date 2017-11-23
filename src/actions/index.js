@@ -8,23 +8,29 @@ import {
   SET_AUTH_TOKEN,
   USER_LOGGED_IN,
   FETCH_SPECIES,
+  SELLER_SIGN_UP,
   FETCH_OFFERS
 } from "./types";
 
-
-
 export function signUpSeller(values, callback) {
   let token = localStorage.getItem('auth_token');
-  values.token = token;
-  const requestPromise = Axios.post(config.url.sellerSignUp, values);
 
-  let data = new FormData();
-  data.append('profile_picture', values.profile_picture, values.profile_picture.name);
-  data.append('name', values.name);
-  data.append('cnpj', values.cnpj);
-  data.append('lat', values.lat);
-  data.append('lng', values.lng);
-  data.append('radius', values.radius);
+  let formData = new FormData();
+  formData.append('profile_picture', values.profile_picture);
+  formData.append('name', values.name);
+  formData.append('cnpj', values.cnpj);
+  formData.append('lat', values.lat);
+  formData.append('lng', values.lng);
+  console.log(values.radius);
+  formData.append('radius', values.radius);
+  formData.append('token', token);
+  const requestConfig = {
+      headers: { 'content-type': 'multipart/form-data' }
+  }
+
+  console.log(config.url.sellerSignUp);
+
+  const requestPromise = Axios.post(config.url.sellerSignUp, formData, requestConfig);
 
   return (dispatch) => {
     return requestPromise.then(({data}) => {
@@ -38,13 +44,8 @@ export function signUpSeller(values, callback) {
       );
 
     }).catch(err => {
-        console.log("Error response from server:", err.response);
-        throw new SubmissionError({_error: err.response.data.message || "Could not perform the seller sign up."});
+        console.log("Error response from server:", err);
     });
-  }
-  return {
-    type: "fake",
-    payload: null
   }
 }
 
