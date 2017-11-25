@@ -83,13 +83,13 @@ class Header extends Component {
           <img style={{width: "18px"}} src={require('../../assets/images/search.svg')} />
         </button>
         <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
-          Home
+          Ofertas
         </Link>
         <Link onlyActiveOnIndex={true} key={2} to="/login" activeClassName="activeNavLink" className="navLink">
-          Login
+          Entrar
         </Link>
         <Link onlyActiveOnIndex={true} key={3} to="/signup" activeClassName="activeNavLink" className="navLink">
-          SignUp
+          Criar conta
         </Link>
       </div>
     );
@@ -102,16 +102,16 @@ class Header extends Component {
           <img style={{width: "18px"}} src={require('../../assets/images/search.svg')} />
         </button>
         <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
-          Home
+          Ofertas
         </Link>
         <Link onlyActiveOnIndex={true} key={2} to="/profile" activeClassName="activeNavLink" className="navLink">
-          Profile
+          Minha conta
         </Link>
         <Link onlyActiveOnIndex={true} key={3} to="/trades" activeClassName="activeNavLink" className="navLink">
-          Trades
+          Compras
         </Link>
         <Link onlyActiveOnIndex={true} key={4} to="/logout" activeClassName="activeNavLink" className="navLink">
-          Logout
+          Sair
         </Link>
       </div>
     );
@@ -124,19 +124,19 @@ class Header extends Component {
           <img style={{width: "18px"}} src={require('../../assets/images/search.svg')} />
         </button>
         <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
-          Home
+          Ofertas
         </Link>
         <Link onlyActiveOnIndex={true} key={2} to="/profile" activeClassName="activeNavLink" className="navLink">
-          Profile
+          Perfil
         </Link>
         <Link onlyActiveOnIndex={true} key={3} to="/store" activeClassName="activeNavLink" className="navLink">
-          Store
+          Loja
         </Link>
         <Link onlyActiveOnIndex={true} key={4} to="/trades" activeClassName="activeNavLink" className="navLink">
-          Trades
+          Compras e vendas
         </Link>
         <Link onlyActiveOnIndex={true} key={5} to="/logout" activeClassName="activeNavLink" className="navLink">
-          Logout
+          Sair
         </Link>
       </div>
     );

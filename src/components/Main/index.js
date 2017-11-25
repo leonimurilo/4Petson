@@ -11,7 +11,9 @@ class Homepage extends Component {
   render() {
     return (
       <div>
-        <h4>{this.props.appContent.itemListTitle}</h4>
+      <div id="homeTitle">
+        <h2>{this.props.appContent.itemListTitle}</h2>
+      </div>
         <main className="main">
 
           {"1234567890".split("").map((e, i) => <Item key={i} />)}

@@ -2,7 +2,7 @@ import {SET_ITEM_LIST_TITLE} from '../actions/types';
 import _ from "lodash";
 
 const defaultState = {
-  itemListTitle: "Featured"
+  itemListTitle: "Destaques"
 };
 
 export default function (state = defaultState, action) {
