@@ -190,7 +190,6 @@ export function createAnnouncement(values, callback){
   values.token = localStorage.getItem('auth_token');
   console.log("values", values);
   const requestPromise = Axios.post(config.url.createAnnouncement, values);
-  callback();
 
   return (dispatch) => {
     return requestPromise.then(({data}) => {
@@ -205,7 +204,6 @@ export function createAnnouncement(values, callback){
 
     }).catch(err => {
         console.log("Error response from server:", err.response);
-        throw new SubmissionError({_error: err.response.data.message || "Could not create the announcement."});
     });
 
   };
