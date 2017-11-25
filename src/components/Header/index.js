@@ -67,14 +67,80 @@ class Header extends Component {
         this.refs.modal.show();
     }
 
-    hideModal(){
-      console.log("hello hide");
-        this.refs.modal.hide();
-    }
+  hideModal(){
+    console.log("hello hide");
+      this.refs.modal.hide();
+  }
 
-    callback(event){
-        console.log(event);
-    }
+  callback(event){
+      console.log(event);
+  }
+
+  renderUnloggedMenu(){
+    return (
+      <div className="menu loginMenu">
+        <button title="Search" className="searchButton" onClick={this.showSearchModal.bind(this)}>
+          <img style={{width: "18px"}} src={require('../../assets/images/search.svg')} />
+        </button>
+        <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
+          Home
+        </Link>
+        <Link onlyActiveOnIndex={true} key={2} to="/login" activeClassName="activeNavLink" className="navLink">
+          Login
+        </Link>
+        <Link onlyActiveOnIndex={true} key={3} to="/signup" activeClassName="activeNavLink" className="navLink">
+          SignUp
+        </Link>
+      </div>
+    );
+  }
+
+  renderBuyerMenu(){
+    return (
+      <div className="menu loginMenu">
+        <button title="Search" className="searchButton" onClick={this.showSearchModal.bind(this)}>
+          <img style={{width: "18px"}} src={require('../../assets/images/search.svg')} />
+        </button>
+        <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
+          Home
+        </Link>
+        <Link onlyActiveOnIndex={true} key={2} to="/profile" activeClassName="activeNavLink" className="navLink">
+          Profile
+        </Link>
+        <Link onlyActiveOnIndex={true} key={3} to="/trades" activeClassName="activeNavLink" className="navLink">
+          Trades
+        </Link>
+        <Link onlyActiveOnIndex={true} key={4} to="/logout" activeClassName="activeNavLink" className="navLink">
+          Logout
+        </Link>
+      </div>
+    );
+  }
+
+  renderSellerMenu(){
+    return (
+      <div className="menu loginMenu">
+        <button title="Search" className="searchButton" onClick={this.showSearchModal.bind(this)}>
+          <img style={{width: "18px"}} src={require('../../assets/images/search.svg')} />
+        </button>
+        <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
+          Home
+        </Link>
+        <Link onlyActiveOnIndex={true} key={2} to="/profile" activeClassName="activeNavLink" className="navLink">
+          Profile
+        </Link>
+        <Link onlyActiveOnIndex={true} key={3} to="/store" activeClassName="activeNavLink" className="navLink">
+          Store
+        </Link>
+        <Link onlyActiveOnIndex={true} key={4} to="/trades" activeClassName="activeNavLink" className="navLink">
+          Trades
+        </Link>
+        <Link onlyActiveOnIndex={true} key={5} to="/logout" activeClassName="activeNavLink" className="navLink">
+          Logout
+        </Link>
+      </div>
+    );
+  }
 
   render() {
     const modalStyle = {
@@ -96,64 +162,30 @@ class Header extends Component {
     overflow: "auto",
     };
 
-    const unloggedMenu = (
-      <div className="menu loginMenu">
-        <button title="Search" className="searchButton" onClick={this.showSearchModal.bind(this)}>
-          <img style={{width: "18px"}} src={require('../../assets/images/search.svg')} />
-        </button>
-        <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
-          Home
-        </Link>
-        <Link onlyActiveOnIndex={true} key={2} to="/login" activeClassName="activeNavLink" className="navLink">
-          Login
-        </Link>
-        <Link onlyActiveOnIndex={true} key={3} to="/signup" activeClassName="activeNavLink" className="navLink">
-          SignUp
-        </Link>
-      </div>
+    let menu = this.renderUnloggedMenu();
+    if(this.props.auth.token){
+      if(this.props.auth.user.active_seller){
+        menu = this.renderSellerMenu();
+      }else{
+        menu = this.renderBuyerMenu();
+      }
+    }
+
+    return (
+      <header className="header">
+          <Link onlyActiveOnIndex={true} to="/" className="logo">
+            <img style={{width: 100}} src={require('../../assets/images/logo.png')}/>
+          </Link>
+        <Modal  ref={ 'modal' }
+                modalStyle = {modalStyle}
+                backdropStyle={backdropStyle}
+                contentStyle={contentStyle}>
+          <Search></Search>
+        </Modal>
+        {this.state.menuActive ? this.menuButton: ""}
+        {menu}
+      </header>
     );
-
-    const buyerMenu = (
-      <div className="menu loginMenu">
-        <button title="Search" className="searchButton" onClick={this.showSearchModal.bind(this)}>
-          <img style={{width: "18px"}} src={require('../../assets/images/search.svg')} />
-        </button>
-        <Link onlyActiveOnIndex={true} key={1} to="/" activeClassName="activeNavLink" className="navLink">
-          Home
-        </Link>
-        <Link onlyActiveOnIndex={true} key={2} to="/profile" activeClassName="activeNavLink" className="navLink">
-          Profile
-        </Link>
-        <Link onlyActiveOnIndex={true} key={3} to="/trades" activeClassName="activeNavLink" className="navLink">
-          Trades
-        </Link>
-        <Link onlyActiveOnIndex={true} key={4} to="/logout" activeClassName="activeNavLink" className="navLink">
-          Logout
-        </Link>
-      </div>
-    );
-
-    // const sellerMenu = (
-    //
-    // );
-
-      return (
-        <header className="header">
-
-            <Link onlyActiveOnIndex={true} to="/" className="logo">
-              <img style={{width: 100}} src={require('../../assets/images/logo.png')}/>
-            </Link>
-
-          <Modal  ref={ 'modal' }
-                  modalStyle = {modalStyle}
-                  backdropStyle={backdropStyle}
-                  contentStyle={contentStyle}>
-            <Search></Search>
-          </Modal>
-          {this.state.menuActive ? this.menuButton: ""}
-          {this.props.auth.token ? buyerMenu : unloggedMenu}
-        </header>
-      );
 
   }
 }
