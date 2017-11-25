@@ -6,7 +6,7 @@ class Footer extends Component {
     return (
       <footer className="footer">
         <p className="has-link">
-          4Pet team
+          Equipe 4Pet
         </p>
       </footer>
     );

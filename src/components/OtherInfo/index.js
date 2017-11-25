@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import {connect} from "react-redux"
 
 import './styles.sass';
 
@@ -16,28 +17,28 @@ class OtherInfo extends Component {
       return (
         <div className="lIWrapper" key="lIWrapper">
           <div className="inputWrapper">
-            <label htmlFor="localAddress">Local Address:</label>
-            <input id="localAddress" className="localAddress" type="text" placeholder="Local Address" />
+            <label htmlFor="localAddress">Nome:</label>
+            <input id="localAddress" className="localAddress" type="text" placeholder="Ex: João" />
           </div>
           <div className="inputWrapper">
-            <label htmlFor="city">City:</label>
-            <input id="city" className="city" type="text" placeholder="City" />
+            <label htmlFor="city">Sobrenome:</label>
+            <input id="city" className="city" type="text" placeholder="Ex: Silva" />
           </div>
           <div className="inputWrapper">
-            <label htmlFor="state">State:</label>
-            <input id="state" className="state" type="text" placeholder="State" />
+            <label htmlFor="state">E-mail:</label>
+            <input id="state" className="state" type="text" placeholder="Ex: user@4pet.com" />
           </div>
           <div className="inputWrapper">
-            <label htmlFor="landmark">Landmark:</label>
-            <input id="landmark" className="landmark" type="text" placeholder="Landmark" />
+            <label htmlFor="landmark">Cidade:</label>
+            <input id="landmark" className="landmark" type="text" placeholder="Ex: São Paulo" />
           </div>
           <div className="inputWrapper">
-            <label htmlFor="country">Country:</label>
-            <input id="country" className="country" type="text" placeholder="Country" />
+            <label htmlFor="country">Estado:</label>
+            <input id="country" className="country" type="text" placeholder="Ex: SP" />
           </div>
           <div className="inputWrapper">
-            <label htmlFor="pincode">Pin Code:</label>
-            <input id="pincode" className="pinCode" type="text" placeholder="Pin Code" />
+            <label htmlFor="pincode">Endereço:</label>
+            <input id="pincode" className="pinCode" type="text" placeholder="Ex: Avenida cão e gato" />
           </div>
         </div>
       );
@@ -45,28 +46,28 @@ class OtherInfo extends Component {
       return (
         <div className="lIWrapper" key="lIWrapperText">
           <div className="inputWrapper">
-            <label>Local Address:</label>
-            <p className="inputData">House no 33</p>
+            <label>Nome:</label>
+            <p className="inputData">{this.props.auth.user.name}</p>
           </div>
           <div className="inputWrapper">
-            <label>City:</label>
-            <p className="inputData">New Delhi</p>
+            <label>Sobrenome:</label>
+            <p className="inputData">{this.props.auth.user.last_name}</p>
           </div>
           <div className="inputWrapper">
-            <label>State:</label>
-            <p className="inputData">Delhi</p>
+            <label>E-mail:</label>
+            <p className="inputData">{this.props.auth.user.email}</p>
           </div>
           <div className="inputWrapper">
-            <label>Landmark:</label>
-            <p className="inputData">Yasin Manzil</p>
+            <label>Cidade:</label>
+            <p className="inputData">Não disponível</p>
           </div>
           <div className="inputWrapper">
-            <label>Country:</label>
-            <p className="inputData">India</p>
+            <label>Estado:</label>
+            <p className="inputData">Não disponível</p>
           </div>
           <div className="inputWrapper">
-            <label>Pin Code:</label>
-            <p className="inputData">100065</p>
+            <label>Endereço:</label>
+            <p className="inputData">Não disponível</p>
           </div>
         </div>
       );
@@ -78,49 +79,49 @@ class OtherInfo extends Component {
       return (
         <div className="cIWrapper" key="cIWrapper">
           <div className="inputWrapper">
-            <label htmlFor="email">Email:</label>
-            <input id="email" className="email" type="email" placeholder="Email" />
+            <label htmlFor="email">Nome da loja:</label>
+            <input id="email" className="email" type="email" placeholder="Nome da loja" />
           </div>
           <div className="inputWrapper">
-            <label htmlFor="phone">Phone no:</label>
-            <input id="phone" className="phone" type="tel" placeholder="Phone No" />
+            <label htmlFor="phone">CNPJ:</label>
+            <input id="phone" className="phone" type="tel" placeholder="CNPJ" />
           </div>
         </div>
       );
     } else {
-      return (
-        <div className="cIWrapper" key="cIWrapperText">
-          <div className="inputWrapper">
-            <label>Email:</label>
-            <p className="inputData">arshdkhn1@gmail.com</p>
+      if(this.props.auth.user.active_seller){
+        return (
+          <div className="cIWrapper" key="cIWrapperText">
+            <div className="inputWrapper">
+              <label>Nome da loja:</label>
+              <p className="inputData">{this.props.auth.user.active_seller.name}</p>
+            </div>
+            <div className="inputWrapper">
+              <label>CNPJ:</label>
+              <p className="inputData">{this.props.auth.user.active_seller.cnpj}</p>
+            </div>
           </div>
-          <div className="inputWrapper">
-            <label>Phone no:</label>
-            <p className="inputData">+91-9999999999</p>
-          </div>
-        </div>
-      );
+        );
+      }else{
+        return null
+      }
     }
   }
 
   getButtons(info) {
     if (!this.state.locationEditing && info === 'LOCATION') {
       return (
-        <button className="marB20"
+        <button disabled="true" className="marB20"
           onClick={() => {
             this.setState({ locationEditing: true });
-          }}>
-          Edit
-        </button>
+          }}></button>
       );
     } else if (!this.state.contactEditing && info === 'CONTACT') {
       return (
-        <button className="marB20"
+        <button disabled="true" className="marB20"
           onClick={() => {
             this.setState({ contactEditing: true });
-          }}>
-          Edit
-        </button>
+          }}></button>
       );
     } else {
       let buttons;
@@ -172,21 +173,30 @@ class OtherInfo extends Component {
       <div className="otherInfo">
         <div className="locationInfo">
           <div className="heading">
-            <h3 className="normal marB20">Location Info</h3>
+            <h3 className="normal marB20">Informações de cadastro</h3>
             {this.getButtons('LOCATION')}
           </div>
             {this.getLocationData()}
         </div>
-        <div className="contactInfo">
-          <div className="heading">
-            <h3 className="normal marB20">Contact Info</h3>
-            {this.getButtons('CONTACT')}
+        {this.props.auth.user.active_seller ?
+          <div className="contactInfo">
+            <div className="heading">
+              <h3 className="normal marB20">Informações da loja</h3>
+              {this.getButtons('CONTACT')}
+            </div>
+              {this.getContactData()}
           </div>
-            {this.getContactData()}
-        </div>
+           : ""}
+
       </div>
     );
   }
 }
 
-export default OtherInfo;
+function mapStateToProps({auth}){
+  return ({
+    auth
+  });
+}
+
+export default connect(mapStateToProps, null)(OtherInfo);

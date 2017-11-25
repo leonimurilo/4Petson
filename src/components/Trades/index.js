@@ -57,39 +57,52 @@ class Trades extends Component {
   }
 
   render() {
-    return (
-      <div className="tradesWrapper">
-        {this.getModal()}
-        <div className="addTradeWrapper">
-          <Link to="myItems"><button className="tradeBtn allItemsBtn">Minha loja</button></Link>
-          <button
-            onClick={() => {
-              this.openModal();
-            }}
-            className="tradeBtn addItemBtn">
-            + Nova oferta
-          </button>
-        </div>
-        <div className="tradesInfoWrapper">
-          <div className="tradeReqWrapper">
-            <h3 className="unCap">Compras</h3>
-            <div className="allTradeRequestsWrapper">
-              {this.getAllTradeRequests()}
-            </div>
+    if(this.props.auth.user.active_seller){
+      return (
+        <div className="tradesWrapper">
+          {this.getModal()}
+          <div className="addTradeWrapper">
+            <Link to="myItems"><button className="tradeBtn allItemsBtn">Minha loja</button></Link>
+            <button
+              onClick={() => {
+                this.openModal();
+              }}
+              className="tradeBtn addItemBtn">
+              + Nova oferta
+            </button>
           </div>
-          {this.props.auth.user.active_seller ?
-            <div className="tradeProposedWrapper">
-              <h3 className="unCap">Vendas</h3>
-              <div className="allProposedTradesWrapper">
-                {this.getAllProposedTrades()}
+          <div className="tradesInfoWrapper">
+            <div className="tradeReqWrapper">
+              <h3 className="unCap">Compras</h3>
+              <div className="allTradeRequestsWrapper">
+                {this.getAllTradeRequests()}
               </div>
             </div>
-            :
-            ""
-          }
+              <div className="tradeProposedWrapper">
+                <h3 className="unCap">Vendas</h3>
+                <div className="allProposedTradesWrapper">
+                  {this.getAllProposedTrades()}
+                </div>
+              </div>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }else{
+      return (
+        <div className="tradesWrapper">
+          {this.getModal()}
+          <div className="tradesInfoWrapper">
+            <div className="tradeReqWrapper">
+              <h3 className="unCap">Compras</h3>
+              <div className="allTradeRequestsWrapper">
+                {this.getAllTradeRequests()}
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
   }
 }
 

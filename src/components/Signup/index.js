@@ -30,20 +30,20 @@ class SignUp extends Component {
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="signUpWrapper">
         <h3 className="signUpHeading text-center">SignUp</h3>
         <div className="inputWrapper">
-          <Field label="Name" name="name" type="text" component={renderField}/>
-          <Field label="Last name" name="last_name" type="text" component={renderField}/>
-          <Field label="Birthday" name="birthday" type="text" component={renderField}/>
+          <Field label="Nome" name="name" type="text" component={renderField}/>
+          <Field label="Sobrenome" name="last_name" type="text" component={renderField}/>
+          <Field label="Data de nascimento" name="birthday" type="text" component={renderField}/>
           <Field label="E-mail" name="email" type="email" component={renderField}/>
-          <Field label="Address" name="address" type="text" component={renderField}/>
-          <Field label="City" name="city" type="text" component={renderField}/>
-          <Field label="State/Province" name="state" type="text" component={renderField}/>
-          <Field label="ZIP/Postal code" name="zip_code" type="text" component={renderField}/>
-          <Field label="Password" name="password" type="password" component={renderField}/>
-          <Field label="Confirm password" name="password_confirmation" type="password" component={renderField}/>
+          <Field label="Endereço" name="address" type="text" component={renderField}/>
+          <Field label="Cidade" name="city" type="text" component={renderField}/>
+          <Field label="Estado" name="state" type="text" component={renderField}/>
+          <Field label="CEP" name="zip_code" type="text" component={renderField}/>
+          <Field label="Senha" name="password" type="password" component={renderField}/>
+          <Field label="Confirmação da senha" name="password_confirmation" type="password" component={renderField}/>
         </div>
         <label className="errorMessage">{error}</label>
         <div className="btnWrapper">
-          <button className="signUpBtn fbBtn">Sign up</button>
+          <button className="signUpBtn fbBtn">Criar conta</button>
         </div>
       </form>
     );

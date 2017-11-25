@@ -26,7 +26,7 @@ class Login extends Component {
 
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="loginWrapper">
-        <h3 className="loginHeading text-center">Login with your account or SignUp</h3>
+        <h3 className="loginHeading text-center">Entre com sua conta</h3>
         <Field
           label="E-mail"
           name="email"
@@ -34,7 +34,7 @@ class Login extends Component {
           component={renderField}
         />
         <Field
-          label="Password"
+          label="Senha"
           name="password"
           type="password"
           component={renderField}
@@ -43,7 +43,7 @@ class Login extends Component {
         <div className="btnWrapper">
           <button type="submit" className="loginBtn fbBtn">Login</button>
         </div>
-        <Link to="/signup" >Don{"'"}t have an account?</Link>
+        <Link to="/signup" >Criar nova conta</Link>
 
       </form>
     );
