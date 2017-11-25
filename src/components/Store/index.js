@@ -4,7 +4,7 @@ import UserItem from '../UserItem/index';
 import AddItemPage from '../AddItemPage/index';
 import './styles.sass';
 
-class MyItems extends Component {
+class Store extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,7 +49,7 @@ class MyItems extends Component {
               this.openModal();
             }}
             className="tradeBtn addItemBtn">
-            + Add Item
+            + Novo anúncio
           </button>
         </div>
         {[1, 2].map((e, i) => <UserItem key={i} editModal={this.openModal.bind(this)}/>)}
@@ -58,4 +58,4 @@ class MyItems extends Component {
   }
 }
 
-export default MyItems;
+export default Store;

@@ -62,13 +62,13 @@ class Trades extends Component {
         <div className="tradesWrapper">
           {this.getModal()}
           <div className="addTradeWrapper">
-            <Link to="myItems"><button className="tradeBtn allItemsBtn">Minha loja</button></Link>
+            <Link to="store"><button className="tradeBtn allItemsBtn">Minha loja</button></Link>
             <button
               onClick={() => {
                 this.openModal();
               }}
               className="tradeBtn addItemBtn">
-              + Nova oferta
+              + Novo anúncio
             </button>
           </div>
           <div className="tradesInfoWrapper">

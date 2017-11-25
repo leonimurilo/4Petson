@@ -9,7 +9,7 @@ import Signup from './components/Signup/index';
 import SellerSignup from './components/SellerSignup/index';
 import Trades from './components/Trades/index';
 import ItemPage from './components/ItemPage/index';
-import MyItems from './components/MyItems/index';
+import Store from './components/Store/index';
 import Logout from './components/Logout/index';
 import LocationPicker from './components/LocationPicker/index';
 import ErrorPage from './components/ErrorPage/index';
@@ -29,7 +29,7 @@ export default (
     <Route path="login" component={requireLoggedOut(Login)} />
     <Route path="logout" component={requireAuth(Logout)} />
     <Route path="trades" component={requireAuth(Trades)} />
-    <Route path="myItems" component={requireAuth(MyItems)} />
+    <Route path="store" component={requireAuth(Store)} />
     <Route path="*" component={ErrorPage} />
   </Route>
 );
