@@ -55,7 +55,7 @@ class AddItemPage extends Component {
 
     this.props.species.forEach(function(specie){
       specie.breeds.forEach(function(breed){
-        options.push(<option key={breed.id}>{breed.name}</option>)
+        options.push(<option value={breed.id} key={breed.id}>{breed.name}</option>)
       })
     });
 
@@ -97,8 +97,6 @@ class AddItemPage extends Component {
       expirationDate: event.target.value,
     });
   }
-
-
 
   render() {
     return (
@@ -189,6 +187,7 @@ class AddItemPage extends Component {
       </div>
     );
   }
+
 }
 
 AddItemPage.propTypes = {
