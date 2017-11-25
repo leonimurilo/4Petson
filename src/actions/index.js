@@ -9,7 +9,8 @@ import {
   USER_LOGGED_IN,
   FETCH_SPECIES,
   SELLER_SIGN_UP,
-  FETCH_OFFERS
+  FETCH_OFFERS,
+  CREATE_ANNOUNCEMENT
 } from "./types";
 
 export function signUpSeller(values, callback) {
@@ -183,4 +184,30 @@ export function fetchOffers() {
       }
     );
   }
+}
+
+export function createAnnouncement(values, callback){
+  values.token = localStorage.getItem('auth_token');
+  console.log("values", values);
+  const requestPromise = Axios.post(config.url.createAnnouncement, values);
+  callback();
+
+  return (dispatch) => {
+    return requestPromise.then(({data}) => {
+      console.log("data", data);
+      callback();
+      dispatch(
+        {
+          type: CREATE_ANNOUNCEMENT,
+          payload: data
+        }
+      );
+
+    }).catch(err => {
+        console.log("Error response from server:", err.response);
+        throw new SubmissionError({_error: err.response.data.message || "Could not create the announcement."});
+    });
+
+  };
+
 }

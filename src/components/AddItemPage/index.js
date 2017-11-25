@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from "react-redux"
+import {createAnnouncement} from "../../actions/index"
 
 import './styles.sass';
 
@@ -44,7 +45,7 @@ class AddItemPage extends Component {
     };
 
     this.props.createAnnouncement(values, () => {
-      this.close().bind(this);
+      this.close();
       //close modal and refresh list addind this new announcement
     });
   }
@@ -201,4 +202,4 @@ function mapStateToProps({species}){
   });
 }
 
-export default connect(mapStateToProps, null)(AddItemPage);
+export default connect(mapStateToProps, {createAnnouncement})(AddItemPage);
