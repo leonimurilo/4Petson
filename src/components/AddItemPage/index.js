@@ -33,6 +33,34 @@ class AddItemPage extends Component {
     }, 850);
   }
 
+  onSubmit(){
+    let values = {
+      title: this.state.title,
+      price: this.state.price,
+      quantity: this.state.amount,
+      expiration: this.state.expirationDate,
+      breed_id: this.state.breedId,
+      description: this.state.description
+    };
+
+    this.props.createAnnouncement(values, () => {
+      this.close().bind(this);
+      //close modal and refresh list addind this new announcement
+    });
+  }
+
+  renderBreedSelect(){
+    let options = [];
+
+    this.props.species.forEach(function(specie){
+      specie.breeds.forEach(function(breed){
+        options.push(<option key={breed.id}>{breed.name}</option>)
+      })
+    });
+
+    return (<select value={this.state.breedId} className="itemBreed" onChange={this.onBreedIdChange.bind(this)}>{options}</select>);
+  }
+
   onDescriptionChange(event){
     this.setState({
       description: event.target.value,
@@ -77,7 +105,7 @@ class AddItemPage extends Component {
         <div className="hider" />
         <div className="modal">
           <div className="heading">
-            <h3>Novo anúncio</h3>
+            <h3>Novo Anúncio</h3>
           </div>
           <div className="itemWrapper">
             <div className="itemPicWrapper">
@@ -135,15 +163,8 @@ class AddItemPage extends Component {
                   />
                 </div>
                 <div className="inputWrapper">
-                  <label htmlFor="itemBreed">Id da raça:</label>
-                  <input  id="itemBreed"
-                          name="itemBreed"
-                          type="text"
-                          className="itemBreed"
-                          placeholder="Trocar para combobox"
-                          value={this.state.breedId}
-                          onChange={this.onBreedIdChange.bind(this)}
-                  />
+                  <label htmlFor="itemBreed">Raça:</label>
+                  {this.renderBreedSelect()}
                 </div>
               </div>
               <div className="inputWrapper">
@@ -160,7 +181,7 @@ class AddItemPage extends Component {
             </div>
           </div>
           <div className="buttonWrapper">
-            <button className="saveItemBtn" onClick={this.close.bind(this)}>Criar anúncio</button>
+            <button className="saveItemBtn" onClick={this.onSubmit.bind(this)}>Criar anúncio</button>
             <button className="cancelItemBtn" onClick={this.close.bind(this)}>Cancelar</button>
           </div>
         </div>
@@ -174,4 +195,10 @@ AddItemPage.propTypes = {
   openClass: PropTypes.string
 };
 
-export default AddItemPage;
+function mapStateToProps({species}){
+  return ({
+    species
+  });
+}
+
+export default connect(mapStateToProps, null)(AddItemPage);
