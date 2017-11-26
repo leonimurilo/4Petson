@@ -99,9 +99,9 @@ class SellerSignUp extends Component {
                 <path d="M7 10l5 5 5-5z"/>
                 <path d="M0 0h24v24H0z" fill="none"/>
               </svg>
-            </span>Back
+            </span>Voltar
           </Link>
-          <h3 className="signUpHeading text-center">Upgrade to seller</h3>
+          <h2 className="signUpHeading text-center">Vire um vendedor</h2>
           <div className="sellerInputWrapper inputWrapper">
             <div className="uploadImageWrapper">
               <div className="imgPreview">
@@ -117,13 +117,13 @@ class SellerSignUp extends Component {
               <label className="uploadButton" htmlFor="imgUpload">
                 <div className="labelContent">
                   <img style={{width: "30px"}} src={require('../../assets/images/photo-camera.svg')} />
-                    Choose store picture
+                    Escolher foto da loja
                 </div>
               </label>
             </div>
             <div className="sellerInputDiv">
               <input
-                placeholder="Store name"
+                placeholder="Nome da loja especializada"
                 onChange={this.onStoreNameChange.bind(this)}
                 value={this.state.storeName}
                 className={`textInput`}
@@ -138,13 +138,13 @@ class SellerSignUp extends Component {
               />
             </div>
           </div>
-          <label className=" text-center">We need you to select, using the map below, your store location and the distance in kilometers that you intend to deliver</label>
+          <label className=" text-center">Selecione a localização e o raio de entrega da sua loja utilizando o mapa abaixo.</label>
           <LocationPicker
             onLocationSelect={this.onLocationSelect.bind(this)}
             onRadiusChange={this.onRadiusChange.bind(this)}
           />
           <div className="btnWrapper sellerBtnWrapper">
-            <button type="submit" className="signUpBtn fbBtn">Request upgrade</button>
+            <button type="submit" className="signUpBtn fbBtn">Realizar pedido</button>
           </div>
         </form>
       </div>

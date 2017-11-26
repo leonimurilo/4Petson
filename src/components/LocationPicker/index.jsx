@@ -112,7 +112,7 @@ const MapWithASearchBox = compose(
     >
       <input
         type="text"
-        placeholder="Select your location"
+        placeholder="Pesquise o local de sua loja"
         style={{
           boxSizing: `border-box`,
           border: `1px solid transparent`,
@@ -147,7 +147,7 @@ const MapWithASearchBox = compose(
       <Marker key={index} position={marker.position} onClick={props.onToggleOpen}>
       {props.isOpen && <InfoWindow onCloseClick={props.onToggleOpen}>
         <div>
-        Service radius
+        Raio de entrega:
         <input
           min="1"
           type="number"
