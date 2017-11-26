@@ -4,7 +4,7 @@ import {withRouter} from 'react-router';
 import { Link } from 'react-router';
 import {signUpSeller} from '../../actions/index';
 
-import LocationPicker from '../LocationPicker/index'
+import LocationPicker from '../LocationPicker/index.jsx'
 import './styles.sass';
 
 class SellerSignUp extends Component {

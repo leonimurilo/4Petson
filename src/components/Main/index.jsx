@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
 import './styles.sass';
-import Item from '../Item/index';
+import Item from '../Item/index.jsx';
 
 class Homepage extends Component {
   componentDidMount() {

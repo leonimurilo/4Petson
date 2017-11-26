@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import BasicInfo from '../BasicInfo/index';
-import OtherInfo from '../OtherInfo/index';
+import BasicInfo from '../BasicInfo/index.jsx';
+import OtherInfo from '../OtherInfo/index.jsx';
 import './styles.sass';
 
 class Profile extends Component {

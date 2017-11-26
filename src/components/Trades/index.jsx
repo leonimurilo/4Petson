@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import {connect} from "react-redux";
 import { Link } from 'react-router';
 
-import TradeRequest from '../TradeRequest/index';
-import ProposedTrade from '../ProposedTrade/index';
-import AddItemPage from '../AddItemPage/index';
+import TradeRequest from '../TradeRequest/index.jsx';
+import ProposedTrade from '../ProposedTrade/index.jsx';
+import AddItemPage from '../AddItemPage/index.jsx';
 import './styles.sass';
 
 class Trades extends Component {

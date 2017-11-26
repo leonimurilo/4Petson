@@ -1,18 +1,18 @@
 import React from 'react';
 import { Route, IndexRoute} from 'react-router';
 
-import App from './components/App/index';
-import Main from './components/Main/index';
-import Profile from './components/Profile/index';
-import Login from './components/Login/index';
-import Signup from './components/Signup/index';
-import SellerSignup from './components/SellerSignup/index';
-import Trades from './components/Trades/index';
-import ItemPage from './components/ItemPage/index';
-import Store from './components/Store/index';
-import Logout from './components/Logout/index';
-import LocationPicker from './components/LocationPicker/index';
-import ErrorPage from './components/ErrorPage/index';
+import App from './components/App/index.jsx';
+import Main from './components/Main/index.jsx';
+import Profile from './components/Profile/index.jsx';
+import Login from './components/Login/index.jsx';
+import Signup from './components/Signup/index.jsx';
+import SellerSignup from './components/SellerSignup/index.jsx';
+import Trades from './components/Trades/index.jsx';
+import ItemPage from './components/ItemPage/index.jsx';
+import Store from './components/Store/index.jsx';
+import Logout from './components/Logout/index.jsx';
+import LocationPicker from './components/LocationPicker/index.jsx';
+import ErrorPage from './components/ErrorPage/index.jsx';
 
 import requireAuth from "./utils/requireAuth";
 import requireLoggedOut from "./utils/requireLoggedOut";

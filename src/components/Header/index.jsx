@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import { Link } from 'react-router';
 import Modal from 'boron/DropModal';
 
-import Search from '../Search/index'
+import Search from '../Search/index.jsx'
 
 import './styles.sass';
 
