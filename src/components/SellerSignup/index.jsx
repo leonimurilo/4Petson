@@ -116,14 +116,13 @@ class SellerSignUp extends Component {
               />
               <label className="uploadButton" htmlFor="imgUpload">
                 <div className="labelContent">
-                  Choose store picture
                   <img style={{width: "30px"}} src={require('../../assets/images/photo-camera.svg')} />
+                    Choose store picture
                 </div>
               </label>
             </div>
             <div className="sellerInputDiv">
               <input
-                style={{marginRight: 10, flex: 3}}
                 placeholder="Store name"
                 onChange={this.onStoreNameChange.bind(this)}
                 value={this.state.storeName}
@@ -131,7 +130,6 @@ class SellerSignUp extends Component {
                 type="text"
               />
               <input
-                style={{flex: 2}}
                 placeholder="CNPJ"
                 onChange={this.onCNPJChange.bind(this)}
                 value={this.state.cnpj}

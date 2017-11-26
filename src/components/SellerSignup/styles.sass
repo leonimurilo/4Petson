@@ -33,30 +33,29 @@
   align-items: center
   input
     min-width: 200px
-    width: 300px
   label
     margin-top: 20px
   .sellerInputDiv
-    padding: 15px
+    padding: 15px 20% 15px 20%
     display: flex
+    flex-direction: column
     justify-content: center
     width: 100%
+    input
+      margin-left: 15%
+      margin-right: 15%
   .uploadButton
     &:hover
-      background: #7E7E7E
+      color: $grey
     margin-top: 0
-    padding: 14px
     cursor: pointer
-    background: #585858
-    /* border: solid 2px black */
-    border-radius: 35px
-    color: white
+    margin-left: 5%
     .labelContent
       align-items: center
       padding: 2px
       display: flex
       > img
-        margin-left: 10px
+        margin-right: 10px
   .uploadImageWrapper
     padding: 20px
     width: 100%
@@ -64,6 +63,7 @@
     border-top: 1px solid #E6E6E6
     display: flex
     flex-direction: row
+    justify-content: center
     align-items: center
     flex-wrap: wrap
     margin-bottom: 20px
@@ -75,14 +75,20 @@
   border-top: 1px solid #E6E6E6
 .imgPreview
   text-align: center
-  flex: 1
+  // flex: 1
+  min-height: 154px
+  min-width: 154px
+  border-radius: 80px
   margin: 15px
+  border: double 2px #555555
+  box-shadow: 0px 9px 78px -9px #dcdcdc
+  align-content: center
+  display: flex
+  align-items: center
+  justify-content: center
   img
-    width: auto
-    border-radius: 10px
-    // border: 2px solid black
-    padding: 3px
-    height: auto
-    box-shadow: 0px 9px 78px -9px #dcdcdc
-    max-width: 300px
-    max-height: 300px
+    border-radius: 80px
+    padding: 2px
+    width: 150px
+    height: 150px
+    object-fit: cover
