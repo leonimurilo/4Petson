@@ -9,7 +9,6 @@ import {
   USER_LOGGED_IN,
   FETCH_SPECIES,
   SELLER_SIGN_UP,
-  FETCH_OFFERS,
   CREATE_ANNOUNCEMENT
 } from "./types";
 
@@ -27,7 +26,7 @@ export function signUpSeller(values, callback) {
   formData.append('token', token);
   const requestConfig = {
       headers: { 'content-type': 'multipart/form-data' }
-  }
+  };
 
   console.log(config.url.sellerSignUp);
 
@@ -47,7 +46,7 @@ export function signUpSeller(values, callback) {
     }).catch(err => {
         console.log("Error response from server:", err);
     });
-  }
+  };
 }
 
 // the backend send which fields are wrong.
@@ -116,9 +115,6 @@ export function checkLogin() {
     if(token){
       Axios.get(config.url.checkUser, {params: { token }}).then(function({data}){
         console.log(data);
-        if(!data.active_seller){
-        } else {
-        }
         dispatch(
           {
             type: USER_LOGGED_IN,
@@ -130,7 +126,7 @@ export function checkLogin() {
         );
 
       }).catch(function(err){
-        console.log("The stored token was denied by the server. Try signing in again.");
+        console.log("The stored token was denied by the server. Try signing in again.", err);
         dispatch(
           {
             type: USER_LOGGED_OUT,
@@ -166,7 +162,7 @@ export function fetchSpecies(){
         }
       );
     }).catch(function(error){
-
+      console.log(error);
     });
   };
 
@@ -176,14 +172,14 @@ export function fetchOffers() {
   return (dispatch) => {
     let mock = {
 
-    }
+    };
     dispatch(
       {
         type: FETCH_SPECIES,
         payload: mock
       }
     );
-  }
+  };
 }
 
 export function createAnnouncement(values, callback){

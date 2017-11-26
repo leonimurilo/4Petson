@@ -5,16 +5,18 @@ import {
   USER_SIGNED_UP
 } from '../actions/types';
 
+import _ from "lodash";
+
 const initialState = {
   token: "",
   user: {}
-}
+};
 
 export default function (state = initialState, action) {
   // console.log("New action:", action.type);
   switch (action.type){
     case SET_AUTH_TOKEN: {
-      var newState = _.cloneDeep(state);
+      let newState = _.cloneDeep(state);
       newState.token = action.payload;
       return newState;
     }

@@ -11,7 +11,6 @@ import Trades from './components/Trades/index.jsx';
 import ItemPage from './components/ItemPage/index.jsx';
 import Store from './components/Store/index.jsx';
 import Logout from './components/Logout/index.jsx';
-import LocationPicker from './components/LocationPicker/index.jsx';
 import ErrorPage from './components/ErrorPage/index.jsx';
 
 import requireAuth from "./utils/requireAuth";

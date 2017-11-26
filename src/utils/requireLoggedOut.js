@@ -1,5 +1,5 @@
 import React from "react";
-import {withRouter, Link} from "react-router";
+import {withRouter} from "react-router";
 import {connect} from "react-redux";
 // import Login from "../components/Login/index";
 
