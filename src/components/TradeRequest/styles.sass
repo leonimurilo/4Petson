@@ -1,12 +1,24 @@
 @import '../../styles/variables.sass'
 
 .trWrapper
+  border-bottom: solid 1px #e0e0e0
+  padding-bottom: 15px
+  margin-top: 25px
+  .btnGroup
+    display: flex
+    .normalBtn
+      background-color: transparent
+      transition: color .5s ease-out
+      &:hover
+        color: $light-grey
   &:first-child
     margin-top: 0
-  margin-top: 2.5rem
+    margin-top: 2.5rem
   .upper
     margin: 1rem 0
     display: flex
+  &:last-child
+    border-bottom: none
   .userImg
     margin-top: .2rem
     flex: 0 0 3rem
@@ -20,6 +32,7 @@
   h4
     line-height: 1.2
     font-size: .9rem
+    margin-bottom: 15px
     letter-spacing: 1px
   a
     font-size: .9rem

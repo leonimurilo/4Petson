@@ -8,12 +8,19 @@ class TradeRequest extends Component {
       <div className="trWrapper">
         <div className="upper">
           <div className="userImg" />
-          <h4>
-            <Link>Arshad Khan</Link> wants to trade with your item- <Link>Eloquent Javascript</Link>
-          </h4>
-        </div>
-        <div className="tradeBtnWrapper lower">
-          <button className="declineBtn normalBtn">Mais informações</button>
+          <div>
+            <h4>
+              <Link>2x Golden retriver filhote</Link>
+            </h4>
+            <div className="btnGroup">
+              <div className="tradeBtnWrapper lower">
+                <button className="normalBtn">Mais informações</button>
+              </div>
+              <div className="tradeBtnWrapper lower">
+                <button className="normalBtn">Ver anúncio</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     );
