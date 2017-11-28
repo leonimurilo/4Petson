@@ -152,6 +152,7 @@ export function logout(callback) {
 }
 
 export function fetchSpecies(){
+  console.log("fetchSpecies");
   return (dispatch) => {
     Axios.get(config.url.fetchRaces).then(function(response){
       console.log(response);
