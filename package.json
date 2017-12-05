@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "An e-commerce website with a flat design.",
   "engines": {
-    "npm": ">=3"
+    "npm": ">=3",
+    "node": "6.2.2"
   },
   "scripts": {
     "preinstall": "node tools/nodeVersionCheck.js",
