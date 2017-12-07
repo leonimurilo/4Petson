@@ -4,6 +4,7 @@ import {
 import Auth from './Auth';
 import Species from './Species';
 import AppContent from './AppContent';
+import SellerAnnouncements from './SellerAnnouncements';
 
  import {reducer as formReducer} from "redux-form";
 
@@ -11,6 +12,7 @@ import AppContent from './AppContent';
    form: formReducer,
    auth: Auth,
    species:Species,
+   sellerAnnouncements: SellerAnnouncements,
    appContent: AppContent
  });
 

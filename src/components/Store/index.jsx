@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import UserItem from '../UserItem/index.jsx';
 import AddItemPage from '../AddItemPage/index.jsx';
 import './styles.sass';
+
+import {fetchSellerAnnouncements} from "../../actions";
 
 class Store extends Component {
   constructor(props) {
@@ -15,6 +18,7 @@ class Store extends Component {
   componentDidMount() {
     document.body.scrollTop = 0;
     document.querySelector('.menu').classList.remove('open');
+    this.props.fetchSellerAnnouncements();
   }
 
   closeModal() {
@@ -54,4 +58,10 @@ class Store extends Component {
   }
 }
 
-export default Store;
+function mapStateToProps({sellerAnnouncements}){
+  return {
+    sellerAnnouncements
+  }
+}
+
+export default connect(mapStateToProps, {fetchSellerAnnouncements})(Store);

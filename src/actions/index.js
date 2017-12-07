@@ -9,7 +9,8 @@ import {
   USER_LOGGED_IN,
   FETCH_SPECIES,
   SELLER_SIGN_UP,
-  CREATE_ANNOUNCEMENT
+  CREATE_ANNOUNCEMENT,
+  FETCH_SELLER_ANNOUNCEMENTS
 } from "./types";
 
 export function signUpSeller(values, callback) {
@@ -198,11 +199,40 @@ export function createAnnouncement(values, callback){
           payload: data
         }
       );
+      dispatch(
+        {
+          type: ADD_SELLER_ANNOUNCEMENT,
+          payload: data
+        }
+      );
 
     }).catch(err => {
         console.log("Error response from server:", err.response);
     });
 
+  };
+
+}
+
+export function fetchSellerAnnouncements(){
+  let token = localStorage.getItem('auth_token');
+
+  return (dispatch) => {
+    Axios.get(config.url.fetchSellerAnnouncements, {
+      params: {
+        token
+      }
+    }).then(function(response){
+      console.log(response);
+      dispatch(
+        {
+          type: FETCH_SELLER_ANNOUNCEMENTS,
+          payload: response.data
+        }
+      );
+    }).catch(function(error){
+      console.log(error);
+    });
   };
 
 }
