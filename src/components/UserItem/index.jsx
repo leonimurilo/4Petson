@@ -58,8 +58,9 @@ class UserItem extends Component {
             </div>
             <div className="price frm">Restantes: {this.props.item.quantity}</div>
             <div className="tradeBtnWrapper lower">
-              <button className="deleteBtn normalBtn">Remove Item</button>
-              <button className="editBtn normalBtn" onClick={this.props.editModal}>Edit Info</button>
+              <button className="editBtn normalBtn">Visualizar</button>
+              <button className="editBtn normalBtn" onClick={this.props.editModal}>Editar</button>
+              <button className="deleteBtn normalBtn">Excluir</button>
             </div>
           </div>
         </div>
