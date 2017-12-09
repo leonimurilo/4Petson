@@ -12,6 +12,16 @@ class UserItem extends Component {
     let expiresAt = null;
     let daysLeft = null;
     let tag = null
+
+    let $imagePreview = null;
+    if (this.props.item.photos && this.props.item.photos[0] && this.props.item.photos[0].url) {
+      $imagePreview = (<img src={this.props.item.photos[0].url} />);
+    } else {
+      $imagePreview = (<div className="previewText frm">Sem foto</div>);
+    }
+
+    console.log();
+
     try{
       createdAt = new Date(this.props.item.created_at);
       createdAt = createdAt.getDate() + '/' + (createdAt.getMonth() + 1) + '/' +  createdAt.getFullYear();
@@ -37,7 +47,9 @@ class UserItem extends Component {
     return (
       <div className="uIWrapper">
         <div className="upper">
-          <div className="userImg" />
+          <div className="imgPreview">
+            {$imagePreview}
+          </div>
           <div className="itemInfo">
             <h3 className="itemName">
               <Link to="item/1234">{this.props.item.title}</Link>
