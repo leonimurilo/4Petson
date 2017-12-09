@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from "react-redux"
 import {createAnnouncement} from "../../actions/index"
+import ImageGallery from "react-image-gallery";
 
 import './styles.sass';
 
@@ -99,6 +100,30 @@ class AddItemPage extends Component {
   }
 
   render() {
+
+    let {imagePreviewUrl} = this.state;
+    let $imagePreview = null;
+    if (imagePreviewUrl) {
+      $imagePreview = (<img src={imagePreviewUrl} />);
+    } else {
+      $imagePreview = (<div className="previewText frm"></div>);
+    }
+
+    const images = [
+      {
+        original: 'http://lorempixel.com/1000/600/nature/1/',
+        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
+      },
+      {
+        original: 'http://lorempixel.com/1000/600/nature/2/',
+        thumbnail: 'http://lorempixel.com/250/150/nature/2/'
+      },
+      {
+        original: 'http://lorempixel.com/1000/600/nature/3/',
+        thumbnail: 'http://lorempixel.com/250/150/nature/3/'
+      }
+    ]
+
     return (
       <div className="addItemWrapper" ref={node => { this.modalWrapper = node; }}>
         <div className="hider" />
@@ -107,10 +132,9 @@ class AddItemPage extends Component {
             <h3>Novo Anúncio</h3>
           </div>
           <div className="itemWrapper">
-            <div className="itemPicWrapper">
-              <div className="img" />
-              <p className="imgText frm">Adicionar fotos</p>
-            </div>
+          <div className="addItemImageWrapper">
+            <ImageGallery items={images} showPlayButton={false} showIndex={true} showNav={false}/>
+          </div>
             <div className="itemInfoWrapper">
               <div className="inputWrapper">
                 <label htmlFor="itemName">Título do anúncio:</label>

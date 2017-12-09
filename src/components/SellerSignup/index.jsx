@@ -86,8 +86,7 @@ class SellerSignUp extends Component {
     if (imagePreviewUrl) {
       $imagePreview = (<img src={imagePreviewUrl} />);
     } else {
-      $imagePreview = (<div className="previewText">
-      </div>);
+      $imagePreview = (<div className="previewText frm">Capa</div>);
     }
 
     return (
