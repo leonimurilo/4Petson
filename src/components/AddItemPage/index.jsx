@@ -99,30 +99,38 @@ class AddItemPage extends Component {
     });
   }
 
+  onImageSelect(e){
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    console.log("reader:", reader);
+    console.log("file:", file);
+
+    reader.onloadend = () => {
+      this.setState(
+        {
+          files: [{
+                    file: file,
+                    imagePreviewUrl: reader.result
+                  }, ...this.state.files ]
+        }
+      );
+    }
+    reader.readAsDataURL(file)
+  }
+
   render() {
 
-    let {imagePreviewUrl} = this.state;
-    let $imagePreview = null;
-    if (imagePreviewUrl) {
-      $imagePreview = (<img src={imagePreviewUrl} />);
-    } else {
-      $imagePreview = (<div className="previewText frm"></div>);
-    }
-
-    const images = [
-      {
-        original: 'http://lorempixel.com/1000/600/nature/1/',
-        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-      },
-      {
-        original: 'http://lorempixel.com/1000/600/nature/2/',
-        thumbnail: 'http://lorempixel.com/250/150/nature/2/'
-      },
-      {
-        original: 'http://lorempixel.com/1000/600/nature/3/',
-        thumbnail: 'http://lorempixel.com/250/150/nature/3/'
+    const images = this.state.files.map(function(element){
+      return {
+        original: element.imagePreviewUrl,
+        thumbnail: element.imagePreviewUrl
       }
-    ]
+    });
+
+    console.log("images", this.state.files);
+    console.log("images", images);
 
     return (
       <div className="addItemWrapper" ref={node => { this.modalWrapper = node; }}>
@@ -133,8 +141,26 @@ class AddItemPage extends Component {
           </div>
           <div className="itemWrapper">
           <div className="addItemImageWrapper">
-            <ImageGallery items={images} showPlayButton={false} showIndex={true} showNav={false}/>
+          <input
+            id="imgUpload"
+            style={{display: "none"}}
+            onChange={this.onImageSelect.bind(this)}
+            type="file"
+            accept="image/x-png,image/jpeg"
+          />
+          <label className="uploadButton" htmlFor="imgUpload">
+            <div className="labelContent">
+              <img style={{width: "30px"}} src={require('../../assets/images/photo-camera.svg')} />
+                Adicionar imagem
+            </div>
+          </label>
+
+          {images.length ?
+            <ImageGallery items={images} showPlayButton={false} showIndex={true} showNav={false}/> :
+            <div className=""/>
+          }
           </div>
+
             <div className="itemInfoWrapper">
               <div className="inputWrapper">
                 <label htmlFor="itemName">Título do anúncio:</label>

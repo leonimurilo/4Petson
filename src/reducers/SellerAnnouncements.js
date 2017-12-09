@@ -5,9 +5,7 @@ export default function (state = [], action) {
     case FETCH_SELLER_ANNOUNCEMENTS:
       return action.payload;
     case CREATE_ANNOUNCEMENT:
-      let x = [action.payload, ...state ];
-      console.log(x);
-      return x  // return new instance of state. same as return state.concat([action.payload.data]);
+      return [action.payload, ...state ]  // return new instance of state. same as return state.concat([action.payload.data]);
     default:
       return state;
   }
