@@ -182,7 +182,7 @@ export function fetchOffers() {
   };
 }
 
-export function createAnnouncement(values, callback){
+export function createAnnouncement(values, photos, callback){
   values.token = localStorage.getItem('auth_token');
   console.log("values", values);
   const requestPromise = Axios.post(config.url.createAnnouncement, values);

@@ -45,9 +45,10 @@ class AddItemPage extends Component {
       description: this.state.description
     };
 
-    this.props.createAnnouncement(values, () => {
+    let photos = {}
+
+    this.props.createAnnouncement(values, photos, () => {
       this.close();
-      //close modal and refresh list addind this new announcement
     });
   }
 
@@ -128,9 +129,6 @@ class AddItemPage extends Component {
         thumbnail: element.imagePreviewUrl
       }
     });
-
-    console.log("images", this.state.files);
-    console.log("images", images);
 
     return (
       <div className="addItemWrapper" ref={node => { this.modalWrapper = node; }}>
