@@ -2,6 +2,11 @@
 
 .uIWrapper
   margin: 0 0 3rem 0
+  .addPhotoBtn
+    cursor: pointer
+    transition: all .3s
+    &:hover
+      color: $appPrimaryColor
   .tag
     display: inline
     padding: 6px
@@ -82,14 +87,15 @@
     cursor: pointer
     transition: opacity .3s
     &:hover
-      opacity: .8
+      opacity: .7
   .deleteBtn
     background: #de0202
     color: #fff
   .editBtn
     margin-right: 1rem
     background: none
-    background: #519cdc
-    color: white
+    border: 2px solid black
+    // background: #318fde
+    // color: white
     &:hover
       opacity: .7

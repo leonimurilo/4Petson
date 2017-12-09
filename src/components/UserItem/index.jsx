@@ -17,7 +17,7 @@ class UserItem extends Component {
     if (this.props.item.photos && this.props.item.photos[0] && this.props.item.photos[0].url) {
       $imagePreview = (<img src={this.props.item.photos[0].url} />);
     } else {
-      $imagePreview = (<div className="previewText frm">Adicionar foto</div>);
+      $imagePreview = (<div className="previewText frm addPhotoBtn" onClick={this.props.editModal}>Adicionar foto</div>);
     }
 
     console.log();
