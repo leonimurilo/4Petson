@@ -2,18 +2,44 @@
 
 .uIWrapper
   margin: 0 0 3rem 0
+  .tag
+    display: inline
+    padding: 6px
+    margin-left: 10px
+    font-size: 0.9rem
+    background-color: #50cc9f
+    cursor: default
+    border-radius: 20px
+    color: white
+  .price
+    display: flex
+    align-items: center
+    padding: 7px 7px 14px 0
+    font-size: 1.1rem
+    cursor: default
+  .expiredTag
+    background-color: #de0202
+  .warningTag
+    background-color: #ecb534
   .itemCost
     color: lighten($black, 20%)
     font-size: 1.2rem
     margin: .7rem 0
     font-weight: 500
+  .fullDate
+    padding: 1px 5px 5px 0
   .addDate
-    margin: .5rem 0
+    margin: 5px
     font-weight: 500
     color: $grey
     letter-spacing: 1px
+    display: inline
   .itemDescription
-    margin: .5rem 0 1.5rem 0
+    margin: .3rem 0 1.5rem 0
+  .dateTitle
+    display: inline
+  .dateGroup
+    margin: 8px 0px 8px 0px
   .upper
     margin: 0 0 1rem 0
     display: flex
@@ -24,7 +50,7 @@
     width: 10rem
     background: #eee
     border-radius: 50%
-    margin: 1.5rem auto
+    // margin: 1.5rem auto
   .lower
     display: flex
   h3.itemName
@@ -65,4 +91,3 @@
     border: solid 2px
     &:hover
       opacity: .7
-

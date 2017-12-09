@@ -53,7 +53,11 @@ class Store extends Component {
           + Novo anúncio
         </button>
       </div>
-      {[1, 2].map((e, i) => <UserItem key={i} editModal={this.openModal.bind(this)}/>)}
+      {
+        this.props.sellerAnnouncements.map((element, index) => {
+          return <UserItem key={index} item={element} editModal={this.openModal.bind(this)}/>
+        })
+      }
     </div>);
   }
 }

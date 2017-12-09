@@ -8,17 +8,55 @@ class UserItem extends Component {
   }
 
   render() {
+    let createdAt = "Indisponível";
+    let expiresAt = null;
+    let daysLeft = null;
+    let tag = null
+    try{
+      createdAt = new Date(this.props.item.created_at);
+      createdAt = createdAt.getDate() + '/' + (createdAt.getMonth() + 1) + '/' +  createdAt.getFullYear();
+      expiresAt = new Date(this.props.item.expiration);
+      daysLeft = Math.round((expiresAt.getTime() - new Date().getTime())/(1000*60*60*24));
+      expiresAt = expiresAt.getDate() + '/' + (expiresAt.getMonth() + 1) + '/' +  expiresAt.getFullYear();
+    }catch(e){
+      console.log("error converting announcements date fields:", e);
+    }
+
+    if(expiresAt && daysLeft){
+      if(daysLeft > 0){
+        if(daysLeft < 6){
+          tag = <div className="tag warningTag frm">Expira em {daysLeft} dias</div>
+        }else{
+          tag = <div className="tag frm">Expira em {daysLeft} dias</div>
+        }
+      }else{
+        tag = <div className="expiredTag tag frm">Expirou há {(daysLeft*-1)} dias</div>
+      }
+    }
+
     return (
       <div className="uIWrapper">
         <div className="upper">
           <div className="userImg" />
           <div className="itemInfo">
             <h3 className="itemName">
-              <Link to="item/1234">Eloquent Javascript</Link>
+              <Link to="item/1234">{this.props.item.title}</Link>
             </h3>
-            <p className="itemCost frm">$40</p>
-            <p className="addDate frm">23 Jan, 2017</p>
-            <p className="itemDescription">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque nihil dicta temporibus incidunt fugit culpa similique ipsum sit? Hic ad beatae quidem repudiandae dignissimos tenetur consequuntur, ullam, accusantium earum at.</p>
+            <p className="itemCost frm">R${this.props.item.price}</p>
+            <div className="dateGroup">
+              {createdAt ?
+              <div className="fullDate">
+                <div className="frm dateTitle">Criado em:</div>
+                <div className="addDate frm">{createdAt}</div>
+              </div>: null }
+              {expiresAt ?
+              <div className="fullDate">
+                <div className="frm dateTitle">Expira em:</div>
+                <div className="addDate frm">{expiresAt}</div>
+                {tag}
+              </div>: null }
+            </div>
+            <div className="price frm">Restantes: {this.props.item.quantity}</div>
             <div className="tradeBtnWrapper lower">
               <button className="deleteBtn normalBtn">Remove Item</button>
               <button className="editBtn normalBtn" onClick={this.props.editModal}>Edit Info</button>
@@ -35,4 +73,3 @@ export default UserItem;
 UserItem.propTypes = {
   editModal: PropTypes.func
 };
-

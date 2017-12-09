@@ -153,10 +153,8 @@ export function logout(callback) {
 }
 
 export function fetchSpecies(){
-  console.log("fetchSpecies");
   return (dispatch) => {
     Axios.get(config.url.fetchRaces).then(function(response){
-      console.log(response);
       dispatch(
         {
           type: FETCH_SPECIES,
@@ -199,15 +197,15 @@ export function createAnnouncement(values, callback){
           payload: data
         }
       );
-      dispatch(
-        {
-          type: ADD_SELLER_ANNOUNCEMENT,
-          payload: data
-        }
-      );
 
     }).catch(err => {
+      if(err.response){
         console.log("Error response from server:", err.response);
+      }else if(err.request){
+        console.log("Could not reach server:", err.response);
+      }else{
+        console.log("Non request error happened:", err);
+      }
     });
 
   };
