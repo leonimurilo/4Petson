@@ -61,34 +61,28 @@ class BuyItem extends Component {
     }
 
     return (
-      <div className="itemPageWrapper">
-        {item.photos ?
-          <div className="itemImgWrapper">
-            <ImageGallery items={images} showPlayButton={false} showIndex={true} showNav={false}/>
-          </div> :
-          <div/>
-        }
-
-        <div className="itemInfoWrapper">
-          <Link className="backLink" to="/">
+      <div className="itemPageWrapper buyItemPageWrapper">
+        <div className="itemInfoWrapper buyItemInfoWrapper">
+          <Link className="backLink" to={"/item/"+this.props.params.id}>
             <span className="small">
               <svg fill="#000000" height="13" viewBox="0 0 18 15" width="13" xmlns="http://www.w3.org/2000/svg">
                 <path d="M7 10l5 5 5-5z"/>
                 <path d="M0 0h24v24H0z" fill="none"/>
               </svg>
-            </span>Voltar ao catálogo
+            </span>Voltar para o anúncio
           </Link>
-          <h3 className="itemName">{item.title}</h3>
-          <p className="itemCost frm">R${item.price}</p>
+          <h1 className="itemName buyItemName">Confirmar compra</h1>
+          <h2 className="itemName">{item.title}</h2>
+          <p className="itemCost frm">R${item.price} serão cobrados de seu cartão</p>
           <p className="description">
             {item.description || "Não há descrição para o produto."}
           </p>
-          <p className="seller frm">Expira em <span>{daysLeft} dias</span></p>
           {this.state.didFetch ?
             <p className="seller frm">*Anúncio não listado por proximidade</p> : <div></div>
           }
-          <button className="reqTradeBtn normalBtn">Comprar</button>
         </div>
+        <div className="buySeparator"></div>
+        <button className="buyNormalBtn"><div>Confirmar compra<img src={require('../../assets/images/credit-card.svg')}/></div></button>
       </div>
     );
   }
