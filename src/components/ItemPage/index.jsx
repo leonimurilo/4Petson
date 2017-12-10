@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from "react-redux";
 import { Link } from 'react-router';
 import Loader from "../Loader";
+import ImageGallery from "react-image-gallery";
 import './styles.sass';
 
 class ItemPage extends Component {
@@ -27,6 +28,16 @@ class ItemPage extends Component {
       return(<div><h3>Carregando anúncio...</h3><Loader/></div>)
     }
 
+    let images = [];
+    if(item.photos){
+      images = item.photos.map(function(element){
+        return {
+          original: element.url,
+          thumbnail: element.url
+        }
+      });
+    }
+
     let expiresAt = null;
     let daysLeft = null;
 
@@ -39,7 +50,13 @@ class ItemPage extends Component {
 
     return (
       <div className="itemPageWrapper">
-        <div className="itemImgWrapper" />
+        {item.photos ?
+          <div className="itemImgWrapper">
+            <ImageGallery items={images} showPlayButton={false} showIndex={true} showNav={false}/>
+          </div> :
+          <div/>
+        }
+
         <div className="itemInfoWrapper">
           <Link className="backLink" to="/">
             <span className="small">
