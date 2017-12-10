@@ -36,7 +36,7 @@ class Trades extends Component {
       return (<div><h4>Você ainda não vendeu nada</h4></div>);
     }
     return this.props.sales.map(function(element, index){
-      return (<Sale key={index} purchase={element}/>);
+      return (<Sale key={index} sale={element}/>);
     });
   }
 

@@ -9,7 +9,8 @@ class Purchase extends Component {
       return (
         <div className="trWrapper">
           <div className="upper">
-            <div className="userImg" />
+            <div className="userImg">
+            </div>
             <div>
               <h4>
                 <Link>{this.props.purchase.announcement.title}</Link>
@@ -31,9 +32,9 @@ class Purchase extends Component {
         <div className="trWrapper">
           <div className="upper">
             <div className="userImg" />
-            <div>
+            <div style={{marginTop: 20}}>
               <h4>
-                Anúncio indisponível
+                 Item Indisponível
               </h4>
             </div>
           </div>

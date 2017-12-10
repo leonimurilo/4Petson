@@ -1,9 +1,8 @@
 @import '../../styles/variables.sass'
 
 .trWrapper
-  border-bottom: solid 1px #e0e0e0
-  padding-bottom: 15px
-  margin-top: 25px
+  &:first-child
+  margin-top: 2.5rem
   .btnGroup
     display: flex
     .normalBtn
@@ -11,9 +10,6 @@
       transition: color .5s ease-out
       &:hover
         color: $light-grey
-  &:first-child
-    margin-top: 0
-    margin-top: 2.5rem
   .upper
     margin: 1rem 0
     display: flex
