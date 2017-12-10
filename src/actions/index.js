@@ -11,8 +11,12 @@ import {
   SELLER_SIGN_UP,
   CREATE_ANNOUNCEMENT,
   DELETE_ANNOUNCEMENT,
+  FETCH_ANNOUNCEMENTS,
   FETCH_SELLER_ANNOUNCEMENTS
 } from "./types";
+
+const GMAPS_API_KEY = "AIzaSyDNQUXZkRY5hvPA3CkUlYHh9x9-xJJ2kZA";
+const GMAPS_API_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${GMAPS_API_KEY}`;
 
 export function signUpSeller(values, callback) {
   let token = localStorage.getItem('auth_token');
@@ -169,17 +173,55 @@ export function fetchSpecies(){
 
 }
 
-export function fetchOffers() {
+export function fetchAnnouncements(userCityName) {
   return (dispatch) => {
-    let mock = {
+
+    let requestAndDispatch = function(lat, lng){
+      Axios.get(config.url.fetchAnnouncements, {
+        params: {lat, lng}
+      }).then(function(response){
+        console.log("announcements:", response.data);
+        dispatch(
+          {
+            type: FETCH_ANNOUNCEMENTS,
+            payload: response.data
+          }
+        );
+      }).catch(function(error){
+        console.log(error);
+      });
+    }
+
+    let getLocationByCity = function(){
+      // use google maps to get location object with lat and long
+      return {lat: "", lng: ""}
+    }
+
+    let onLocationAuthorized = function(location) {
+      let lat = location.coords.latitude;
+      let lng = location.coords.longitude;
+      console.log("Location accuracy:", location.coords.accuracy);
+      if(location.coords.accuracy > 15000){ // 15km error
+        lat, lng = getLocationByCity();
+      }
+
+      requestAndDispatch(lat, lng);
 
     };
-    dispatch(
-      {
-        type: FETCH_SPECIES,
-        payload: mock
-      }
-    );
+
+    let onLocationDenied = function(error) {
+      console.log("User denied location usage:", error);
+      console.log("Getting location from google maps based on user city...");
+
+      let lat, lng = getLocationByCity();
+      requestAndDispatch(lat, lng);
+    };
+
+    try{
+      navigator.geolocation.getCurrentPosition(onLocationAuthorized, onLocationDenied);
+    }catch(error){
+      console.log("Error during fetchAnnouncements:", error);
+    }
   };
 }
 
