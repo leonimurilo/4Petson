@@ -3,12 +3,13 @@ import {connect} from "react-redux";
 import { Link } from 'react-router';
 import Loader from "../Loader";
 import ImageGallery from "react-image-gallery";
+import {fetchAnnouncement} from "../../actions";
 import './styles.sass';
 
 class ItemPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {didFetch: false};
   }
 
   componentDidMount(){
@@ -18,14 +19,24 @@ class ItemPage extends Component {
 
   render() {
     let item = null;
-    item = this.props.announcements[this.props.params.id];
-
-    if(item === undefined){
-      return (<div><h3>Anúncio não encontrado</h3></div>)
-    }
+    if(this.props.announcements)
+      item = this.props.announcements[this.props.params.id];
 
     if(item === null){
       return (<div><h3>Carregando anúncio...</h3><Loader/></div>)
+    }
+
+    if(item === undefined){
+      if(this.state.didFetch){
+        return (<div><h3>Anúncio não encontrado</h3></div>);
+      }else{
+        // call action
+        console.log("announcement not found in the list, fetching from server...");
+        this.props.fetchAnnouncement(this.props.params.id, () => {
+          this.setState({didFetch: true});
+        });
+        return (<div><h3>Carregando anúncio...</h3><Loader/></div>)
+      }
     }
 
     let images = [];
@@ -83,4 +94,4 @@ function mapStateToProps({announcements}){
   return {announcements};
 }
 
-export default connect(mapStateToProps, null, null, {pure: false})(ItemPage);
+export default connect(mapStateToProps, {fetchAnnouncement})(ItemPage);

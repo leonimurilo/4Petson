@@ -16,18 +16,20 @@ class Homepage extends Component {
 
   renderAnnouncements(){
     return _.map(this.props.announcements, function(element, index){
-      return (<Item key={index} item={element}/>);
+      if(!element._temporary){
+        return (<Item key={index} item={element}/>);
+      }else{
+        console.log("Temp announcement ignored:", element.id);
+      }
     });
   }
 
   render() {
-
     if(this.props.announcements){
       let isEmpty = Object.keys(this.props.announcements).length === 0 && this.props.announcements.constructor === Object;
-      console.log("anuncios:", this.props.announcements);
-      console.log("anuncios:", isEmpty);
+      // console.log("anuncios:", this.props.announcements);
+      // console.log("anuncios:", isEmpty);
       if(!isEmpty){
-        console.log("aqui1");
         return (
           <div className="mainWrapper">
             <div id="homeTitle">
@@ -37,7 +39,6 @@ class Homepage extends Component {
               {this.renderAnnouncements()}
             </main>
           </div>
-
         );
       }else{
         return (

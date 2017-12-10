@@ -12,6 +12,7 @@ import {
   CREATE_ANNOUNCEMENT,
   DELETE_ANNOUNCEMENT,
   FETCH_ANNOUNCEMENTS,
+  FETCH_ANNOUNCEMENT,
   FETCH_SELLER_ANNOUNCEMENTS,
   FETCH_PURCHASES,
   FETCH_SALES
@@ -385,6 +386,28 @@ export function fetchSales(){
       dispatch(
         {
           type: FETCH_SALES,
+          payload: response.data
+        }
+      );
+    }).catch(function(error){
+      console.log(error);
+    });
+  };
+}
+
+export function fetchAnnouncement(announcementId, callback){
+
+  return (dispatch) => {
+    Axios.get(config.url.fetchAnnouncement, {
+      params: {
+        id: announcementId
+      }
+    }).then(function(response){
+      console.log(response);
+      callback();
+      dispatch(
+        {
+          type: FETCH_ANNOUNCEMENT,
           payload: response.data
         }
       );

@@ -11,6 +11,7 @@ module.exports = {
     'deleteAnnouncement': 'http://four-pet.herokuapp.com/api/announcement/delete',
     'fetchSellerAnnouncements': 'http://four-pet.herokuapp.com/api/announcement/seller_announcements',
     'fetchAnnouncements': 'http://four-pet.herokuapp.com/api/announcement/home',
+    'fetchAnnouncement': 'http://four-pet.herokuapp.com/api/announcement/get',
     'fetchPurchases': 'http://four-pet.herokuapp.com/api/user/purchases',
     'fetchSales': 'http://four-pet.herokuapp.com/api/seller/sells'
   }
