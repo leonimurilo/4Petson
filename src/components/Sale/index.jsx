@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './styles.sass';
 
-class ProposedTrade extends Component {
+class Sale extends Component {
   render() {
     return (
       <div className="ptWrapper">
@@ -20,4 +20,4 @@ class ProposedTrade extends Component {
   }
 }
 
-export default ProposedTrade;
+export default Sale;

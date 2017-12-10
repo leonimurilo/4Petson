@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import './styles.sass';
 
-class TradeRequest extends Component {
+class Purchase extends Component {
   render() {
     return (
       <div className="trWrapper">
@@ -10,7 +10,7 @@ class TradeRequest extends Component {
           <div className="userImg" />
           <div>
             <h4>
-              <Link>2x Golden retriver filhote</Link>
+              <Link>{this.props.purchase.announcement.title}</Link>
             </h4>
             <div className="btnGroup">
               <div className="tradeBtnWrapper lower">
@@ -27,4 +27,4 @@ class TradeRequest extends Component {
   }
 }
 
-export default TradeRequest;
+export default Purchase;
