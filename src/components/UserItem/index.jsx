@@ -1,5 +1,5 @@
 import React, { Component, PropTypes} from 'react';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 import './styles.sass';
 
 
@@ -21,6 +21,10 @@ class UserItem extends Component {
     }else{
       alert("No deletion callback was passed to the item");
     }
+  }
+
+  onViewClick(event){
+    this.props.router.push("/item/"+this.props.item.id);
   }
 
   render() {
@@ -89,7 +93,7 @@ class UserItem extends Component {
             </div>
             <div className="price frm">Restantes: {this.props.item.quantity}</div>
             <div className="tradeBtnWrapper lower">
-              <button className="editBtn normalBtn">Visualizar</button>
+              <button className="editBtn normalBtn" onClick={this.onViewClick.bind(this)}>Visualizar</button>
               {this.state.isDeleting ?
                 <button className="deleteBtn normalBtn" onClick={this.onDeleteConfirmed.bind(this)}>Confirmar exclusão</button> :
                 <button className="deleteBtn normalBtn" onClick={this.onDeleteAttempt.bind(this)}>Excluir</button>
@@ -102,7 +106,7 @@ class UserItem extends Component {
   }
 }
 
-export default UserItem;
+export default withRouter(UserItem);
 
 UserItem.propTypes = {
   editModal: PropTypes.func
