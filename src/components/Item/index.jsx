@@ -6,11 +6,16 @@ import './styles.sass';
 
 class Item extends Component {
   render() {
+
+    let url = require('../../assets/images/search.svg');
+
     return(
       <div className="item">
         <div className="content" onClick={()=>{
           browserHistory.push("/item/" + this.props.item.id);
-        }} />
+        }}>
+          <img style={{width: "50px"}} src={url} />
+        </div>
       </div>
     );
   }
