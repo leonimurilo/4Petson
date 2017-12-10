@@ -59,15 +59,15 @@ class OtherInfo extends Component {
           </div>
           <div className="inputWrapper">
             <label>Cidade:</label>
-            <p className="inputData">Não disponível</p>
+            <p className="inputData">{this.props.auth.user.city || "Não disponível"}</p>
           </div>
           <div className="inputWrapper">
             <label>Estado:</label>
-            <p className="inputData">Não disponível</p>
+            <p className="inputData">{this.props.auth.user.state || "Não disponível"}</p>
           </div>
           <div className="inputWrapper">
             <label>Endereço:</label>
-            <p className="inputData">Não disponível</p>
+            <p className="inputData">{this.props.auth.user.address || "Não disponível"}</p>
           </div>
         </div>
       );
