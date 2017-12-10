@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 import './styles.sass';
 
 class Sale extends Component {
+
+  onViewClick(event){
+    this.props.router.push("/item/"+this.props.sale.announcement.id);
+  }
+
   render() {
     console.log("sale:", this.props.sale);
     if(this.props.sale && this.props.sale.announcement && this.props.sale.announcement.title
@@ -15,7 +20,7 @@ class Sale extends Component {
             </div>
             <div>
               <h4>
-                <Link>
+                <Link to={"item/"+this.props.sale.announcement.id}>
                   Você vendeu <span className="userName">{this.props.sale.announcement.title}</span> para <span className="userName">{this.props.sale.user.name} {this.props.sale.user.last_name}</span>
                 </Link>
               </h4>
@@ -24,7 +29,7 @@ class Sale extends Component {
                   <button className="normalBtn">Mais informações</button>
                 </div>
                 <div className="tradeBtnWrapper lower">
-                  <button className="normalBtn">Ver anúncio</button>
+                  <button className="normalBtn" onClick={this.onViewClick.bind(this)}>Ver anúncio</button>
                 </div>
               </div>
             </div>
@@ -48,4 +53,4 @@ class Sale extends Component {
   }
 }
 
-export default Sale;
+export default withRouter(Sale);
