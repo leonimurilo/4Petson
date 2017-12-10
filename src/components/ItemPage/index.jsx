@@ -26,6 +26,17 @@ class ItemPage extends Component {
     if(!item){
       return(<div><h3>Carregando anúncio...</h3><Loader/></div>)
     }
+
+    let expiresAt = null;
+    let daysLeft = null;
+
+    try{
+      expiresAt = new Date(item.expiration);
+      daysLeft = Math.round((expiresAt.getTime() - new Date().getTime())/(1000*60*60*24));
+    }catch(e){
+      console.log("error converting announcement expiration date:", e);
+    }
+
     return (
       <div className="itemPageWrapper">
         <div className="itemImgWrapper" />
@@ -36,15 +47,15 @@ class ItemPage extends Component {
                 <path d="M7 10l5 5 5-5z"/>
                 <path d="M0 0h24v24H0z" fill="none"/>
               </svg>
-            </span>All Items
+            </span>Voltar ao catálogo
           </Link>
-          <h3 className="itemName">Eloquent Javascript</h3>
-          <p className="itemCost frm">$40</p>
+          <h3 className="itemName">{item.title}</h3>
+          <p className="itemCost frm">R${item.price}</p>
           <p className="description">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea nulla modi, odit explicabo hic doloremque commodi ab molestiae. Iure voluptatem labore et aliquid soluta inventore expedita quam vel a earum!
           </p>
-          <p className="seller frm">By <span>Wilson</span></p>
-          <button className="reqTradeBtn normalBtn">Request Trade</button>
+          <p className="seller frm">Expira em <span>{daysLeft} dias</span></p>
+          <button className="reqTradeBtn normalBtn">Comprar</button>
         </div>
       </div>
     );
