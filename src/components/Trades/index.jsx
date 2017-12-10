@@ -7,7 +7,7 @@ import Sale from '../Sale/index.jsx';
 import AddItemPage from '../AddItemPage/index.jsx';
 import './styles.sass';
 
-import {fetchPurchases} from "../../actions";
+import {fetchPurchases, fetchSales} from "../../actions";
 
 class Trades extends Component {
   constructor(props) {
@@ -21,6 +21,7 @@ class Trades extends Component {
     document.body.scrollTop = 0;
     document.querySelector('.menu').classList.remove('open');
     this.props.fetchPurchases();
+    this.props.fetchSales();
   }
 
   closeModal() {
@@ -30,14 +31,20 @@ class Trades extends Component {
   }
 
   getAllSales() {
-    return ([
-      <Sale key="1" />,
-      <Sale key="2" />
-    ]);
+    console.log(this.props);
+    if(!this.props.sales || this.props.sales.length == 0){
+      return (<div><h4>Você ainda não vendeu nada</h4></div>);
+    }
+    return this.props.sales.map(function(element, index){
+      return (<Sale key={index} purchase={element}/>);
+    });
   }
 
   getAllPurchases() {
     console.log(this.props);
+    if(!this.props.purchases || this.props.purchases.length == 0){
+      return (<div><h4>Você ainda não comprou nada</h4></div>);
+    }
     return this.props.purchases.map(function(element, index){
       return (<Purchase key={index} purchase={element}/>);
     });
@@ -113,9 +120,10 @@ function mapStateToProps(state){
   return (
     {
       auth: state.auth,
-      purchases: state.purchases
+      purchases: state.purchases,
+      sales: state.sales
     }
   );
 }
 
-export default connect(mapStateToProps, {fetchPurchases})(Trades);
+export default connect(mapStateToProps, {fetchPurchases, fetchSales})(Trades);

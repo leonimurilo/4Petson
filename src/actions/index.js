@@ -13,7 +13,8 @@ import {
   DELETE_ANNOUNCEMENT,
   FETCH_ANNOUNCEMENTS,
   FETCH_SELLER_ANNOUNCEMENTS,
-  FETCH_PURCHASES
+  FETCH_PURCHASES,
+  FETCH_SALES
 } from "./types";
 
 const GMAPS_API_KEY = "e5fc331088590e8758cdbc64e5847621";
@@ -362,6 +363,28 @@ export function fetchPurchases(){
       dispatch(
         {
           type: FETCH_PURCHASES,
+          payload: response.data
+        }
+      );
+    }).catch(function(error){
+      console.log(error);
+    });
+  };
+}
+
+export function fetchSales(){
+  let token = localStorage.getItem('auth_token');
+
+  return (dispatch) => {
+    Axios.get(config.url.fetchSales, {
+      params: {
+        token
+      }
+    }).then(function(response){
+      console.log(response);
+      dispatch(
+        {
+          type: FETCH_SALES,
           payload: response.data
         }
       );
