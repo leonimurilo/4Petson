@@ -18,11 +18,7 @@ class ItemPage extends Component {
 
   render() {
     let item = null;
-    if(this.props.announcements){
-       item = this.props.announcements.find((element, index) => {
-        return element.id == this.props.params.id;
-      });
-    }
+    item = this.props.announcements[this.props.params.id];
 
     if(item === undefined){
       return (<div><h3>Anúncio não encontrado</h3></div>)
