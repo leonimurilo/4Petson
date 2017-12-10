@@ -1,3 +1,5 @@
+@import '../../styles/variables.sass'
+
 .main
   padding: 1rem 0
   display: flex
@@ -11,3 +13,28 @@
 .loadingWrapper
   display: flex
   flex-direction: column
+
+.mainLoading
+    display: flex
+    flex-wrap: wrap
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    min-height: 50vh
+    h3
+      letter-spacing: 2px
+      font-weight: 500
+      color: $grey
+.empty
+  display: flex
+  flex-wrap: wrap
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  min-height: 50vh
+  img
+    margin: 40px
+  h3
+    color: $grey
+    letter-spacing: 2px
+    font-weight: 500

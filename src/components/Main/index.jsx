@@ -31,11 +31,17 @@ class Homepage extends Component {
         );
       }else{
         return (
-          <div className="main"><h3>Nenhum resultado</h3></div>)
+          <div className="empty">
+            <img style={{width: "100px"}} src={require('../../assets/images/open-box.svg')} />
+            <h3>Nenhum pet foi encontrado :(</h3>
+          </div>)
       }
     }else{
       return(
+        <div className="mainLoading">
+          <h3>Buscando pets mais próximos...</h3>
           <Loader></Loader>
+        </div>
       );
     }
 
