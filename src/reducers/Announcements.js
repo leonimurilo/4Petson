@@ -6,7 +6,10 @@ import _ from "lodash";
 export default function (state = null, action) {
   switch (action.type){
     case FETCH_ANNOUNCEMENTS:
-      return _.mapKeys(action.payload, "id");
+      if(state===null)
+        return _.mapKeys(action.payload, "id");
+      let newState = _.cloneDeep(state);
+      return Object.assign(newState, _.mapKeys(action.payload, "id"));
     case FETCH_ANNOUNCEMENT:
       action.payload._temporary = true;
       return {...state, [action.payload.id]: action.payload};
