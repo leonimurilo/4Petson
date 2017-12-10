@@ -9,7 +9,7 @@ import './styles.sass';
 
 class SignUp extends Component {
   componentDidMount() {
-    document.body.scrollTop = 0;
+    window.scrollTo(0, 0);
     document.querySelector('.menu').classList.remove('open');
   }
 

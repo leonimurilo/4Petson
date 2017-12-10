@@ -12,7 +12,7 @@ class ItemPage extends Component {
   }
 
   componentDidMount(){
-    document.body.scrollTop = 0;
+    window.scrollTo(0, 0);
     document.querySelector('.menu').classList.remove('open');
   }
 
@@ -24,8 +24,12 @@ class ItemPage extends Component {
       });
     }
 
-    if(!item){
-      return(<div><h3>Carregando anúncio...</h3><Loader/></div>)
+    if(item === undefined){
+      return (<div><h3>Anúncio não encontrado</h3></div>)
+    }
+
+    if(item === null){
+      return (<div><h3>Carregando anúncio...</h3><Loader/></div>)
     }
 
     let images = [];
