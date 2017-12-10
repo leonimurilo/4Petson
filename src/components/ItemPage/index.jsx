@@ -1,13 +1,31 @@
 import React, { Component } from 'react';
+import {connect} from "react-redux";
 import { Link } from 'react-router';
+import Loader from "../Loader";
 import './styles.sass';
 
 class ItemPage extends Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  componentDidMount(){
     document.body.scrollTop = 0;
     document.querySelector('.menu').classList.remove('open');
   }
+
   render() {
+    let item = null;
+    if(this.props.announcements){
+       item = this.props.announcements.find((element, index) => {
+        return element.id == this.props.params.id;
+      });
+    }
+
+    if(!item){
+      return(<div><h3>Carregando anúncio...</h3><Loader/></div>)
+    }
     return (
       <div className="itemPageWrapper">
         <div className="itemImgWrapper" />
@@ -33,4 +51,8 @@ class ItemPage extends Component {
   }
 }
 
-export default ItemPage;
+function mapStateToProps({announcements}){
+  return {announcements};
+}
+
+export default connect(mapStateToProps, null, null, {pure: false})(ItemPage);
