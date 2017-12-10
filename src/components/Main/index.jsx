@@ -10,7 +10,7 @@ class Homepage extends Component {
   componentDidMount() {
     document.body.scrollTop = 0;
     document.querySelector('.menu').classList.remove('open');
-    // this.props.fetchAnnouncements("campinas");
+    this.props.fetchAnnouncements("campinas");
   }
 
   renderAnnouncements(){
