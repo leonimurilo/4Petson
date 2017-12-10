@@ -7,6 +7,8 @@ import Sale from '../Sale/index.jsx';
 import AddItemPage from '../AddItemPage/index.jsx';
 import './styles.sass';
 
+import {fetchPurchases} from "../../actions";
+
 class Trades extends Component {
   constructor(props) {
     super(props);
@@ -18,6 +20,7 @@ class Trades extends Component {
   componentDidMount() {
     document.body.scrollTop = 0;
     document.querySelector('.menu').classList.remove('open');
+    this.props.fetchPurchases();
   }
 
   closeModal() {
@@ -35,7 +38,7 @@ class Trades extends Component {
 
   getAllPurchases() {
     console.log(this.props);
-    this.props.purchases.map(function(element, index){
+    return this.props.purchases.map(function(element, index){
       return (<Purchase key={index} purchase={element}/>);
     });
   }
@@ -115,4 +118,4 @@ function mapStateToProps(state){
   );
 }
 
-export default connect(mapStateToProps, null)(Trades);
+export default connect(mapStateToProps, {fetchPurchases})(Trades);
