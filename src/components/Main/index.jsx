@@ -8,7 +8,7 @@ import Loader from "../Loader/index.jsx"
 class Homepage extends Component {
 
   componentWillMount(){
-    this.props.fetchAnnouncements("campinas");
+    // this.props.fetchAnnouncements("campinas");
   }
   componentDidMount() {
     document.body.scrollTop = 0;
