@@ -16,7 +16,6 @@ class Homepage extends Component {
 
   }
   render() {
-    console.log(this.props);
     if(this.props.announcements){
       if(this.props.announcements.length > 0){
         return (

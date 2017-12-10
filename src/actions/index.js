@@ -15,7 +15,7 @@ import {
   FETCH_SELLER_ANNOUNCEMENTS
 } from "./types";
 
-const GMAPS_API_KEY = "AIzaSyDNQUXZkRY5hvPA3CkUlYHh9x9-xJJ2kZA";
+const GMAPS_API_KEY = "e5fc331088590e8758cdbc64e5847621";
 const GMAPS_API_URL = `http://api.openweathermap.org/data/2.5/forecast?appid=${GMAPS_API_KEY}`;
 
 export function signUpSeller(values, callback) {
@@ -177,6 +177,7 @@ export function fetchAnnouncements(userCityName) {
   return (dispatch) => {
 
     let requestAndDispatch = function(lat, lng){
+      console.log("fetching announcements", {lat, lng});
       Axios.get(config.url.fetchAnnouncements, {
         params: {lat, lng}
       }).then(function(response){
@@ -192,20 +193,36 @@ export function fetchAnnouncements(userCityName) {
       });
     }
 
-    let getLocationByCity = function(){
-      // use google maps to get location object with lat and long
-      return {lat: "", lng: ""}
-    }
+    let getLocationByCity = new Promise (function (resolve, reject) {
+      userCityName = userCityName.trim().toLowerCase();
+      const url = `${GMAPS_API_URL}&q=${userCityName},br`;
+      Axios.get(url).then(function(response){
+        // console.log("gmaps response:", response.data);
+        let coords = {lat: response.data.city.coord.lat, lng: response.data.city.coord.lon};
+        console.log("gmaps city coords:", coords);
+        resolve(coords)
+      }).catch(function(error){
+        console.log("gmaps error:", error);
+        reject(error);
+      });
+    });
 
     let onLocationAuthorized = function(location) {
+      console.log("Location authorized");
       let lat = location.coords.latitude;
       let lng = location.coords.longitude;
-      console.log("Location accuracy:", location.coords.accuracy);
+      console.log("Location accuracy:", location.coords.accuracy, "meters");
+      console.log("browser coords:", {lat, lng});
       if(location.coords.accuracy > 15000){ // 15km error
-        lat, lng = getLocationByCity();
+        getLocationByCity.then(function(response){
+          requestAndDispatch(response.lat, response.lng);
+        }).catch(function(error){
+          console.log(error);
+        });
+      }else{
+          requestAndDispatch(lat, lng);
       }
 
-      requestAndDispatch(lat, lng);
 
     };
 
@@ -213,8 +230,11 @@ export function fetchAnnouncements(userCityName) {
       console.log("User denied location usage:", error);
       console.log("Getting location from google maps based on user city...");
 
-      let lat, lng = getLocationByCity();
-      requestAndDispatch(lat, lng);
+      getLocationByCity.then(function(response){
+        requestAndDispatch(response.lat, response.lng);
+      }).catch(function(error){
+        console.log(error);
+      });
     };
 
     try{
