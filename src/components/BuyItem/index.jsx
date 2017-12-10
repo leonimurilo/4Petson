@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
-import { Link, withRouter } from 'react-router';
+import { Link } from 'react-router';
 import Loader from "../Loader";
 import ImageGallery from "react-image-gallery";
 import {fetchAnnouncement} from "../../actions";
 import './styles.sass';
 
-class ItemPage extends Component {
+class BuyItem extends Component {
   constructor(props) {
     super(props);
     this.state = {didFetch: false};
@@ -15,10 +15,6 @@ class ItemPage extends Component {
   componentDidMount(){
     window.scrollTo(0, 0);
     document.querySelector('.menu').classList.remove('open');
-  }
-
-  onBuyClick(event){
-    this.props.router.push("/buy/"+this.props.params.id);
   }
 
   render() {
@@ -89,7 +85,7 @@ class ItemPage extends Component {
           {this.state.didFetch ?
             <p className="seller frm">*Anúncio não listado por proximidade</p> : <div></div>
           }
-          <button className="reqTradeBtn normalBtn" onClick={this.onBuyClick.bind(this)}>Comprar</button>
+          <button className="reqTradeBtn normalBtn">Comprar</button>
         </div>
       </div>
     );
@@ -100,4 +96,4 @@ function mapStateToProps({announcements}){
   return {announcements};
 }
 
-export default connect(mapStateToProps, {fetchAnnouncement})(withRouter(ItemPage));
+export default connect(mapStateToProps, {fetchAnnouncement})(BuyItem);
