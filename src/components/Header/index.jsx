@@ -130,7 +130,7 @@ class Header extends Component {
           Perfil
         </Link>
         <Link onlyActiveOnIndex={true} key={3} to="/store" activeClassName="activeNavLink" className="navLink">
-          Loja
+          Minha Loja
         </Link>
         <Link onlyActiveOnIndex={true} key={4} to="/trades" activeClassName="activeNavLink" className="navLink">
           Compras e vendas
