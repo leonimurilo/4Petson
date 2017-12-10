@@ -30,7 +30,6 @@ class ItemPage extends Component {
       if(this.state.didFetch){
         return (<div><h3>Anúncio não encontrado</h3></div>);
       }else{
-        // call action
         console.log("announcement not found in the list, fetching from server...");
         this.props.fetchAnnouncement(this.props.params.id, () => {
           this.setState({didFetch: true});
@@ -83,6 +82,9 @@ class ItemPage extends Component {
             {item.description || "Não há descrição para o produto."}
           </p>
           <p className="seller frm">Expira em <span>{daysLeft} dias</span></p>
+          {this.state.didFetch ?
+            <p className="seller frm">*Anúncio não listado por proximidade</p> : <div></div>
+          }
           <button className="reqTradeBtn normalBtn">Comprar</button>
         </div>
       </div>
