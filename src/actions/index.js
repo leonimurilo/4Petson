@@ -247,9 +247,29 @@ export function fetchAnnouncements(userCityName) {
 }
 
 export function createAnnouncement(values, photos, callback){
-  values.token = localStorage.getItem('auth_token');
+  let token = localStorage.getItem('auth_token');
   console.log("values", values);
-  const requestPromise = Axios.post(config.url.createAnnouncement, values);
+  console.log("photos", photos);
+
+  let formData = new FormData();
+  formData.append('title', values.title);
+  formData.append('price', values.price);
+  formData.append('quantity', values.quantity);
+  formData.append('expiration', values.expiration);
+  formData.append('breed_id', values.breed_id);
+  formData.append('description', values.description);
+  formData.append('token', token);
+
+  for (var x = 0; x < photos.length; x++) {
+    console.log("photo:",photos[x]);
+      formData.append("pictures[]", photos[x]);
+  };
+
+  const requestConfig = {
+      headers: { 'content-type': 'multipart/form-data' }
+  };
+
+  const requestPromise = Axios.post(config.url.createAnnouncement, formData, requestConfig);
 
   return (dispatch) => {
     return requestPromise.then(({data}) => {

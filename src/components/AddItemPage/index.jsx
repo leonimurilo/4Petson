@@ -45,7 +45,11 @@ class AddItemPage extends Component {
       description: this.state.description
     };
 
-    let photos = {}
+    let photos = [];
+
+    photos = this.state.files.map(function(element, index){
+      return element.file;
+    });
 
     this.props.createAnnouncement(values, photos, () => {
       this.close();

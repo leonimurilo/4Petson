@@ -23,7 +23,7 @@ class Homepage extends Component {
     if(this.props.announcements){
       if(this.props.announcements.length > 0){
         return (
-          <div>
+          <div className="mainWrapper">
             <div id="homeTitle">
               <h2>{this.props.appContent.itemListTitle}</h2>
             </div>
