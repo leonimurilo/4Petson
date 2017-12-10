@@ -75,7 +75,7 @@ class UserItem extends Component {
           </div>
           <div className="itemInfo">
             <h3 className="itemName">
-              <Link to="item/1234">{this.props.item.title}</Link>
+              <Link to={"item/"+this.props.item.id}>{this.props.item.title}</Link>
             </h3>
             <p className="itemCost frm">R${this.props.item.price}</p>
             <div className="dateGroup">
