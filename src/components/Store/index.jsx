@@ -59,7 +59,7 @@ class Store extends Component {
       </div>
       {
         this.props.sellerAnnouncements.map((element, index) => {
-          return <UserItem  key={index}
+          return <UserItem  key={element.id}
                             item={element}
                             editModal={this.openModal.bind(this)}
                             onItemDeleted={this.onItemDeleted.bind(this)}
