@@ -22,6 +22,8 @@ class ItemPage extends Component {
   }
 
   render() {
+    if(!this.props.params.id)
+      return null
     let item = null;
     if(this.props.announcements)
       item = this.props.announcements[this.props.params.id];
@@ -34,7 +36,7 @@ class ItemPage extends Component {
       if(this.state.didFetch){
         return (<div><h3>Anúncio não encontrado</h3></div>);
       }else{
-        console.log("announcement not found in the list, fetching from server...");
+        console.log("announcement not found in the list, fetching from server using id:", this.props.params.id);
         this.props.fetchAnnouncement(this.props.params.id, () => {
           this.setState({didFetch: true});
         });

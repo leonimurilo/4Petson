@@ -18,6 +18,8 @@ class BuyItem extends Component {
   }
 
   render() {
+    if(!this.props.params.id)
+      return null
     let item = null;
     if(this.props.announcements)
       item = this.props.announcements[this.props.params.id];
