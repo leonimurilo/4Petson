@@ -9,7 +9,7 @@ class Item extends Component {
     return(
       <div className="item">
         <div className="content" onClick={()=>{
-          browserHistory.push('/item/123');
+          browserHistory.push("/item/" + this.props.item.id);
         }} />
       </div>
     );

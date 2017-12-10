@@ -7,14 +7,18 @@ import Loader from "../Loader/index.jsx"
 
 class Homepage extends Component {
 
-  componentWillMount(){
-    // this.props.fetchAnnouncements("campinas");
-  }
   componentDidMount() {
     document.body.scrollTop = 0;
     document.querySelector('.menu').classList.remove('open');
-
+    // this.props.fetchAnnouncements("campinas");
   }
+
+  renderAnnouncements(){
+    return this.props.announcements.map(function(element, index){
+      return (<Item key={index} item={element}/>);
+    });
+  }
+
   render() {
     if(this.props.announcements){
       if(this.props.announcements.length > 0){
@@ -24,7 +28,7 @@ class Homepage extends Component {
               <h2>{this.props.appContent.itemListTitle}</h2>
             </div>
             <main className="main">
-              {"1234567890ertyuiolkj".split("").map((e, i) => <Item key={i} />)}
+              {this.renderAnnouncements()}
             </main>
           </div>
 
