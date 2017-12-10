@@ -23,9 +23,9 @@ class Homepage extends Component {
             <div id="homeTitle">
               <h2>{this.props.appContent.itemListTitle}</h2>
             </div>
-              <main className="main">
-                {"1234567890ertyuiolkj".split("").map((e, i) => <Item key={i} />)}
-              </main>
+            <main className="main">
+              {"1234567890ertyuiolkj".split("").map((e, i) => <Item key={i} />)}
+            </main>
           </div>
 
         );

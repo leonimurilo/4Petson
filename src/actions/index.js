@@ -276,29 +276,32 @@ export function createAnnouncement(values, photos, callback){
 }
 
 export function deleteAnnouncement(announcementId){
+  console.log(announcementId);
   let values = {
     token: localStorage.getItem('auth_token'),
     announcement_id: announcementId
   }
 
-  Axios.delete(config.url.deleteAnnouncement, values).then(({data}) => {
-    console.log("delete announcement responded:", data);
-    dispatch(
-      {
-        type: DELETE_ANNOUNCEMENT,
-        payload: announcementId
-      }
-    );
+  return (dispatch) => {
+    Axios.delete(config.url.deleteAnnouncement, {params: values}).then(({data}) => {
+      console.log("delete announcement responded:", data);
+      dispatch(
+        {
+          type: DELETE_ANNOUNCEMENT,
+          payload: announcementId
+        }
+      );
 
-  }).catch(err => {
-    if(err.response){
-      console.log("Error response from server:", err.response);
-    }else if(err.request){
-      console.log("Could not reach server:", err.response);
-    }else{
-      console.log("Non request error happened:", err);
-    }
-  });
+    }).catch(err => {
+      if(err.response){
+        console.log("Error response from server:", err.response);
+      }else if(err.request){
+        console.log("Could not reach server:", err.response);
+      }else{
+        console.log("Non request error happened:", err);
+      }
+    });
+  }
 
 }
 

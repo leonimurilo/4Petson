@@ -2,12 +2,31 @@ import React, { Component, PropTypes} from 'react';
 import { Link } from 'react-router';
 import './styles.sass';
 
+
 class UserItem extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isDeleting: false
+    }
+  }
+
+  onDeleteAttempt(event){
+    this.setState({isDeleting: true});
+  }
+
+  onDeleteConfirmed(event){
+    if(this.props.onItemDeleted){
+      this.props.onItemDeleted(this.props.item.id);
+    }else{
+      alert("No deletion callback was passed to the item");
+    }
   }
 
   render() {
+    if(!this.props.item){
+      return (<div>No item to display...</div>);
+    }
     let createdAt = "Indisponível";
     let expiresAt = null;
     let daysLeft = null;
@@ -72,7 +91,10 @@ class UserItem extends Component {
             <div className="tradeBtnWrapper lower">
               <button className="editBtn normalBtn">Visualizar</button>
               <button className="editBtn normalBtn" onClick={this.props.editModal}>Editar</button>
-              <button className="deleteBtn normalBtn">Excluir</button>
+              {this.state.isDeleting ?
+                <button className="deleteBtn normalBtn" onClick={this.onDeleteConfirmed.bind(this)}>Confirmar exclusão</button> :
+                <button className="deleteBtn normalBtn" onClick={this.onDeleteAttempt.bind(this)}>Excluir</button>
+              }
             </div>
           </div>
         </div>
