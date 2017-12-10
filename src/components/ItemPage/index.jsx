@@ -69,7 +69,7 @@ class ItemPage extends Component {
           <h3 className="itemName">{item.title}</h3>
           <p className="itemCost frm">R${item.price}</p>
           <p className="description">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea nulla modi, odit explicabo hic doloremque commodi ab molestiae. Iure voluptatem labore et aliquid soluta inventore expedita quam vel a earum!
+            {item.description || "Não há descrição para o produto."}
           </p>
           <p className="seller frm">Expira em <span>{daysLeft} dias</span></p>
           <button className="reqTradeBtn normalBtn">Comprar</button>
