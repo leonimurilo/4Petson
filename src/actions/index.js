@@ -420,6 +420,7 @@ export function fetchAnnouncement(announcementId, callback){
 
 export function buyAnnouncement(announcementId, callback){
   let token = localStorage.getItem('auth_token');
+  console.log("announcementId", announcementId);
   return (dispatch) => {
     Axios.post(config.url.buyAnnouncement, {announcement_id: announcementId, token}).then(({data}) => {
       console.log("data", data);

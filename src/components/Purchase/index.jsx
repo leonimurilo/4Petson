@@ -11,11 +11,20 @@ class Purchase extends Component {
   render() {
     // console.log("purchase:", this.props.purchase);
     if(this.props.purchase && this.props.purchase.announcement && this.props.purchase.announcement.title){
+
+      let $imagePreview = null;
+      if (this.props.purchase.announcement.photos && this.props.purchase.announcement.photos[0] && this.props.purchase.announcement.photos[0].url) {
+        $imagePreview = (<img src={this.props.purchase.announcement.photos[0].url} />);
+      } else {
+        $imagePreview = (<div className="previewText frm addPhotoBtn" onClick={this.props.editModal}>Adicionar foto</div>);
+      }
+
       return (
         <div className="trWrapper">
           <div className="upper">
-            <div className="userImg">
-            </div>
+          <div className="imgPreviewMini imgPreview">
+            {$imagePreview}
+          </div>
             <div>
               <h4>
                 <Link to={"item/"+this.props.purchase.announcement.id}>

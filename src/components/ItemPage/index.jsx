@@ -88,10 +88,16 @@ class ItemPage extends Component {
             {item.description || "Não há descrição para o produto."}
           </p>
           <p className="seller frm">Expira em <span>{daysLeft} dias</span></p>
-          {this.state.didFetch ?
-            <p className="seller frm">*Anúncio não listado por proximidade</p> : <div></div>
+          {item.available_quantity==0 ?
+            <p className="seller frm">*Todos os pets do Anúncio já foram adquiridos :(</p> : <div></div>
           }
-          <button className="reqTradeBtn normalBtn" onClick={this.onBuyClick.bind(this)}>Comprar</button>
+          {!item.available_quantity==0 ?
+            <button className="reqTradeBtn normalBtn"
+                    onClick={this.onBuyClick.bind(this)}>
+                    Comprar
+                    </button> : null
+          }
+
         </div>
       </div>
     );

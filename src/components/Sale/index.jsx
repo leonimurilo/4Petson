@@ -13,10 +13,19 @@ class Sale extends Component {
     if(this.props.sale && this.props.sale.announcement && this.props.sale.announcement.title
       && this.props.sale.user.name && this.props.sale.user.last_name
     ){
+      console.log("entrei", this.props.sale.announcement);
+      let $imagePreview = null;
+      if (this.props.sale.announcement.photos && this.props.sale.announcement.photos[0] && this.props.sale.announcement.photos[0].url) {
+        $imagePreview = (<img src={this.props.sale.announcement.photos[0].url} />);
+      } else {
+        $imagePreview = (<div className="previewText frm addPhotoBtn" onClick={this.props.editModal}>Adicionar foto</div>);
+      }
+
       return (
         <div className="ptWrapper">
           <div className="upper">
-            <div className="userImg">
+            <div className="imgPreviewMini imgPreview">
+              {$imagePreview}
             </div>
             <div>
               <h4>

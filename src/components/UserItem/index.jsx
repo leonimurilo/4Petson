@@ -91,7 +91,7 @@ class UserItem extends Component {
                 {tag}
               </div>: null }
             </div>
-            <div className="price frm">Restantes: {this.props.item.quantity}</div>
+            <div className="price frm">Restantes: {this.props.item.available_quantity} de {this.props.item.quantity}</div>
             <div className="tradeBtnWrapper lower">
               <button className="editBtn normalBtn" onClick={this.onViewClick.bind(this)}>Visualizar</button>
               {this.state.isDeleting ?
