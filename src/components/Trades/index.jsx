@@ -21,7 +21,9 @@ class Trades extends Component {
     window.scrollTo(0, 0);
     document.querySelector('.menu').classList.remove('open');
     this.props.fetchPurchases();
-    this.props.fetchSales();
+    if(this.props.auth.user.active_seller){
+      this.props.fetchSales();
+    }
   }
 
   closeModal() {
