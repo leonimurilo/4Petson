@@ -47,6 +47,23 @@ class BuyItem extends Component {
       }
     }
 
+    let expiresAt = null;
+    let daysLeft = null;
+
+    try{
+      expiresAt = new Date(item.expiration);
+      daysLeft = Math.round((expiresAt.getTime() - new Date().getTime())/(1000*60*60*24));
+    }catch(e){
+      console.log("error converting announcements date fields:", e);
+    }
+
+    if(item.available_quantity == 0 || daysLeft < 0 ){
+      return (<div>
+                <h3>Anúncio expirou</h3>
+                <Link className="backLink" to="/">Ir para catálogo</Link>
+              </div>);
+    }
+
     let images = [];
     if(item.photos){
       images = item.photos.map(function(element){
@@ -55,16 +72,6 @@ class BuyItem extends Component {
           thumbnail: element.url
         }
       });
-    }
-
-    let expiresAt = null;
-    let daysLeft = null;
-
-    try{
-      expiresAt = new Date(item.expiration);
-      daysLeft = Math.round((expiresAt.getTime() - new Date().getTime())/(1000*60*60*24));
-    }catch(e){
-      console.log("error converting announcement expiration date:", e);
     }
 
     return (

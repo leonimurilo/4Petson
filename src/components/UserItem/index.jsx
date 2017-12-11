@@ -55,15 +55,19 @@ class UserItem extends Component {
       console.log("error converting announcements date fields:", e);
     }
 
-    if(expiresAt && daysLeft){
-      if(daysLeft > 0){
-        if(daysLeft < 6){
-          tag = <div className="tag warningTag frm">Expira em {daysLeft} dias</div>
+    if(this.props.item.available_quantity == 0){
+      tag = <div className="tag blueTag frm">Pets comprados</div>
+    }else{
+      if(expiresAt && daysLeft){
+        if(daysLeft > 0){
+          if(daysLeft < 6){
+            tag = <div className="tag warningTag frm">Expira em {daysLeft} dias</div>
+          }else{
+            tag = <div className="tag frm">Expira em {daysLeft} dias</div>
+          }
         }else{
-          tag = <div className="tag frm">Expira em {daysLeft} dias</div>
+          tag = <div className="expiredTag tag frm">Expirou há {(daysLeft*-1)} dias</div>
         }
-      }else{
-        tag = <div className="expiredTag tag frm">Expirou há {(daysLeft*-1)} dias</div>
       }
     }
 
