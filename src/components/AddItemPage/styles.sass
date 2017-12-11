@@ -1,7 +1,51 @@
 @import '../../styles/variables.sass'
+@import "node_modules/react-image-gallery/styles/scss/image-gallery.scss"
 
 .addItemWrapper
   z-index: 9999
+  .labelContent
+    display: flex
+    text-align: center
+    cursor: pointer
+    align-content: center
+    height: 24px
+    align-items: center
+    justify-content: center
+    margin-bottom: 20px
+    // border: 2px solid black
+    background-color: #E0E0E0
+    border-radius: 30px
+    padding: 10px
+    transition: background-color .4s ease
+    &:hover
+      background-color: #EEEEEE
+    img
+      margin-right: 20px
+  .image-gallery-thumbnail.active
+    border: 3px solid $appPrimaryColor
+  .image-gallery-index
+    font-family: helvetica, sans-serif
+    font-size: 0.9rem
+    padding: 10px 14px
+  .image-gallery-slide img
+    border-radius: 10px 10px 0 0
+  .image-gallery-index
+    border-radius: 10px
+    margin: 5px
+  .image-gallery-fullscreen-button::before
+    font-size: 1.7em
+  .addItemImgPreview
+      text-align: center
+      min-height: 154px
+      min-width: 154px
+      // box-shadow: 0px 9px 78px -9px #dcdcdc
+      align-content: center
+      display: flex
+      align-items: center
+      justify-content: center
+  .addItemImageWrapper
+    width: 30%
+    border-radius: 20px
   .hider
     position: fixed
     top: 0
@@ -12,7 +56,6 @@
     +hider-gradient
     opacity: 0
     transition: opacity .7s cubic-bezier(.82,0,.12,1)
-
   .modal
     overflow: hidden
     background: $modal-background
@@ -120,10 +163,10 @@
           color: $black
 
 .cancelItemBtn
-  color: $light-grey
+  color: #EE003C
 
 .saveItemBtn
-  color: $appPrimaryColor
+  color: #00BAEE
 
 .addItemWrapper.open
   .hider

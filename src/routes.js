@@ -12,6 +12,7 @@ import ItemPage from './components/ItemPage/index.jsx';
 import Store from './components/Store/index.jsx';
 import Logout from './components/Logout/index.jsx';
 import ErrorPage from './components/ErrorPage/index.jsx';
+import BuyItem from './components/BuyItem/index.jsx';
 
 import requireAuth from "./utils/requireAuth";
 import requireLoggedOut from "./utils/requireLoggedOut";
@@ -20,6 +21,7 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={Main} />
     <Route path="item/:id" component={ItemPage} />
+    <Route path="buy/:id" component={BuyItem} />
     <Route path="profile" component={requireAuth(Profile)} />
     <Route path="signup" component={Signup} />
     <Route path="seller" >

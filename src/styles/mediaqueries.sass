@@ -1,8 +1,10 @@
 @import './variables.sass'
 
 @media screen and (max-width: 768px)
+  .addItemWrapper .addItemImageWrapper
+    width: 100%
   .item
-    flex: 0 1 49%
+    // flex: 0 1 49%
   #homeTitle > *
     text-align: center
 @media screen and (max-width: 400px)
@@ -13,7 +15,7 @@
   h3.error
     font-size: 2rem
   .item
-    flex: 0 1 100%
+    // flex: 0 1 100%
   .priceWrapper
     flex-direction: column
     .inputWrapper
@@ -29,7 +31,7 @@
   button.normalBtn
     padding: .5rem 1rem !important
   .wrapper
-    max-width: 1200px
+    max-width: 1800px
     margin: 10px auto
     padding: 45px 40px 40px 40px !important
   .footer
@@ -56,7 +58,7 @@
       padding: 0
   .item
     // padding-bottom: 3.5%
-    flex: 0 1 250px
+    // flex: 0 1 250px
     // to override the default css properties
     // &:nth-child(2n)
     //   padding-right: 0
@@ -109,6 +111,8 @@
     .reqTradeBtn
       margin: 3rem 0 2rem 0
       border: solid 2px $black
+  .buyItemPageWrapper
+    flex-direction: column
   .uIWrapper
     margin: 0 0 4rem 0
     .upper
@@ -116,13 +120,9 @@
     .itemCost
       color: lighten($black, 20%)
       font-size: 1.2rem
-      margin: 1rem 0
-      font-weight: 500
-    .addDate
-      margin: .5rem 0
       font-weight: 500
     .itemDescription
-      margin: 2rem 0
+      margin: 1rem 0
     .itemInfo
       margin-left: 3rem
     .userImg

@@ -43,6 +43,15 @@ class OtherInfo extends Component {
         </div>
       );
     } else {
+      let city = "Não disponível";
+      let state = "Não disponível";
+      let address = "Não disponível";
+      if(this.props.auth.user.address){
+        console.log("cidade:", this.props.auth.user.address.city);
+        city = this.props.auth.user.address.city || city;
+        state = this.props.auth.user.address.state || state;
+        address = this.props.auth.user.address.address || address;
+      }
       return (
         <div className="lIWrapper" key="lIWrapperText">
           <div className="inputWrapper">
@@ -59,15 +68,15 @@ class OtherInfo extends Component {
           </div>
           <div className="inputWrapper">
             <label>Cidade:</label>
-            <p className="inputData">Não disponível</p>
+            <p className="inputData">{city}</p>
           </div>
           <div className="inputWrapper">
             <label>Estado:</label>
-            <p className="inputData">Não disponível</p>
+            <p className="inputData">{state}</p>
           </div>
           <div className="inputWrapper">
             <label>Endereço:</label>
-            <p className="inputData">Não disponível</p>
+            <p className="inputData">{address}</p>
           </div>
         </div>
       );

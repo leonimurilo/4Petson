@@ -1,12 +1,23 @@
 @import '../../styles/variables.sass'
 
-.ptWrapper
+.allPurchasesWrapper
+  margin-right: 10%
+.trWrapper
+  border-bottom: 1px solid $light-grey
   &:first-child
-    margin-top: 0
-  margin-top: 2.5rem
+    margin-top: 2.5rem
+  .btnGroup
+    display: flex
+    .normalBtn
+      background-color: transparent
+      transition: color .5s ease-out
+      &:hover
+        color: $light-grey
   .upper
     margin: 1rem 0
     display: flex
+  &:last-child
+    border-bottom: none
   .userImg
     margin-top: .2rem
     flex: 0 0 3rem
@@ -20,6 +31,8 @@
   h4
     line-height: 1.2
     font-size: .9rem
+    margin-left: 12px
+    margin-bottom: 15px
     letter-spacing: 1px
   a
     font-size: .9rem
@@ -38,10 +51,11 @@
     transition: opacity .3s
     &:hover
       opacity: .8
-  .cancelBtn
-    margin: 0
+  .acceptBtn
+    background: $black
+    color: #fff
+  .declineBtn
     background: none
     border: solid 2px
     &:hover
       opacity: .7
-

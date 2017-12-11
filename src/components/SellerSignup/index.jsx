@@ -23,7 +23,7 @@ class SellerSignUp extends Component {
   }
 
   componentDidMount() {
-    document.body.scrollTop = 0;
+    window.scrollTo(0, 0);
   }
 
   onSubmit(e){
@@ -40,7 +40,7 @@ class SellerSignUp extends Component {
 
     this.props.signUpSeller(values, () => {
         this.props.router.push("/");
-        alert("O pedido foi enviado. Aguarde aprovação.")
+        alert("O pedido foi enviado. Aguarde aprovação.");
     });
   }
 
@@ -86,8 +86,7 @@ class SellerSignUp extends Component {
     if (imagePreviewUrl) {
       $imagePreview = (<img src={imagePreviewUrl} />);
     } else {
-      $imagePreview = (<div className="previewText">
-      </div>);
+      $imagePreview = (<div className="previewText frm">Capa</div>);
     }
 
     return (

@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import UserItem from '../UserItem/index.jsx';
 import AddItemPage from '../AddItemPage/index.jsx';
 import './styles.sass';
+
+import {fetchSellerAnnouncements, deleteAnnouncement} from "../../actions";
 
 class Store extends Component {
   constructor(props) {
@@ -13,8 +16,13 @@ class Store extends Component {
   }
 
   componentDidMount() {
-    document.body.scrollTop = 0;
+    window.scrollTo(0, 0);
     document.querySelector('.menu').classList.remove('open');
+    this.props.fetchSellerAnnouncements();
+  }
+
+  onItemDeleted(announcementId){
+    this.props.deleteAnnouncement(announcementId);
   }
 
   closeModal() {
@@ -49,9 +57,23 @@ class Store extends Component {
           + Novo anúncio
         </button>
       </div>
-      {[1, 2].map((e, i) => <UserItem key={i} editModal={this.openModal.bind(this)}/>)}
+      {
+        this.props.sellerAnnouncements.map((element, index) => {
+          return <UserItem  key={element.id}
+                            item={element}
+                            editModal={this.openModal.bind(this)}
+                            onItemDeleted={this.onItemDeleted.bind(this)}
+                           />
+        })
+      }
     </div>);
   }
 }
 
-export default Store;
+function mapStateToProps({sellerAnnouncements}){
+  return {
+    sellerAnnouncements
+  }
+}
+
+export default connect(mapStateToProps, {fetchSellerAnnouncements, deleteAnnouncement})(Store);

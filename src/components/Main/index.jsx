@@ -1,31 +1,66 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
 import './styles.sass';
+import {fetchAnnouncements} from "../../actions";
 import Item from '../Item/index.jsx';
+import Loader from "../Loader/index.jsx";
+import _ from "lodash";
 
 class Homepage extends Component {
+
   componentDidMount() {
-    document.body.scrollTop = 0;
+    window.scrollTo(0, 0);
     document.querySelector('.menu').classList.remove('open');
+    this.props.fetchAnnouncements("campinas");
   }
+
+  renderAnnouncements(){
+    return _.map(this.props.announcements, function(element, index){
+      if(!element._temporary){
+        return (<Item key={index} item={element}/>);
+      }else{
+        console.log("Temp announcement ignored:", element.id);
+      }
+    });
+  }
+
   render() {
-    return (
-      <div>
-      <div id="homeTitle">
-        <h2>{this.props.appContent.itemListTitle}</h2>
-      </div>
-        <main className="main">
+    if(this.props.announcements){
+      let isEmpty = Object.keys(this.props.announcements).length === 0 && this.props.announcements.constructor === Object;
+      // console.log("anuncios:", this.props.announcements);
+      // console.log("anuncios:", isEmpty);
+      if(!isEmpty){
+        return (
+          <div className="mainWrapper">
+            <div id="homeTitle">
+              <h2>{this.props.appContent.itemListTitle}</h2>
+            </div>
+            <main className="main">
+              {this.renderAnnouncements()}
+            </main>
+          </div>
+        );
+      }else{
+        return (
+          <div className="empty">
+            <img style={{width: "100px"}} src={require('../../assets/images/open-box.svg')} />
+            <h3>Nenhum pet foi encontrado :(</h3>
+          </div>)
+      }
+    }else{
+      return(
+        <div className="mainLoading">
+          <h3>Buscando pets mais próximos...</h3>
+          <Loader></Loader>
+        </div>
+      );
+    }
 
-          {"1234567890".split("").map((e, i) => <Item key={i} />)}
-        </main>
-      </div>
-
-    );
   }
 }
 
-function mapStateToProps({appContent}){
-  return {appContent}
+function mapStateToProps({appContent, announcements}){
+  return {appContent, announcements}
 }
 
-export default connect(mapStateToProps, null)(Homepage);
+export default connect(mapStateToProps, {fetchAnnouncements})(Homepage);

@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import {connect} from "react-redux";
 import { Link } from 'react-router';
 
-import TradeRequest from '../TradeRequest/index.jsx';
-import ProposedTrade from '../ProposedTrade/index.jsx';
+import Purchase from '../Purchase/index.jsx';
+import Sale from '../Sale/index.jsx';
 import AddItemPage from '../AddItemPage/index.jsx';
 import './styles.sass';
+
+import {fetchPurchases, fetchSales} from "../../actions";
 
 class Trades extends Component {
   constructor(props) {
@@ -16,8 +18,12 @@ class Trades extends Component {
   }
 
   componentDidMount() {
-    document.body.scrollTop = 0;
+    window.scrollTo(0, 0);
     document.querySelector('.menu').classList.remove('open');
+    this.props.fetchPurchases();
+    if(this.props.auth.user.active_seller){
+      this.props.fetchSales();
+    }
   }
 
   closeModal() {
@@ -26,18 +32,24 @@ class Trades extends Component {
     document.body.style.marginRight = 0;
   }
 
-  getAllProposedTrades() {
-    return ([
-      <ProposedTrade key="1" />,
-      <ProposedTrade key="2" />
-    ]);
+  getAllSales() {
+    // console.log(this.props);
+    if(!this.props.sales || this.props.sales.length == 0){
+      return (<div><h4>Você ainda não vendeu nada</h4></div>);
+    }
+    return this.props.sales.map(function(element, index){
+      return (<Sale key={index} sale={element}/>);
+    });
   }
 
-  getAllTradeRequests() {
-    return ([
-      <TradeRequest key="1" />,
-      <TradeRequest key="2" />
-    ]);
+  getAllPurchases() {
+    // console.log(this.props);
+    if(!this.props.purchases || this.props.purchases.length == 0){
+      return (<div><h4>Você ainda não comprou nada</h4></div>);
+    }
+    return this.props.purchases.map(function(element, index){
+      return (<Purchase key={index} purchase={element}/>);
+    });
   }
 
   getModal() {
@@ -74,16 +86,16 @@ class Trades extends Component {
           <div className="tradesInfoWrapper">
             <div className="tradeReqWrapper">
               <h3 className="unCap">Compras</h3>
-              <div className="allTradeRequestsWrapper">
-                {this.getAllTradeRequests()}
+              <div className="allPurchasesWrapper">
+                {this.getAllPurchases()}
               </div>
             </div>
-              <div className="tradeProposedWrapper">
-                <h3 className="unCap">Vendas</h3>
-                <div className="allProposedTradesWrapper">
-                  {this.getAllProposedTrades()}
-                </div>
+            <div className="tradeProposedWrapper">
+              <h3 className="unCap">Vendas</h3>
+              <div className="allSalesWrapper">
+                {this.getAllSales()}
               </div>
+            </div>
           </div>
         </div>
       );
@@ -94,8 +106,8 @@ class Trades extends Component {
           <div className="tradesInfoWrapper">
             <div className="tradeReqWrapper">
               <h3 className="unCap">Compras</h3>
-              <div className="allTradeRequestsWrapper">
-                {this.getAllTradeRequests()}
+              <div className="allPurchasesWrapper">
+                {this.getAllPurchases()}
               </div>
             </div>
           </div>
@@ -109,9 +121,11 @@ class Trades extends Component {
 function mapStateToProps(state){
   return (
     {
-      auth: state.auth
+      auth: state.auth,
+      purchases: state.purchases,
+      sales: state.sales
     }
   );
 }
 
-export default connect(mapStateToProps, null)(Trades);
+export default connect(mapStateToProps, {fetchPurchases, fetchSales})(Trades);

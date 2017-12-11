@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import {connect} from "react-redux"
 import {createAnnouncement} from "../../actions/index"
+import ImageGallery from "react-image-gallery";
 
 import './styles.sass';
 
@@ -44,9 +45,14 @@ class AddItemPage extends Component {
       description: this.state.description
     };
 
-    this.props.createAnnouncement(values, () => {
+    let photos = [];
+
+    photos = this.state.files.map(function(element, index){
+      return element.file;
+    });
+
+    this.props.createAnnouncement(values, photos, () => {
       this.close();
-      //close modal and refresh list addind this new announcement
     });
   }
 
@@ -98,7 +104,36 @@ class AddItemPage extends Component {
     });
   }
 
+  onImageSelect(e){
+    e.preventDefault();
+    let reader = new FileReader();
+    let file = e.target.files[0];
+
+    console.log("reader:", reader);
+    console.log("file:", file);
+
+    reader.onloadend = () => {
+      this.setState(
+        {
+          files: [{
+                    file: file,
+                    imagePreviewUrl: reader.result
+                  }, ...this.state.files ]
+        }
+      );
+    }
+    reader.readAsDataURL(file)
+  }
+
   render() {
+
+    const images = this.state.files.map(function(element){
+      return {
+        original: element.imagePreviewUrl,
+        thumbnail: element.imagePreviewUrl
+      }
+    });
+
     return (
       <div className="addItemWrapper" ref={node => { this.modalWrapper = node; }}>
         <div className="hider" />
@@ -107,10 +142,27 @@ class AddItemPage extends Component {
             <h3>Novo Anúncio</h3>
           </div>
           <div className="itemWrapper">
-            <div className="itemPicWrapper">
-              <div className="img" />
-              <p className="imgText frm">Adicionar fotos</p>
+          <div className="addItemImageWrapper">
+          <input
+            id="imgUpload"
+            style={{display: "none"}}
+            onChange={this.onImageSelect.bind(this)}
+            type="file"
+            accept="image/x-png,image/jpeg"
+          />
+          <label className="uploadButton" htmlFor="imgUpload">
+            <div className="labelContent">
+              <img style={{width: "30px"}} src={require('../../assets/images/photo-camera.svg')} />
+                Adicionar imagem
             </div>
+          </label>
+
+          {images.length ?
+            <ImageGallery items={images} showPlayButton={false} showIndex={true} showNav={false}/> :
+            <div className=""/>
+          }
+          </div>
+
             <div className="itemInfoWrapper">
               <div className="inputWrapper">
                 <label htmlFor="itemName">Título do anúncio:</label>
