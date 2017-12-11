@@ -11,6 +11,7 @@ import {
   SELLER_SIGN_UP,
   CREATE_ANNOUNCEMENT,
   DELETE_ANNOUNCEMENT,
+  BUY_ANNOUNCEMENT,
   FETCH_ANNOUNCEMENTS,
   FETCH_ANNOUNCEMENT,
   FETCH_SELLER_ANNOUNCEMENTS,
@@ -360,7 +361,7 @@ export function fetchPurchases(){
         token
       }
     }).then(function(response){
-      console.log(response);
+      console.log("purchases", response.data);
       dispatch(
         {
           type: FETCH_PURCHASES,
@@ -382,7 +383,7 @@ export function fetchSales(){
         token
       }
     }).then(function(response){
-      console.log(response);
+      console.log("sales:", response.data);
       dispatch(
         {
           type: FETCH_SALES,
@@ -415,4 +416,30 @@ export function fetchAnnouncement(announcementId, callback){
       console.log(error);
     });
   };
+}
+
+export function buyAnnouncement(announcementId, callback){
+  let token = localStorage.getItem('auth_token');
+  return (dispatch) => {
+    Axios.post(config.url.buyAnnouncement, {announcement_id: announcementId, token}).then(({data}) => {
+      console.log("data", data);
+      if(callback)
+        callback();
+      dispatch(
+        {
+          type: BUY_ANNOUNCEMENT,
+          payload: data
+        }
+      );
+
+    }).catch(err => {
+      if(err.response){
+        console.log("Error response from server:", err.response);
+      }else if(err.request){
+        console.log("Could not reach server:", err.response);
+      }else{
+        console.log("Non request error happened:", err);
+      }
+    });
+  }
 }

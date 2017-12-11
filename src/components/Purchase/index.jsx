@@ -9,7 +9,7 @@ class Purchase extends Component {
   }
 
   render() {
-    console.log("purchase:", this.props.purchase);
+    // console.log("purchase:", this.props.purchase);
     if(this.props.purchase && this.props.purchase.announcement && this.props.purchase.announcement.title){
       return (
         <div className="trWrapper">

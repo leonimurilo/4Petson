@@ -40,7 +40,7 @@ class SellerSignUp extends Component {
 
     this.props.signUpSeller(values, () => {
         this.props.router.push("/");
-        alert("O pedido foi enviado. Aguarde aprovação.")
+        alert("O pedido foi enviado. Aguarde aprovação.");
     });
   }
 

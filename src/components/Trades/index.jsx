@@ -31,7 +31,7 @@ class Trades extends Component {
   }
 
   getAllSales() {
-    console.log(this.props);
+    // console.log(this.props);
     if(!this.props.sales || this.props.sales.length == 0){
       return (<div><h4>Você ainda não vendeu nada</h4></div>);
     }
@@ -41,7 +41,7 @@ class Trades extends Component {
   }
 
   getAllPurchases() {
-    console.log(this.props);
+    // console.log(this.props);
     if(!this.props.purchases || this.props.purchases.length == 0){
       return (<div><h4>Você ainda não comprou nada</h4></div>);
     }

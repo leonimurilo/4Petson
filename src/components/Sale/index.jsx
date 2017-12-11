@@ -9,7 +9,7 @@ class Sale extends Component {
   }
 
   render() {
-    console.log("sale:", this.props.sale);
+    // console.log("sale:", this.props.sale);
     if(this.props.sale && this.props.sale.announcement && this.props.sale.announcement.title
       && this.props.sale.user.name && this.props.sale.user.last_name
     ){

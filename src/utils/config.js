@@ -9,6 +9,7 @@ module.exports = {
     'checkUser': 'http://four-pet.herokuapp.com/api/auth/current_user',
     'createAnnouncement': 'http://four-pet.herokuapp.com/api/announcement/create',
     'deleteAnnouncement': 'http://four-pet.herokuapp.com/api/announcement/delete',
+    'buyAnnouncement': 'http://four-pet.herokuapp.com/api/announcement/buy',
     'fetchSellerAnnouncements': 'http://four-pet.herokuapp.com/api/announcement/seller_announcements',
     'fetchAnnouncements': 'http://four-pet.herokuapp.com/api/announcement/home',
     'fetchAnnouncement': 'http://four-pet.herokuapp.com/api/announcement/get',

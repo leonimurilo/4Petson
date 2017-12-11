@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 import Loader from "../Loader";
 import ImageGallery from "react-image-gallery";
-import {fetchAnnouncement} from "../../actions";
+import {fetchAnnouncement, buyAnnouncement} from "../../actions";
 import './styles.sass';
 
 class BuyItem extends Component {
@@ -15,6 +15,13 @@ class BuyItem extends Component {
   componentDidMount(){
     window.scrollTo(0, 0);
     document.querySelector('.menu').classList.remove('open');
+  }
+
+  onBuyConfirmed(event){
+    this.props.buyAnnouncement(this.props.params.id, () => {
+      alert("Compra realizada com sucesso! Seu novo bichinho será entregue em breve.");
+      this.props.router.push("/");
+    });
   }
 
   render() {
@@ -82,7 +89,9 @@ class BuyItem extends Component {
           }
         </div>
         <div className="buySeparator"></div>
-        <button className="buyNormalBtn"><div>Confirmar compra<img src={require('../../assets/images/credit-card.svg')}/></div></button>
+        <button className="buyNormalBtn" onClick={this.onBuyConfirmed.bind(this)}>
+          <div>Confirmar compra<img src={require('../../assets/images/credit-card.svg')}/></div>
+        </button>
       </div>
     );
   }
@@ -92,4 +101,4 @@ function mapStateToProps({announcements}){
   return {announcements};
 }
 
-export default connect(mapStateToProps, {fetchAnnouncement})(BuyItem);
+export default connect(mapStateToProps, {fetchAnnouncement, buyAnnouncement})(withRouter(BuyItem));
