@@ -28,7 +28,7 @@ class SignUp extends Component {
     const {handleSubmit, error} = this.props;
     return (
       <form onSubmit={handleSubmit(this.onSubmit.bind(this))} className="signUpWrapper">
-        <h3 className="signUpHeading text-center">SignUp</h3>
+        <h3 className="signUpHeading text-center">Cadastro</h3>
         <div className="inputWrapper">
           <Field label="Nome" name="name" type="text" component={renderField}/>
           <Field label="Sobrenome" name="last_name" type="text" component={renderField}/>
