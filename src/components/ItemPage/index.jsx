@@ -64,9 +64,11 @@ class ItemPage extends Component {
       console.log("error converting announcement expiration date:", e);
     }
 
+    console.log("FOTO", item.photos);
+
     return (
       <div className="itemPageWrapper">
-        {item.photos ?
+        {item.photos && item.photos.length > 0 ?
           <div className="itemImgWrapper">
             <ImageGallery items={images} showPlayButton={false} showIndex={true} showNav={false}/>
           </div> :
