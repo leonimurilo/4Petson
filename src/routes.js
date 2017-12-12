@@ -21,7 +21,7 @@ export default (
   <Route path="/" component={App}>
     <IndexRoute component={Main} />
     <Route path="item/:id" component={ItemPage} />
-    <Route path="buy/:id" component={BuyItem} />
+    <Route path="buy/:id" component={requireAuth(BuyItem)} />
     <Route path="profile" component={requireAuth(Profile)} />
     <Route path="signup" component={Signup} />
     <Route path="seller" >
