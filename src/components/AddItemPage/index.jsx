@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import {connect} from "react-redux"
 import {createAnnouncement} from "../../actions/index"
 import ImageGallery from "react-image-gallery";
+import Loader from "../Loader";
 
 import './styles.sass';
 
@@ -9,6 +10,7 @@ class AddItemPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isLoading: false,
       files: [
         // {imagePreviewUrl: "", file: ""}
       ],
@@ -51,6 +53,7 @@ class AddItemPage extends Component {
       return element.file;
     });
 
+    this.setState({isLoading: true});
     this.props.createAnnouncement(values, photos, () => {
       this.close();
     });
@@ -126,6 +129,17 @@ class AddItemPage extends Component {
   }
 
   render() {
+
+    if(this.state.isLoading){
+      return (
+        <div className="addItemWrapper" ref={node => { this.modalWrapper = node; }}>
+          <div className="hider" />
+          <div className="modal">
+              <h3 className="addItemLoadingh3">Criando anúncio...</h3>
+            <Loader/>
+          </div>
+        </div>);
+    }
 
     const images = this.state.files.map(function(element){
       return {
