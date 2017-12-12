@@ -148,6 +148,8 @@ class AddItemPage extends Component {
       }
     });
 
+    let canSubmit = this.state.title && this.state.price && this.state.amount && this.state.expirationDate && this.state.breedId;
+
     return (
       <div className="addItemWrapper" ref={node => { this.modalWrapper = node; }}>
         <div className="hider" />
@@ -246,7 +248,7 @@ class AddItemPage extends Component {
             </div>
           </div>
           <div className="buttonWrapper">
-            <button className="saveItemBtn" onClick={this.onSubmit.bind(this)}>Criar anúncio</button>
+            <button className="saveItemBtn" disabled={!canSubmit} onClick={this.onSubmit.bind(this)}>Criar anúncio</button>
             <button className="cancelItemBtn" onClick={this.close.bind(this)}>Cancelar</button>
           </div>
         </div>
