@@ -31,5 +31,6 @@ https://youtu.be/uWr1LsSP4TE
 
 Open `localhost:8080` to open the app!
 
+Swagger API Doc: http://four-pet.herokuapp.com/api/documentation/
 
 Credits to https://github.com/arshdkhn1/ecommerce-site-template for the base template and webpack envinroment.
