@@ -5,6 +5,9 @@ The idea was to build an eCommerce that worked as an intermediate between specia
 
 The front-end is mainly developed in React+Redux and the back-end (separated repo) is developed in Ruby on Rails.
 
+# Demo
+https://youtu.be/uWr1LsSP4TE
+
 * The server was hosted on Heroku
 * The home page shows up results based on the user's location (matching specialized sellers inputed delivery range)
 * Swagger was used to document the APIs
@@ -27,8 +30,6 @@ The front-end is mainly developed in React+Redux and the back-end (separated rep
 `npm run build`
 
 Open `localhost:8080` to open the app!
-
-Demo - https://youtu.be/uWr1LsSP4TE
 
 
 Credits to https://github.com/arshdkhn1/ecommerce-site-template for the base template and webpack envinroment.
